@@ -2,6 +2,7 @@
 
 import "../globals.css";
 import Nav from "../Nav";
+import Pda from "./Pda";
 import { useEffect, useState, useMemo, useCallback } from "react";
 
 function hoyArg() {
@@ -452,6 +453,8 @@ export default function Flota() {
           </div>
         )}
       </div>
+
+      <Pda hoy={hoy} />
 
       <div className="list-head">
         <h2>

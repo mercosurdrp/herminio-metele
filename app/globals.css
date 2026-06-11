@@ -293,3 +293,28 @@ tbody tr:hover { background: #eef4ff; }
 /* Barras del gráfico de adherencia (una sola por grupo, en %) */
 .bar.adh { width: 30px; }
 .bar.adh .bar-val { font-weight: 700; }
+
+/* Planes de acción (PDA) */
+.pda-card { margin-top: 0; margin-bottom: 1.5rem; border-top: 4px solid #0d9488; }
+.pda-form {
+  display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: flex-end;
+  background: var(--panel2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 0.9rem 1rem; margin-bottom: 1rem;
+}
+.pda-form .field input, .pda-form .field select { background: var(--panel); }
+/* Fila con PDA vencido (pasó la fecha sin estar cumplido) */
+tbody tr.pda-vencido, tbody tr.pda-vencido:nth-child(even) { background: rgba(220,38,38,0.10); }
+tbody tr.pda-vencido:hover { background: rgba(220,38,38,0.16); }
+.pda-fecha-vencida { color: var(--bad); font-weight: 800; }
+.pda-select {
+  background: var(--panel2); border: 1px solid var(--border); color: var(--text);
+  padding: 0.3rem 0.4rem; border-radius: 7px; font-size: 0.82rem; cursor: pointer;
+}
+.pda-comentario {
+  width: 100%; min-width: 180px; background: transparent; border: 1px dashed var(--border);
+  color: var(--text); padding: 0.35rem 0.5rem; border-radius: 7px; font-size: 0.85rem;
+}
+.pda-comentario:focus { background: var(--panel2); border-style: solid; outline: none; }
+.pda-borrar { padding: 0.3rem 0.55rem; font-size: 0.9rem; }
+.chip.chip-bad { border-color: var(--bad); color: var(--bad); }
+.chip.chip-bad.active { background: var(--bad); border-color: var(--bad); color: #fff; }
