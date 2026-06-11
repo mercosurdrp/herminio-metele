@@ -1,19 +1,66 @@
 // Órdenes de trabajo de mantenimiento (Cloudfleet) para el dashboard
-// de la pestaña Mantenimiento. Trae todo y el cliente filtra.
+// de la pestaña Mantenimiento.
+//
+// El rate limit de Cloudfleet (30 req/min POR CUENTA, compartido con la página
+// de checklists y los tableros de la empresa) hace inviable pegarle en cada
+// visita → las órdenes se cachean en Vercel Blob por 30 minutos. Si al
+// refrescar la API está saturada, se sirve la copia anterior (stale) antes
+// que fallar. Mismo patrón versionado del PDA: nunca sobrescribir el mismo
+// pathname (el CDN de Blob sirve copia vieja), siempre archivo nuevo + del().
+import { put, list, del } from "@vercel/blob";
 import { getOrdenes } from "../../../lib/ordenes";
 
-// La carga inicial pagina varias ventanas de la API de Cloudfleet y puede
-// tener que esperar el rate limit (30 req/min) — darle margen.
 export const maxDuration = 120;
+
+const PREFIJO = "ordenes-cache/datos-";
+const TTL_MS = 30 * 60 * 1000;
+
+async function leerCache() {
+  try {
+    const { blobs } = await list({ prefix: PREFIJO });
+    if (!blobs.length) return null;
+    const ultimo = blobs.sort((a, b) => b.pathname.localeCompare(a.pathname))[0];
+    const ts = Number(ultimo.pathname.slice(PREFIJO.length).replace(".json", "")) || 0;
+    const res = await fetch(ultimo.url, { cache: "no-store" });
+    if (!res.ok) return null;
+    return { ts, datos: await res.json() };
+  } catch {
+    return null;
+  }
+}
+
+async function guardarCache(datos) {
+  try {
+    const nuevo = await put(`${PREFIJO}${Date.now()}.json`, JSON.stringify(datos), {
+      access: "public",
+      addRandomSuffix: false,
+    });
+    const { blobs } = await list({ prefix: PREFIJO });
+    const viejos = blobs.filter((b) => b.url !== nuevo.url).map((b) => b.url);
+    if (viejos.length) await del(viejos);
+  } catch {}
+}
 
 export async function GET(req) {
   if (!req?.url || process.env.NEXT_PHASE === "phase-production-build") {
     return Response.json({ ok: true, ordenes: [] });
   }
+
+  const cache = await leerCache();
+  if (cache && Date.now() - cache.ts < TTL_MS) {
+    return Response.json({ ok: true, ...cache.datos, cacheado: true });
+  }
+
   try {
     const ordenes = await getOrdenes();
-    return Response.json({ ok: true, ordenes, actualizado: new Date().toISOString() });
+    const datos = { ordenes, actualizado: new Date().toISOString() };
+    await guardarCache(datos);
+    return Response.json({ ok: true, ...datos });
   } catch (e) {
+    // API saturada o caída: mejor la copia anterior que nada.
+    if (cache) {
+      return Response.json({ ok: true, ...cache.datos, cacheado: true, stale: true });
+    }
     return Response.json({ ok: false, error: String(e.message || e) }, { status: 500 });
   }
 }
