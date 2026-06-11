@@ -1,31 +1,39 @@
 // Planes de acción (PDA) de adherencia de checklists.
-// Persisten como un JSON único en Vercel Blob (no hay base de datos).
-import { put, head } from "@vercel/blob";
+// Persisten como un JSON en Vercel Blob (no hay base de datos).
+// 🚨 NO sobrescribir un mismo pathname: el CDN de Blob sirve la copia vieja
+// un rato (verificado acá: una edición "se deshacía" al releer). Cada guardado
+// escribe un archivo nuevo `pda/planes-<ts>.json` (URL nueva = sin caché) y
+// borra las versiones anteriores; se lee el de timestamp más alto vía list().
+import { put, list, del } from "@vercel/blob";
 
-const RUTA = "pda/planes.json";
+const PREFIJO = "pda/planes-";
 const ESTADOS = new Set(["no_iniciado", "en_curso", "cumplido"]);
 
 async function leerPlanes() {
   try {
-    const info = await head(RUTA);
-    // Cache-bust: el CDN de Blob puede servir una copia vieja tras un
-    // overwrite; sin esto un PDA recién guardado "desaparece" al recargar.
-    const res = await fetch(`${info.url}?ts=${Date.now()}`, { cache: "no-store" });
+    const { blobs } = await list({ prefix: PREFIJO });
+    if (!blobs.length) return [];
+    const ultimo = blobs.sort((a, b) => b.pathname.localeCompare(a.pathname))[0];
+    const res = await fetch(ultimo.url, { cache: "no-store" });
     if (!res.ok) return [];
     const j = await res.json();
     return Array.isArray(j) ? j : [];
   } catch {
-    return []; // el blob todavía no existe (primer uso)
+    return []; // todavía no hay planes guardados (primer uso)
   }
 }
 
 async function guardarPlanes(planes) {
-  await put(RUTA, JSON.stringify(planes), {
+  const nuevo = await put(`${PREFIJO}${Date.now()}.json`, JSON.stringify(planes), {
     access: "public",
     addRandomSuffix: false,
-    allowOverwrite: true,
-    cacheControlMaxAge: 0,
   });
+  // Limpieza de versiones anteriores (best effort: si falla, solo queda basura).
+  try {
+    const { blobs } = await list({ prefix: PREFIJO });
+    const viejos = blobs.filter((b) => b.url !== nuevo.url).map((b) => b.url);
+    if (viejos.length) await del(viejos);
+  } catch {}
 }
 
 function limpiarTexto(v, max = 500) {
