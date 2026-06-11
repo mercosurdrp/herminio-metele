@@ -159,7 +159,8 @@ export default function MantenimientoFlota() {
       {error && <div className="err">⚠️ {error}</div>}
       {cargando && (
         <div className="center muted" style={{ padding: "2rem" }}>
-          Cargando órdenes de mantenimiento desde Cloudfleet… (puede tardar unos segundos)
+          Cargando órdenes de mantenimiento desde Cloudfleet… La primera carga del día
+          puede tardar unos minutos (la API tiene límite de velocidad); después queda en caché.
         </div>
       )}
 
