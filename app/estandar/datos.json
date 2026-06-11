@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-06-11",
  "camiones": {
-  "pct": 95.7,
-  "cumple": 562,
-  "total": 587,
+  "pct": 95.8,
+  "cumple": 529,
+  "total": 552,
   "unidades": [
    {
     "patente": "FTI792",
@@ -134,18 +134,6 @@
     "pct": 97.1
    },
    {
-    "patente": "AB399KZ",
-    "total": 35,
-    "cumple": 34,
-    "pendientes": [
-     {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
-     }
-    ],
-    "pct": 97.1
-   },
-   {
     "patente": "AE445WS",
     "total": 35,
     "cumple": 34,
@@ -232,21 +220,16 @@
    {
     "patente": "AF552QZ",
     "total": 35,
-    "cumple": 34,
-    "pendientes": [
-     {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
-     }
-    ],
-    "pct": 97.1
+    "cumple": 35,
+    "pendientes": [],
+    "pct": 100.0
    }
   ],
   "items": [
    {
     "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-    "total": 17,
-    "cumple": 0,
+    "total": 16,
+    "cumple": 1,
     "aplican": [
      "OTB032",
      "OTY696",
@@ -256,15 +239,14 @@
      "AE445WT",
      "AE523XP",
      "FTI792",
-     "AB399KZ",
+     "AF399KZ",
      "AF552QZ",
      "AB386KU",
      "AB386KV",
      "AE591EV",
      "AF399KW",
      "OJA408",
-     "HJR136",
-     "AF399KZ"
+     "HJR136"
     ],
     "noOk": [
      "OTB032",
@@ -275,23 +257,21 @@
      "AE445WT",
      "AE523XP",
      "FTI792",
-     "AB399KZ",
-     "AF552QZ",
+     "AF399KZ",
      "AB386KU",
      "AB386KV",
      "AE591EV",
      "AF399KW",
      "OJA408",
-     "HJR136",
-     "AF399KZ"
+     "HJR136"
     ],
     "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO",
-    "pct": 0.0
+    "pct": 6.2
    },
    {
     "item": "SISTEMA DE ABS",
-    "total": 17,
-    "cumple": 11,
+    "total": 16,
+    "cumple": 10,
     "aplican": [
      "OTB032",
      "OTY696",
@@ -301,15 +281,14 @@
      "AE445WT",
      "AE523XP",
      "FTI792",
-     "AB399KZ",
+     "AF399KZ",
      "AF552QZ",
      "AB386KU",
      "AB386KV",
      "AE591EV",
      "AF399KW",
      "OJA408",
-     "HJR136",
-     "AF399KZ"
+     "HJR136"
     ],
     "noOk": [
      "OTB032",
@@ -320,7 +299,7 @@
      "HJR136"
     ],
     "obs": "",
-    "pct": 64.7
+    "pct": 62.5
    },
    {
     "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
