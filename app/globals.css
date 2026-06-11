@@ -395,3 +395,31 @@ tbody tr.pda-vencido:hover { background: rgba(220,38,38,0.16); }
   border-radius: 999px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 700;
   margin: 0.12rem 0.25rem 0.12rem 0;
 }
+
+/* ===== Mantenimiento de flota (órdenes de trabajo) ===== */
+.mant-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.mant-card {
+  background: var(--panel); border: 1px solid var(--border); border-top: 4px solid var(--border);
+  border-radius: 14px; padding: 1rem 1.1rem; box-shadow: var(--shadow); text-align: left;
+  font: inherit; color: inherit; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+}
+.mant-card:hover { transform: translateY(-2px); }
+.mant-card.active { outline: 2px solid currentColor; outline-offset: -2px; }
+.mant-card-total { cursor: default; }
+.mant-card-total:hover { transform: none; }
+.mant-card-label { font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; }
+.mant-card-valor { font-size: 1.35rem; font-weight: 800; margin: 0.2rem 0; white-space: nowrap; }
+.mant-card-sub { font-size: 0.8rem; color: var(--muted); }
+.mant-badge {
+  display: inline-block; padding: 0.14rem 0.5rem; border-radius: 999px;
+  font-size: 0.72rem; font-weight: 700; margin-right: 0.25rem; white-space: nowrap;
+}
+.mant-fila { flex-wrap: wrap; }
+.mant-num { font-size: 0.78rem; min-width: 44px; }
+.mant-fecha { font-weight: 700; min-width: 86px; white-space: nowrap; }
+.mant-tipos { flex: 1; min-width: 120px; }
+.mant-costo { font-weight: 800; white-space: nowrap; margin-left: auto; }
+.mant-detalle { padding: 0.3rem 0.8rem 0.9rem; }
+.mant-meta { display: flex; gap: 1.1rem; flex-wrap: wrap; font-size: 0.85rem; margin-bottom: 0.4rem; }
+.mant-coment { font-size: 0.85rem; margin-bottom: 0.4rem; white-space: pre-wrap; }
+.mant-subtitulo { font-weight: 800; font-size: 0.92rem; margin: 0.7rem 0 0.4rem; }
