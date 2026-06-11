@@ -293,6 +293,29 @@ tbody tr:hover { background: #eef4ff; }
 /* Barras del gráfico de adherencia (una sola por grupo, en %) */
 .bar.adh { width: 30px; }
 .bar.adh .bar-val { font-weight: 700; }
+.adh-col { cursor: pointer; }
+.adh-col:hover .bar.adh { filter: brightness(1.12); }
+
+/* Tooltip del gráfico de adherencia: qué camiones no hicieron qué check.
+   position fixed (coordenadas de viewport) para que el overflow del chart no lo recorte. */
+.adh-tooltip {
+  position: fixed; z-index: 60; transform: translate(-50%, calc(-100% - 10px));
+  background: #0f172a; color: #f1f5f9; border-radius: 10px; padding: 0.55rem 0.8rem;
+  font-size: 0.8rem; line-height: 1.5; box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+  pointer-events: none; max-width: 320px; white-space: nowrap;
+}
+.adh-tooltip::after {
+  content: ""; position: absolute; left: 50%; top: 100%; transform: translateX(-50%);
+  border: 7px solid transparent; border-top-color: #0f172a;
+}
+.adh-tooltip .tt-title { font-weight: 800; margin-bottom: 0.25rem; }
+.adh-tooltip .tt-ok { color: #86efac; }
+.adh-tooltip .tt-row { display: flex; gap: 0.55rem; align-items: baseline; }
+.adh-tooltip .tt-patente { font-weight: 700; }
+.adh-tooltip .tt-fecha { color: #94a3b8; font-size: 0.74rem; }
+.adh-tooltip .tt-falta-lib { color: #fda4af; font-weight: 600; }
+.adh-tooltip .tt-falta-ret { color: #93c5fd; font-weight: 600; }
+.adh-tooltip .tt-mas { color: #94a3b8; margin-top: 0.2rem; }
 
 /* Planes de acción (PDA) */
 .pda-card { margin-top: 0; margin-bottom: 1.5rem; border-top: 4px solid #0d9488; }

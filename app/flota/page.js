@@ -81,6 +81,8 @@ export default function Flota() {
   const [colapsado, setColapsado] = useState(true);
   // Gráfico de adherencia: agrupado por día o por mes.
   const [vistaAdh, setVistaAdh] = useState("dia");
+  // Tooltip del gráfico de adherencia: {x, y, d} de la columna bajo el cursor.
+  const [tipAdh, setTipAdh] = useState(null);
   // Detalle de camiones-día con check incompleto (oculto por defecto).
   const [verIncompletos, setVerIncompletos] = useState(false);
   const [data, setData] = useState(null);
@@ -206,19 +208,27 @@ export default function Flota() {
       .sort((a, b) => b.fecha.localeCompare(a.fecha) || a.patente.localeCompare(b.patente));
     const pct = lista.length ? Math.round((completos / lista.length) * 1000) / 10 : null;
 
-    // Series por día y por mes: % de pares completos en cada agrupación.
+    // Series por día y por mes: % de pares completos en cada agrupación, más
+    // la lista de camiones incompletos (para el tooltip de la barra).
     const agrupar = (claveDe) => {
       const m = new Map();
       for (const p of lista) {
         const clave = claveDe(p.fecha);
-        if (!m.has(clave)) m.set(clave, { clave, total: 0, completos: 0 });
+        if (!m.has(clave)) m.set(clave, { clave, total: 0, completos: 0, faltantes: [] });
         const g = m.get(clave);
         g.total += 1;
         if (p.lib && p.ret) g.completos += 1;
+        else g.faltantes.push({ patente: p.patente, fecha: p.fecha, falta: p.lib ? "RETORNO" : "LIBERACION" });
       }
       return [...m.values()]
         .sort((a, b) => a.clave.localeCompare(b.clave))
-        .map((g) => ({ ...g, pct: Math.round((g.completos / g.total) * 1000) / 10 }));
+        .map((g) => ({
+          ...g,
+          pct: Math.round((g.completos / g.total) * 1000) / 10,
+          faltantes: g.faltantes.sort(
+            (a, b) => a.fecha.localeCompare(b.fecha) || a.patente.localeCompare(b.patente)
+          ),
+        }));
     };
     return {
       total: lista.length,
@@ -393,28 +403,68 @@ export default function Flota() {
         {serieAdh.length === 0 ? (
           <div className="center muted">Sin datos para graficar.</div>
         ) : (
-          <div className="chart">
-            {serieAdh.map((d) => (
-              <div className="col-group" key={d.clave}>
-                <div className="bars">
-                  <div
-                    className="bar adh"
-                    style={{
-                      height: `${d.pct}%`,
-                      background: colorAdherencia(d.pct),
-                    }}
-                    title={`${d.clave} · ${d.completos}/${d.total} completos · ${d.pct}%`}
-                  >
-                    <span className="bar-val">{Math.round(d.pct)}%</span>
+          <div className="chart" onMouseLeave={() => setTipAdh(null)}>
+            {serieAdh.map((d) => {
+              const mostrarTip = (e) => {
+                const r = e.currentTarget.getBoundingClientRect();
+                setTipAdh({ x: r.left + r.width / 2, y: r.top, d });
+              };
+              return (
+                <div
+                  className="col-group adh-col"
+                  key={d.clave}
+                  onMouseEnter={mostrarTip}
+                  onClick={mostrarTip}
+                >
+                  <div className="bars">
+                    <div
+                      className="bar adh"
+                      style={{
+                        height: `${d.pct}%`,
+                        background: colorAdherencia(d.pct),
+                      }}
+                    >
+                      <span className="bar-val">{Math.round(d.pct)}%</span>
+                    </div>
+                  </div>
+                  <div className="col-label">
+                    {vistaAdh === "mes"
+                      ? etiquetaMes(d.clave)
+                      : `${d.clave.slice(8, 10)}/${d.clave.slice(5, 7)}`}
                   </div>
                 </div>
-                <div className="col-label">
-                  {vistaAdh === "mes"
-                    ? etiquetaMes(d.clave)
-                    : `${d.clave.slice(8, 10)}/${d.clave.slice(5, 7)}`}
-                </div>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+        )}
+        {tipAdh && (
+          <div className="adh-tooltip" style={{ left: tipAdh.x, top: tipAdh.y }}>
+            <div className="tt-title">
+              {vistaAdh === "mes"
+                ? etiquetaMes(tipAdh.d.clave)
+                : `${tipAdh.d.clave.slice(8, 10)}/${tipAdh.d.clave.slice(5, 7)}/${tipAdh.d.clave.slice(0, 4)}`}
+              {" "}· {tipAdh.d.pct}% ({tipAdh.d.completos}/{tipAdh.d.total} completos)
+            </div>
+            {tipAdh.d.faltantes.length === 0 ? (
+              <div className="tt-ok">✅ Todos los camiones hicieron ambos checks</div>
+            ) : (
+              <>
+                {tipAdh.d.faltantes.slice(0, 14).map((f, i) => (
+                  <div className="tt-row" key={`${f.fecha}|${f.patente}|${i}`}>
+                    <span className="tt-patente">🚛 {f.patente}</span>
+                    {vistaAdh === "mes" && (
+                      <span className="tt-fecha">{f.fecha.slice(8, 10)}/{f.fecha.slice(5, 7)}</span>
+                    )}
+                    <span className={f.falta === "RETORNO" ? "tt-falta-ret" : "tt-falta-lib"}>
+                      faltó {f.falta === "RETORNO" ? "Retorno" : "Liberación"}
+                    </span>
+                  </div>
+                ))}
+                {tipAdh.d.faltantes.length > 14 && (
+                  <div className="tt-mas">… y {tipAdh.d.faltantes.length - 14} más</div>
+                )}
+              </>
+            )}
           </div>
         )}
         {adherencia.incompletos.length > 0 && (
