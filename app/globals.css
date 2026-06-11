@@ -338,6 +338,17 @@ tbody tr.pda-vencido:hover { background: rgba(220,38,38,0.16); }
   color: var(--text); padding: 0.35rem 0.5rem; border-radius: 7px; font-size: 0.85rem;
 }
 .pda-comentario:focus { background: var(--panel2); border-style: solid; outline: none; }
+/* Comentario colapsado: una línea con … ; clic despliega el textarea completo */
+.pda-coment-resumen {
+  display: flex; align-items: center; gap: 0.3rem; width: 100%; max-width: 280px;
+  background: transparent; border: 1px dashed transparent; border-radius: 7px;
+  color: var(--text); padding: 0.35rem 0.5rem; font-size: 0.85rem; cursor: pointer; text-align: left;
+}
+.pda-coment-resumen:hover { border-color: var(--border); background: var(--panel2); }
+.pda-coment-texto { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pda-coment-abierto {
+  font-family: inherit; line-height: 1.45; white-space: pre-wrap; resize: vertical; min-width: 240px;
+}
 .pda-borrar { padding: 0.3rem 0.55rem; font-size: 0.9rem; }
 .chip.chip-bad { border-color: var(--bad); color: var(--bad); }
 .chip.chip-bad.active { background: var(--bad); border-color: var(--bad); color: #fff; }

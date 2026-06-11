@@ -29,6 +29,8 @@ export default function Pda({ hoy }) {
   const [guardando, setGuardando] = useState(false);
   const [error, setError] = useState(null);
   const [filtroEstado, setFiltroEstado] = useState("");
+  // id del plan cuyo comentario está desplegado (textarea completo); null = todos colapsados.
+  const [comentAbierto, setComentAbierto] = useState(null);
   const vacio = { accion: "", responsable: "", vence: "", estado: "no_iniciado", comentario: "" };
   const [nuevo, setNuevo] = useState(vacio);
 
@@ -237,21 +239,39 @@ export default function Pda({ hoy }) {
                       </div>
                     </td>
                     <td style={{ minWidth: "200px" }}>
-                      <input
-                        className="pda-comentario"
-                        type="text"
-                        placeholder="Agregar comentario…"
-                        key={`${p.id}|${p.comentario || ""}`}
-                        defaultValue={p.comentario || ""}
-                        disabled={guardando}
-                        onBlur={(e) => {
-                          const v = e.target.value.trim();
-                          if (v !== (p.comentario || "")) mutar("editar", { id: p.id, comentario: v });
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter") e.target.blur();
-                        }}
-                      />
+                      {comentAbierto === p.id ? (
+                        <textarea
+                          className="pda-comentario pda-coment-abierto"
+                          placeholder="Agregar comentario…"
+                          rows={Math.min(8, Math.max(3, Math.ceil((p.comentario || "").length / 45)))}
+                          autoFocus
+                          key={`${p.id}|${p.comentario || ""}`}
+                          defaultValue={p.comentario || ""}
+                          disabled={guardando}
+                          onBlur={(e) => {
+                            const v = e.target.value.trim();
+                            setComentAbierto(null);
+                            if (v !== (p.comentario || "")) mutar("editar", { id: p.id, comentario: v });
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Escape") e.target.blur();
+                          }}
+                        />
+                      ) : (
+                        <button
+                          className="pda-coment-resumen"
+                          title="Clic para leer completo / editar"
+                          onClick={() => setComentAbierto(p.id)}
+                        >
+                          {p.comentario ? (
+                            <>
+                              <span className="pda-coment-texto">{p.comentario}</span> ▾
+                            </>
+                          ) : (
+                            <span className="muted">Agregar comentario…</span>
+                          )}
+                        </button>
+                      )}
                     </td>
                     <td>
                       <button
