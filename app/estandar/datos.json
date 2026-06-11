@@ -1,0 +1,366 @@
+{
+ "actualizado": "2026-06-11",
+ "camiones": {
+  "pct": 95.6,
+  "cumple": 560,
+  "total": 586,
+  "unidades": [
+   {
+    "patente": "FTI792",
+    "total": 34,
+    "cumple": 31,
+    "pendientes": [
+     {
+      "item": "SISTEMA DE ABS",
+      "obs": ""
+     },
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     },
+     {
+      "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
+      "obs": ""
+     }
+    ],
+    "pct": 91.2
+   },
+   {
+    "patente": "OJA408",
+    "total": 34,
+    "cumple": 31,
+    "pendientes": [
+     {
+      "item": "SISTEMA DE ABS",
+      "obs": ""
+     },
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     },
+     {
+      "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
+      "obs": ""
+     }
+    ],
+    "pct": 91.2
+   },
+   {
+    "patente": "FUB570",
+    "total": 33,
+    "cumple": 31,
+    "pendientes": [
+     {
+      "item": "SISTEMA DE ABS",
+      "obs": ""
+     },
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 93.9
+   },
+   {
+    "patente": "OTB032",
+    "total": 33,
+    "cumple": 31,
+    "pendientes": [
+     {
+      "item": "SISTEMA DE ABS",
+      "obs": ""
+     },
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 93.9
+   },
+   {
+    "patente": "HIE914",
+    "total": 34,
+    "cumple": 32,
+    "pendientes": [
+     {
+      "item": "SISTEMA DE ABS",
+      "obs": ""
+     },
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 94.1
+   },
+   {
+    "patente": "HJR136",
+    "total": 35,
+    "cumple": 33,
+    "pendientes": [
+     {
+      "item": "SISTEMA DE ABS",
+      "obs": ""
+     },
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 94.3
+   },
+   {
+    "patente": "OTY696",
+    "total": 35,
+    "cumple": 33,
+    "pendientes": [
+     {
+      "item": "SISTEMA DE ABS",
+      "obs": ""
+     },
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 94.3
+   },
+   {
+    "patente": "AB386KU",
+    "total": 35,
+    "cumple": 34,
+    "pendientes": [
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 97.1
+   },
+   {
+    "patente": "AB386KV",
+    "total": 35,
+    "cumple": 34,
+    "pendientes": [
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 97.1
+   },
+   {
+    "patente": "AB399KZ",
+    "total": 35,
+    "cumple": 34,
+    "pendientes": [
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 97.1
+   },
+   {
+    "patente": "AE445WS",
+    "total": 35,
+    "cumple": 34,
+    "pendientes": [
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 97.1
+   },
+   {
+    "patente": "AE445WT",
+    "total": 34,
+    "cumple": 33,
+    "pendientes": [
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 97.1
+   },
+   {
+    "patente": "AE523XP",
+    "total": 34,
+    "cumple": 33,
+    "pendientes": [
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 97.1
+   },
+   {
+    "patente": "AE591EV",
+    "total": 35,
+    "cumple": 34,
+    "pendientes": [
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 97.1
+   },
+   {
+    "patente": "AF399KW",
+    "total": 35,
+    "cumple": 34,
+    "pendientes": [
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 97.1
+   },
+   {
+    "patente": "AF399KX",
+    "total": 35,
+    "cumple": 34,
+    "pendientes": [
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 97.1
+   },
+   {
+    "patente": "AF552QZ",
+    "total": 35,
+    "cumple": 34,
+    "pendientes": [
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 97.1
+   }
+  ],
+  "items": [
+   {
+    "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+    "total": 17,
+    "cumple": 0,
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "HIE914",
+     "FTI792",
+     "AB399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO",
+    "pct": 0.0
+   },
+   {
+    "item": "SISTEMA DE ABS",
+    "total": 17,
+    "cumple": 10,
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "HIE914",
+     "FTI792",
+     "OJA408",
+     "HJR136"
+    ],
+    "obs": "",
+    "pct": 58.8
+   },
+   {
+    "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
+    "total": 7,
+    "cumple": 5,
+    "noOk": [
+     "FTI792",
+     "OJA408"
+    ],
+    "obs": "",
+    "pct": 71.4
+   }
+  ],
+  "itemsOk": 36,
+  "itemsTotal": 39
+ },
+ "autoelevadores": {
+  "pct": 95.2,
+  "cumple": 60,
+  "total": 63,
+  "unidades": [
+   {
+    "patente": "TOYOTA4",
+    "total": 21,
+    "cumple": 20,
+    "pendientes": [
+     {
+      "item": "GARRAFAS DESMONTABLES (MANOMETRO)",
+      "obs": ""
+     }
+    ],
+    "pct": 95.2
+   },
+   {
+    "patente": "TOYOTA5",
+    "total": 21,
+    "cumple": 20,
+    "pendientes": [
+     {
+      "item": "GARRAFAS DESMONTABLES (MANOMETRO)",
+      "obs": ""
+     }
+    ],
+    "pct": 95.2
+   },
+   {
+    "patente": "TOYOTA6",
+    "total": 21,
+    "cumple": 20,
+    "pendientes": [
+     {
+      "item": "GARRAFAS DESMONTABLES (MANOMETRO)",
+      "obs": ""
+     }
+    ],
+    "pct": 95.2
+   }
+  ],
+  "items": [
+   {
+    "item": "GARRAFAS DESMONTABLES (MANOMETRO)",
+    "total": 3,
+    "cumple": 0,
+    "noOk": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "obs": "",
+    "pct": 0.0
+   }
+  ],
+  "itemsOk": 20,
+  "itemsTotal": 21
+ }
+}
