@@ -10,7 +10,7 @@
 import { put, list, del } from "@vercel/blob";
 import { getOrdenes } from "../../../lib/ordenes";
 
-export const maxDuration = 120;
+export const maxDuration = 300;
 
 const PREFIJO = "ordenes-cache/datos-";
 const TTL_MS = 30 * 60 * 1000;
