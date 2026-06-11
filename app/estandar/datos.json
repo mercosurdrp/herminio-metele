@@ -2,8 +2,8 @@
  "actualizado": "2026-06-11",
  "camiones": {
   "pct": 95.7,
-  "cumple": 528,
-  "total": 552,
+  "cumple": 562,
+  "total": 587,
   "unidades": [
    {
     "patente": "FTI792",
@@ -134,6 +134,18 @@
     "pct": 97.1
    },
    {
+    "patente": "AB399KZ",
+    "total": 35,
+    "cumple": 34,
+    "pendientes": [
+     {
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+     }
+    ],
+    "pct": 97.1
+   },
+   {
     "patente": "AE445WS",
     "total": 35,
     "cumple": 34,
@@ -233,7 +245,7 @@
   "items": [
    {
     "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-    "total": 16,
+    "total": 17,
     "cumple": 0,
     "aplican": [
      "OTB032",
@@ -244,14 +256,15 @@
      "AE445WT",
      "AE523XP",
      "FTI792",
-     "AF399KZ",
+     "AB399KZ",
      "AF552QZ",
      "AB386KU",
      "AB386KV",
      "AE591EV",
      "AF399KW",
      "OJA408",
-     "HJR136"
+     "HJR136",
+     "AF399KZ"
     ],
     "noOk": [
      "OTB032",
@@ -262,22 +275,23 @@
      "AE445WT",
      "AE523XP",
      "FTI792",
-     "AF399KZ",
+     "AB399KZ",
      "AF552QZ",
      "AB386KU",
      "AB386KV",
      "AE591EV",
      "AF399KW",
      "OJA408",
-     "HJR136"
+     "HJR136",
+     "AF399KZ"
     ],
     "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO",
     "pct": 0.0
    },
    {
     "item": "SISTEMA DE ABS",
-    "total": 16,
-    "cumple": 10,
+    "total": 17,
+    "cumple": 11,
     "aplican": [
      "OTB032",
      "OTY696",
@@ -287,14 +301,15 @@
      "AE445WT",
      "AE523XP",
      "FTI792",
-     "AF399KZ",
+     "AB399KZ",
      "AF552QZ",
      "AB386KU",
      "AB386KV",
      "AE591EV",
      "AF399KW",
      "OJA408",
-     "HJR136"
+     "HJR136",
+     "AF399KZ"
     ],
     "noOk": [
      "OTB032",
@@ -305,7 +320,7 @@
      "HJR136"
     ],
     "obs": "",
-    "pct": 62.5
+    "pct": 64.7
    },
    {
     "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
