@@ -23,7 +23,9 @@ function badgePda(estado, vencido) {
   return <span className="badge warn">No iniciado</span>;
 }
 
-export default function Pda({ hoy }) {
+// `ambito` separa el almacenamiento por página (checklist | estandar);
+// `titulo`/`descripcion` permiten contextualizar el encabezado.
+export default function Pda({ hoy, ambito = "checklist", descripcion }) {
   const [planes, setPlanes] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [guardando, setGuardando] = useState(false);
@@ -38,7 +40,7 @@ export default function Pda({ hoy }) {
     setCargando(true);
     setError(null);
     try {
-      const r = await fetch("/api/pda", { cache: "no-store" });
+      const r = await fetch(`/api/pda?ambito=${ambito}`, { cache: "no-store" });
       const j = await r.json();
       if (!j.ok) throw new Error(j.error || "Error al leer los PDA");
       setPlanes(j.planes || []);
@@ -47,7 +49,7 @@ export default function Pda({ hoy }) {
     } finally {
       setCargando(false);
     }
-  }, []);
+  }, [ambito]);
 
   useEffect(() => {
     cargar();
@@ -60,7 +62,7 @@ export default function Pda({ hoy }) {
       const r = await fetch("/api/pda", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ accion, plan }),
+        body: JSON.stringify({ accion, plan, ambito }),
       });
       const j = await r.json();
       if (!j.ok) throw new Error(j.error || "No se pudo guardar el PDA");
@@ -131,8 +133,8 @@ export default function Pda({ hoy }) {
         </div>
       </div>
       <div className="muted" style={{ fontSize: "0.85rem", marginBottom: "0.7rem" }}>
-        Para los casos en que no se cumplió la adherencia. Esta sección no depende de los
-        filtros de fecha de arriba: siempre muestra todos los planes.
+        {descripcion ||
+          "Para los casos en que no se cumplió la adherencia. Esta sección no depende de los filtros de fecha de arriba: siempre muestra todos los planes."}
       </div>
 
       {error && <div className="err">⚠️ {error}</div>}

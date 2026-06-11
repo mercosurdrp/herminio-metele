@@ -6,12 +6,20 @@
 // borra las versiones anteriores; se lee el de timestamp más alto vía list().
 import { put, list, del } from "@vercel/blob";
 
-const PREFIJO = "pda/planes-";
+// Cada ámbito (página) guarda sus planes en su propio prefijo de Blob.
+const PREFIJOS = {
+  checklist: "pda/planes-",
+  estandar: "pda-estandar/planes-",
+};
 const ESTADOS = new Set(["no_iniciado", "en_curso", "cumplido"]);
 
-async function leerPlanes() {
+function prefijoDe(ambito) {
+  return PREFIJOS[ambito] || PREFIJOS.checklist;
+}
+
+async function leerPlanes(prefijo) {
   try {
-    const { blobs } = await list({ prefix: PREFIJO });
+    const { blobs } = await list({ prefix: prefijo });
     if (!blobs.length) return [];
     const ultimo = blobs.sort((a, b) => b.pathname.localeCompare(a.pathname))[0];
     const res = await fetch(ultimo.url, { cache: "no-store" });
@@ -23,14 +31,14 @@ async function leerPlanes() {
   }
 }
 
-async function guardarPlanes(planes) {
-  const nuevo = await put(`${PREFIJO}${Date.now()}.json`, JSON.stringify(planes), {
+async function guardarPlanes(prefijo, planes) {
+  const nuevo = await put(`${prefijo}${Date.now()}.json`, JSON.stringify(planes), {
     access: "public",
     addRandomSuffix: false,
   });
   // Limpieza de versiones anteriores (best effort: si falla, solo queda basura).
   try {
-    const { blobs } = await list({ prefix: PREFIJO });
+    const { blobs } = await list({ prefix: prefijo });
     const viejos = blobs.filter((b) => b.url !== nuevo.url).map((b) => b.url);
     if (viejos.length) await del(viejos);
   } catch {}
@@ -47,7 +55,8 @@ function esBuild(req) {
 export async function GET(req) {
   if (esBuild(req)) return Response.json({ ok: true, planes: [] });
   try {
-    return Response.json({ ok: true, planes: await leerPlanes() });
+    const prefijo = prefijoDe(new URL(req.url).searchParams.get("ambito"));
+    return Response.json({ ok: true, planes: await leerPlanes(prefijo) });
   } catch (e) {
     return Response.json({ ok: false, error: String(e.message || e) }, { status: 500 });
   }
@@ -56,8 +65,9 @@ export async function GET(req) {
 export async function POST(req) {
   if (esBuild(req)) return Response.json({ ok: false, error: "build" }, { status: 400 });
   try {
-    const { accion, plan } = await req.json();
-    let planes = await leerPlanes();
+    const { accion, plan, ambito } = await req.json();
+    const prefijo = prefijoDe(ambito);
+    let planes = await leerPlanes(prefijo);
 
     if (accion === "crear") {
       const nuevo = {
@@ -91,7 +101,7 @@ export async function POST(req) {
       return Response.json({ ok: false, error: "Acción inválida" }, { status: 400 });
     }
 
-    await guardarPlanes(planes);
+    await guardarPlanes(prefijo, planes);
     return Response.json({ ok: true, planes });
   } catch (e) {
     return Response.json({ ok: false, error: String(e.message || e) }, { status: 500 });

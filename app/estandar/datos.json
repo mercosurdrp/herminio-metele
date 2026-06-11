@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-06-11",
  "camiones": {
-  "pct": 95.6,
-  "cumple": 560,
-  "total": 586,
+  "pct": 95.7,
+  "cumple": 528,
+  "total": 552,
   "unidades": [
    {
     "patente": "FTI792",
@@ -76,22 +76,6 @@
      }
     ],
     "pct": 93.9
-   },
-   {
-    "patente": "HIE914",
-    "total": 34,
-    "cumple": 32,
-    "pendientes": [
-     {
-      "item": "SISTEMA DE ABS",
-      "obs": ""
-     },
-     {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
-     }
-    ],
-    "pct": 94.1
    },
    {
     "patente": "HJR136",
@@ -249,8 +233,26 @@
   "items": [
    {
     "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-    "total": 17,
+    "total": 16,
     "cumple": 0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AB399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
     "noOk": [
      "OTB032",
      "OTY696",
@@ -259,7 +261,6 @@
      "AE445WS",
      "AE445WT",
      "AE523XP",
-     "HIE914",
      "FTI792",
      "AB399KZ",
      "AF552QZ",
@@ -275,30 +276,55 @@
    },
    {
     "item": "SISTEMA DE ABS",
-    "total": 17,
+    "total": 16,
     "cumple": 10,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AB399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
     "noOk": [
      "OTB032",
      "OTY696",
      "FUB570",
-     "HIE914",
      "FTI792",
      "OJA408",
      "HJR136"
     ],
     "obs": "",
-    "pct": 58.8
+    "pct": 62.5
    },
    {
     "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
-    "total": 7,
-    "cumple": 5,
+    "total": 6,
+    "cumple": 4,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "FTI792",
+     "OJA408",
+     "HJR136"
+    ],
     "noOk": [
      "FTI792",
      "OJA408"
     ],
     "obs": "",
-    "pct": 71.4
+    "pct": 66.7
    }
   ],
   "itemsOk": 36,
@@ -351,6 +377,11 @@
     "item": "GARRAFAS DESMONTABLES (MANOMETRO)",
     "total": 3,
     "cumple": 0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
     "noOk": [
      "TOYOTA4",
      "TOYOTA5",
