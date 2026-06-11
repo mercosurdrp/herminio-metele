@@ -208,15 +208,18 @@ export default function Flota() {
       .sort((a, b) => b.fecha.localeCompare(a.fecha) || a.patente.localeCompare(b.patente));
     const pct = lista.length ? Math.round((completos / lista.length) * 1000) / 10 : null;
 
-    // Series por día y por mes: % de pares completos en cada agrupación, más
-    // la lista de camiones incompletos (para el tooltip de la barra).
+    // Series por día y por mes: % de camiones con liberación y % con retorno
+    // en cada agrupación (dos columnas), más la lista de camiones incompletos
+    // (para el tooltip de la barra).
     const agrupar = (claveDe) => {
       const m = new Map();
       for (const p of lista) {
         const clave = claveDe(p.fecha);
-        if (!m.has(clave)) m.set(clave, { clave, total: 0, completos: 0, faltantes: [] });
+        if (!m.has(clave)) m.set(clave, { clave, total: 0, completos: 0, libs: 0, rets: 0, faltantes: [] });
         const g = m.get(clave);
         g.total += 1;
+        if (p.lib) g.libs += 1;
+        if (p.ret) g.rets += 1;
         if (p.lib && p.ret) g.completos += 1;
         else g.faltantes.push({ patente: p.patente, fecha: p.fecha, falta: p.lib ? "RETORNO" : "LIBERACION" });
       }
@@ -225,6 +228,8 @@ export default function Flota() {
         .map((g) => ({
           ...g,
           pct: Math.round((g.completos / g.total) * 1000) / 10,
+          pctLib: Math.round((g.libs / g.total) * 1000) / 10,
+          pctRet: Math.round((g.rets / g.total) * 1000) / 10,
           faltantes: g.faltantes.sort(
             (a, b) => a.fecha.localeCompare(b.fecha) || a.patente.localeCompare(b.patente)
           ),
@@ -397,8 +402,11 @@ export default function Flota() {
           </div>
         </div>
         <div className="muted" style={{ fontSize: "0.85rem", marginBottom: "0.4rem" }}>
-          % de camiones que, habiendo operado, hicieron los dos checks (liberación y retorno).
-          Verde ≥95% · ámbar ≥80% · rojo &lt;80%.
+          % de camiones que, habiendo operado, hicieron cada check.
+        </div>
+        <div className="legend">
+          <span><span className="dot lib" /> Liberación</span>
+          <span><span className="dot ret" /> Retorno</span>
         </div>
         {serieAdh.length === 0 ? (
           <div className="center muted">Sin datos para graficar.</div>
@@ -417,14 +425,11 @@ export default function Flota() {
                   onClick={mostrarTip}
                 >
                   <div className="bars">
-                    <div
-                      className="bar adh"
-                      style={{
-                        height: `${d.pct}%`,
-                        background: colorAdherencia(d.pct),
-                      }}
-                    >
-                      <span className="bar-val">{Math.round(d.pct)}%</span>
+                    <div className="bar lib adh2" style={{ height: `${d.pctLib}%` }}>
+                      <span className="bar-val">{Math.round(d.pctLib)}</span>
+                    </div>
+                    <div className="bar ret adh2" style={{ height: `${d.pctRet}%` }}>
+                      <span className="bar-val">{Math.round(d.pctRet)}</span>
                     </div>
                   </div>
                   <div className="col-label">
@@ -443,7 +448,7 @@ export default function Flota() {
               {vistaAdh === "mes"
                 ? etiquetaMes(tipAdh.d.clave)
                 : `${tipAdh.d.clave.slice(8, 10)}/${tipAdh.d.clave.slice(5, 7)}/${tipAdh.d.clave.slice(0, 4)}`}
-              {" "}· {tipAdh.d.pct}% ({tipAdh.d.completos}/{tipAdh.d.total} completos)
+              {" "}· Lib {tipAdh.d.pctLib}% · Ret {tipAdh.d.pctRet}% ({tipAdh.d.completos}/{tipAdh.d.total} completos)
             </div>
             {tipAdh.d.faltantes.length === 0 ? (
               <div className="tt-ok">✅ Todos los camiones hicieron ambos checks</div>

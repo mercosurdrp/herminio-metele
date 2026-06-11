@@ -290,11 +290,11 @@ tbody tr:hover { background: #eef4ff; }
 .bar { width: 16px; border-radius: 4px 4px 0 0; min-height: 2px; position: relative; display: flex; justify-content: center; }
 .bar-val { position: absolute; top: -1.15rem; font-size: 0.72rem; color: var(--text); }
 .col-label { font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
-/* Barras del gráfico de adherencia (una sola por grupo, en %) */
-.bar.adh { width: 30px; }
-.bar.adh .bar-val { font-weight: 700; }
+/* Barras del gráfico de adherencia (liberación + retorno por grupo, en %) */
+.bar.adh2 { width: 18px; }
+.bar.adh2 .bar-val { font-weight: 700; font-size: 0.68rem; }
 .adh-col { cursor: pointer; }
-.adh-col:hover .bar.adh { filter: brightness(1.12); }
+.adh-col:hover .bar.adh2 { filter: brightness(1.12); }
 
 /* Tooltip del gráfico de adherencia: qué camiones no hicieron qué check.
    position fixed (coordenadas de viewport) para que el overflow del chart no lo recorte. */
