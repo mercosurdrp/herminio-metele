@@ -12,7 +12,7 @@ import { getOrdenes } from "../../../lib/ordenes";
 
 export const maxDuration = 300;
 
-const PREFIJO = "ordenes-cache/datos-";
+const PREFIJO = "ordenes-cache/v2-datos-"; // v2: invalida el caché de la versión sin trabajos/repuestos
 const TTL_MS = 30 * 60 * 1000;
 
 async function leerCache() {
