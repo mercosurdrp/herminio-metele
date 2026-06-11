@@ -36,6 +36,25 @@ function lunesDeLaSemana(fechaISO) {
 function primerDiaDelMes(fechaISO) {
   return fechaISO.slice(0, 8) + "01";
 }
+// Último día de un mes "YYYY-MM" → "YYYY-MM-DD".
+function finDeMes(mesISO) {
+  const [y, m] = mesISO.split("-").map(Number);
+  return new Date(Date.UTC(y, m, 0)).toISOString().slice(0, 10);
+}
+// Etiqueta corta de mes "YYYY-MM" → "jun 26" (sin toLocaleDateString para no
+// arrastrar el mes por zona horaria).
+const MESES_CORTOS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+function etiquetaMes(mesISO) {
+  const m = Number(mesISO.slice(5, 7));
+  return `${MESES_CORTOS[m - 1] || mesISO} ${mesISO.slice(2, 4)}`;
+}
+// Semáforo de adherencia: verde ≥95, ámbar ≥80, rojo abajo.
+function colorAdherencia(pct) {
+  if (pct == null) return "var(--muted)";
+  if (pct >= 95) return "var(--ok)";
+  if (pct >= 80) return "var(--warn)";
+  return "var(--bad)";
+}
 
 function badgeEstado(estado) {
   const e = (estado || "").toUpperCase();
@@ -59,6 +78,10 @@ export default function Flota() {
   const [estado, setEstado] = useState("");
   // Listado colapsado: muestra solo los checks de la fecha más cercana (último día).
   const [colapsado, setColapsado] = useState(true);
+  // Gráfico de adherencia: agrupado por día o por mes.
+  const [vistaAdh, setVistaAdh] = useState("dia");
+  // Detalle de camiones-día con check incompleto (oculto por defecto).
+  const [verIncompletos, setVerIncompletos] = useState(false);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -73,6 +96,20 @@ export default function Flota() {
   const aplicarRango = (r) => {
     setDesde(r.desde);
     setHasta(r.hasta);
+  };
+
+  // Filtro por mes: elegir un mes setea desde/hasta a ese mes completo (el mes
+  // en curso corta en hoy). El valor mostrado se deriva del rango actual.
+  const mesFiltro =
+    desde.slice(0, 7) === hasta.slice(0, 7) &&
+    desde.endsWith("-01") &&
+    (hasta === finDeMes(hasta.slice(0, 7)) || hasta === hoy)
+      ? desde.slice(0, 7)
+      : "";
+  const aplicarMes = (mes) => {
+    if (!mes) return;
+    setDesde(mes + "-01");
+    setHasta(mes === hoy.slice(0, 7) ? hoy : finDeMes(mes));
   };
 
   const cargar = useCallback(async () => {
@@ -144,6 +181,56 @@ export default function Flota() {
     return [...s].sort();
   }, [data]);
 
+  // Adherencia liberación↔retorno. Por cada camión y día con actividad (al
+  // menos un check), el par está completo si hizo LIBERACION y RETORNO. Un
+  // camión con liberación sin retorno (o al revés) baja la adherencia.
+  // Aplica solo el filtro de sucursal: el de tipo/estado no, porque la
+  // adherencia necesita mirar ambos tipos a la vez.
+  const adherencia = useMemo(() => {
+    let base = data?.datos || [];
+    if (sucursal) base = base.filter((x) => (x.sucursal || "") === sucursal);
+    const pares = new Map(); // "fecha|patente" → {fecha, patente, lib, ret}
+    for (const x of base) {
+      if (!x.fecha || !x.patente) continue;
+      const k = `${x.fecha}|${x.patente}`;
+      if (!pares.has(k)) pares.set(k, { fecha: x.fecha, patente: x.patente, lib: false, ret: false });
+      const p = pares.get(k);
+      if (x.tipo === "LIBERACION") p.lib = true;
+      else if (x.tipo === "RETORNO") p.ret = true;
+    }
+    const lista = [...pares.values()];
+    const completos = lista.filter((p) => p.lib && p.ret).length;
+    const incompletos = lista
+      .filter((p) => !(p.lib && p.ret))
+      .sort((a, b) => b.fecha.localeCompare(a.fecha) || a.patente.localeCompare(b.patente));
+    const pct = lista.length ? Math.round((completos / lista.length) * 1000) / 10 : null;
+
+    // Series por día y por mes: % de pares completos en cada agrupación.
+    const agrupar = (claveDe) => {
+      const m = new Map();
+      for (const p of lista) {
+        const clave = claveDe(p.fecha);
+        if (!m.has(clave)) m.set(clave, { clave, total: 0, completos: 0 });
+        const g = m.get(clave);
+        g.total += 1;
+        if (p.lib && p.ret) g.completos += 1;
+      }
+      return [...m.values()]
+        .sort((a, b) => a.clave.localeCompare(b.clave))
+        .map((g) => ({ ...g, pct: Math.round((g.completos / g.total) * 1000) / 10 }));
+    };
+    return {
+      total: lista.length,
+      completos,
+      incompletos,
+      pct,
+      serieDia: agrupar((f) => f),
+      serieMes: agrupar((f) => f.slice(0, 7)),
+    };
+  }, [data, sucursal]);
+
+  const serieAdh = vistaAdh === "mes" ? adherencia.serieMes : adherencia.serieDia;
+
   // Serie para el gráfico de columnas: por día, cuántas liberaciones y retornos.
   const serieDiaria = useMemo(() => {
     const m = new Map();
@@ -167,7 +254,7 @@ export default function Flota() {
         </button>
       </Nav>
 
-      <h1 className="page-title">Adherencia de Check List Flota</h1>
+      <h1 className="page-title">ADHERENCIA DE CHECK LIST</h1>
 
       {error && <div className="err">⚠️ {error}</div>}
 
@@ -199,6 +286,15 @@ export default function Flota() {
           </div>
           <div className="sub">rechazado / crítico</div>
         </div>
+        <div className="card">
+          <div className="label">Adherencia</div>
+          <div className="value" style={{ color: colorAdherencia(adherencia.pct) }}>
+            {adherencia.pct != null ? `${adherencia.pct}%` : "—"}
+          </div>
+          <div className="sub">
+            {adherencia.completos}/{adherencia.total} camiones-día con liberación + retorno
+          </div>
+        </div>
       </div>
 
       <div className="quick-ranges">
@@ -221,6 +317,15 @@ export default function Flota() {
         <div className="field">
           <label>Hasta</label>
           <input type="date" value={hasta} onChange={(e) => setHasta(e.target.value)} />
+        </div>
+        <div className="field">
+          <label>Mes</label>
+          <input
+            type="month"
+            value={mesFiltro}
+            max={hoy.slice(0, 7)}
+            onChange={(e) => aplicarMes(e.target.value)}
+          />
         </div>
         <div className="field">
           <label>Sucursal</label>
@@ -259,6 +364,92 @@ export default function Flota() {
             {new Date(data.actualizado).toLocaleString("es-AR", { timeZone: "America/Argentina/Buenos_Aires" })}
             {" "}· se actualiza solo cada 5 min · o tocá «Sincronizar»
           </small>
+        )}
+      </div>
+
+      <div className="chart-card" style={{ marginTop: 0, marginBottom: "1.5rem" }}>
+        <div className="chart-head">
+          <h2>Adherencia liberación + retorno</h2>
+          <div className="quick-ranges" style={{ marginBottom: 0 }}>
+            <button
+              className={`chip${vistaAdh === "dia" ? " active" : ""}`}
+              onClick={() => setVistaAdh("dia")}
+            >
+              Por día
+            </button>
+            <button
+              className={`chip${vistaAdh === "mes" ? " active" : ""}`}
+              onClick={() => setVistaAdh("mes")}
+            >
+              Por mes
+            </button>
+          </div>
+        </div>
+        <div className="muted" style={{ fontSize: "0.85rem", marginBottom: "0.4rem" }}>
+          % de camiones que, habiendo operado, hicieron los dos checks (liberación y retorno).
+          Verde ≥95% · ámbar ≥80% · rojo &lt;80%.
+        </div>
+        {serieAdh.length === 0 ? (
+          <div className="center muted">Sin datos para graficar.</div>
+        ) : (
+          <div className="chart">
+            {serieAdh.map((d) => (
+              <div className="col-group" key={d.clave}>
+                <div className="bars">
+                  <div
+                    className="bar adh"
+                    style={{
+                      height: `${d.pct}%`,
+                      background: colorAdherencia(d.pct),
+                    }}
+                    title={`${d.clave} · ${d.completos}/${d.total} completos · ${d.pct}%`}
+                  >
+                    <span className="bar-val">{Math.round(d.pct)}%</span>
+                  </div>
+                </div>
+                <div className="col-label">
+                  {vistaAdh === "mes"
+                    ? etiquetaMes(d.clave)
+                    : `${d.clave.slice(8, 10)}/${d.clave.slice(5, 7)}`}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {adherencia.incompletos.length > 0 && (
+          <div style={{ marginTop: "0.9rem" }}>
+            <button className="btn btn-ghost" onClick={() => setVerIncompletos((v) => !v)}>
+              {verIncompletos
+                ? "Ocultar detalle"
+                : `Ver checks incompletos (${adherencia.incompletos.length})`}
+            </button>
+            {verIncompletos && (
+              <div className="tablewrap" style={{ marginTop: "0.6rem", maxHeight: "320px" }}>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Fecha</th>
+                      <th>Patente</th>
+                      <th>Hizo</th>
+                      <th>Le faltó</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {adherencia.incompletos.map((p) => (
+                      <tr key={`${p.fecha}|${p.patente}`}>
+                        <td>
+                          {p.fecha.slice(8, 10)}/{p.fecha.slice(5, 7)}/{p.fecha.slice(0, 4)}
+                        </td>
+                        <td>{p.patente}</td>
+                        <td>{p.lib ? badgeTipo("LIBERACION") : badgeTipo("RETORNO")}</td>
+                        <td>{p.lib ? badgeTipo("RETORNO") : badgeTipo("LIBERACION")}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
         )}
       </div>
 

@@ -4,7 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const TABS = [
-  { href: "/flota", label: "🚛 Flota" },
+  { href: "/flota", label: "📋 Check List" },
+  { href: "/estandar", label: "📐 Estándar" },
+  { href: "/mantenimiento-flota", label: "🛠️ Mantenimiento" },
+  { href: "/combustible", label: "⛽ Combustible" },
   { href: "/mantenimiento", label: "🔧 Análisis de falla mecánica" },
 ];
 
@@ -13,6 +16,12 @@ const TABS = [
 export default function Nav({ children }) {
   const path = usePathname();
   return (
+    <>
+    <div className="work-title">
+      <img className="wt-logo" src="/logo-mercosur-distri.svg" alt="Mercosur Distribuciones" />
+      <span className="wt-text">FLOTA</span>
+      <img className="wt-logo wt-logo-dpo" src="/logo-dpo.jpeg" alt="DPO" />
+    </div>
     <div className="topbar">
       <div className="nav-wrap">
         <span className="brand">Mercosur Misiones</span>
@@ -30,5 +39,6 @@ export default function Nav({ children }) {
       </div>
       {children && <div className="topbar-actions">{children}</div>}
     </div>
+    </>
   );
 }
