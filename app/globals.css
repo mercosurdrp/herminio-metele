@@ -1,7 +1,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #d6deea;
+  --bg: #141b2a;
   --panel: #ffffff;
   --panel2: #eef2f8;
   --border: #cdd6e3;
@@ -22,20 +22,34 @@ body {
   min-height: 100vh;
 }
 
-/* Fondo del dashboard: degradado suave con resplandores difusos en los colores
-   de la marca (bordó, azul, teal). Pseudo-elemento fijo en vez de
-   background-attachment: fixed, que iOS Safari no soporta. */
+/* Fondo del dashboard: oscuro azulado profundo (descansa la vista) con
+   resplandores difusos en los colores de la marca (bordó, azul, teal).
+   Pseudo-elemento fijo en vez de background-attachment: fixed,
+   que iOS Safari no soporta. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(1100px 650px at 10% -8%, rgba(157, 23, 77, 0.10), transparent 60%),
-    radial-gradient(1000px 620px at 96% -4%, rgba(37, 99, 235, 0.13), transparent 58%),
-    radial-gradient(950px 700px at 50% 112%, rgba(13, 148, 136, 0.10), transparent 62%),
-    linear-gradient(168deg, #f0f4fa 0%, #e2e9f4 48%, #d4deee 100%);
+    radial-gradient(1100px 650px at 10% -8%, rgba(157, 23, 77, 0.18), transparent 60%),
+    radial-gradient(1000px 620px at 96% -4%, rgba(37, 99, 235, 0.20), transparent 58%),
+    radial-gradient(950px 700px at 50% 112%, rgba(13, 148, 136, 0.15), transparent 62%),
+    linear-gradient(168deg, #243048 0%, #1a2234 48%, #111726 100%);
 }
+
+/* Textos que apoyan directo sobre el fondo oscuro (los paneles siguen claros) */
+.wrap > .muted, .wrap > .center { color: #9fb0c7; }
+.wrap > .err {
+  background: rgba(220, 38, 38, 0.16);
+  border-color: #b91c1c;
+  color: #fca5a5;
+}
+.list-head h2 { color: #e6ecf5; }
+.list-head .muted { color: #9fb0c7; }
+.wrap > .quick-ranges .chip { color: #c4d0e2; border-color: rgba(196, 208, 226, 0.45); }
+.wrap > .quick-ranges .chip:hover { color: #ffffff; border-color: #c4d0e2; }
+.wrap > .quick-ranges .chip.active { color: #fff; border-color: var(--accent); }
 
 /* Landing */
 .landing {
@@ -227,7 +241,7 @@ th.sortable:hover { color: var(--text); }
 .page-title {
   text-align: center; text-transform: uppercase; letter-spacing: 0.04em;
   font-size: clamp(1.15rem, 2.4vw, 1.6rem); font-weight: 800; margin: 0.2rem 0 1.3rem;
-  color: #0f172a;
+  color: #e6ecf5;
 }
 
 /* Tarjeta de sección en preparación (placeholder con formato de tarjeta) */
