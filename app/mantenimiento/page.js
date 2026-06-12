@@ -313,6 +313,8 @@ export default function Mantenimiento() {
 
       {error && <div className="err">⚠️ {error}</div>}
 
+      <h1 className="page-title">Análisis de falla</h1>
+
       <div className="quick-ranges">
         {rangos.map((r) => (
           <button
@@ -409,7 +411,7 @@ export default function Mantenimiento() {
           <div className="value" style={{ color: colorDisp(kpi.disponibilidad) }}>
             {kpi.disponibilidad != null ? `${nf0.format(kpi.disponibilidad)}%` : "—"}
           </div>
-          <div className="sub">flota, por tiempo calendario</div>
+          <div className="sub">por tiempo calendario</div>
         </div>
         <div className="card">
           <div className="label">MTBF (horas)</div>
@@ -421,7 +423,7 @@ export default function Mantenimiento() {
               ? `${nf0.format(kpi.mtbf)} km · ${nf0.format(kpi.mtbfDias)} días entre fallas`
               : "sin fallas en el período"}
           </div>
-          <div className="sub">λ flota = {nf3.format(kpi.lambdaFlota)} /día</div>
+          <div className="sub">λ = {nf3.format(kpi.lambdaFlota)} /día</div>
         </div>
         <div className="card">
           <div className="label">MTTR</div>
@@ -444,7 +446,7 @@ export default function Mantenimiento() {
           <div className="sub">{kpi.conFallas} con fallas</div>
         </div>
         <div className="card">
-          <div className="label">Prob. falla flota {horizonte}d</div>
+          <div className="label">Prob. falla {horizonte}d</div>
           <div className="value" style={{ color: colorProb(kpi.probFlota) }}>
             {nf0.format(kpi.probFlota)}%
           </div>
