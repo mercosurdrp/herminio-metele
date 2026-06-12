@@ -1,7 +1,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #141b2a;
+  --bg: #10151f;
   --panel: #ffffff;
   --panel2: #eef2f8;
   --border: #cdd6e3;
@@ -35,7 +35,7 @@ body::before {
     radial-gradient(1100px 650px at 10% -8%, rgba(157, 23, 77, 0.18), transparent 60%),
     radial-gradient(1000px 620px at 96% -4%, rgba(37, 99, 235, 0.20), transparent 58%),
     radial-gradient(950px 700px at 50% 112%, rgba(13, 148, 136, 0.15), transparent 62%),
-    linear-gradient(168deg, #243048 0%, #1a2234 48%, #111726 100%);
+    linear-gradient(168deg, #1a2233 0%, #121827 48%, #0b101c 100%);
 }
 
 /* Textos que apoyan directo sobre el fondo oscuro (los paneles siguen claros) */
