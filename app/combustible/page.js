@@ -31,8 +31,9 @@ const PATENTES_FLOTA = new Set([
   "AF399KZ",
 ]);
 
-// Autoelevadores: en Cloudfleet cargan con códigos TOYOTA4, TOYOTA5, TOYOTA6…
-const esAutoelevador = (patente) => /^TOYOTA/i.test(patente || "");
+// Autoelevadores vigentes (el TOYOTA3 se vendió, no se muestra).
+const AUTOELEVADORES = new Set(["TOYOTA4", "TOYOTA5", "TOYOTA6"]);
+const esAutoelevador = (patente) => AUTOELEVADORES.has((patente || "").toUpperCase());
 
 // Urea (AdBlue) y aceite no son combustible: quedan fuera del consumo.
 const COMBUSTIBLES_REALES = new Set(["GasOil", "NAFTA", "GAS"]);
