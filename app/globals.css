@@ -1,7 +1,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #d4dbe5;
+  --bg: #cfd8e3;
   --panel: #ffffff;
   --panel2: #eef2f8;
   --border: #cdd6e3;
@@ -22,16 +22,6 @@ body {
   min-height: 100vh;
 }
 
-/* Fondo del dashboard: gris azulado débil, mate y liso (sin resplandores).
-   Pseudo-elemento fijo en vez de background-attachment: fixed,
-   que iOS Safari no soporta. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(168deg, #e2e7ee 0%, #d4dbe5 50%, #c6cfdc 100%);
-}
 
 /* Landing */
 .landing {
