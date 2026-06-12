@@ -111,7 +111,7 @@ export default function Estandar() {
     <main className="wrap">
       <Nav />
 
-      <h1 className="page-title">Estándar de flota</h1>
+      <h1 className="page-title">Estándar</h1>
       <div className="muted" style={{ marginBottom: "1rem" }}>
         <small>
           Cumplimiento del listado de estándar (planilla del {datos.actualizado.split("-").reverse().join("/")}).

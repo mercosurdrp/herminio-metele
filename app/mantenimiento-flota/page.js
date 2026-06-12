@@ -179,7 +179,7 @@ export default function MantenimientoFlota() {
     <main className="wrap">
       <Nav />
 
-      <h1 className="page-title">Mantenimiento de flota</h1>
+      <h1 className="page-title">Mantenimiento</h1>
       <div className="muted" style={{ marginBottom: "1rem" }}>
         <small>
           Órdenes de trabajo de Cloudfleet con sus trabajos, repuestos y costos.
