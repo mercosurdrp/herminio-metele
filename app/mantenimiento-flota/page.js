@@ -8,6 +8,29 @@ import { useEffect, useMemo, useState } from "react";
 // costos por tipo (Preventivo / Correctivo / Proactivo / Mejora), filtros por
 // sucursal / mes / tipo, y lista desplegable de órdenes con trabajos y repuestos.
 
+// Flota vigente para la auditoría de gestión de mantenimiento — fuente:
+// /root/HERMINIO/FLOTA ACTUALIZADA/FLOTA QUILMES ACTUALIZADA AL 31-05-2026.xlsx.
+// Solo estas patentes se muestran acá; el resto de las órdenes de Cloudfleet
+// sigue disponible para la gestión general (no se filtra en la API).
+const PATENTES_AUDITORIA = new Set([
+  "OJA408",
+  "FUB570",
+  "AF399KW",
+  "HJR136",
+  "OTY696",
+  "FTI792",
+  "OTB032",
+  "AB386KV",
+  "AB386KU",
+  "AE445WS",
+  "AE445WT",
+  "AE591EV",
+  "AE523XP",
+  "AF399KX",
+  "AF552QZ",
+  "AF399KZ",
+]);
+
 const TIPOS = [
   { key: "Preventivo", color: "#16a34a" },
   { key: "Correctivo", color: "#dc2626" },
@@ -76,7 +99,10 @@ export default function MantenimientoFlota() {
     return () => { activo = false; };
   }, []);
 
-  const ordenes = data?.ordenes || [];
+  const ordenes = useMemo(
+    () => (data?.ordenes || []).filter((o) => PATENTES_AUDITORIA.has(o.patente)),
+    [data]
+  );
 
   // Meses disponibles (del más nuevo al más viejo) para el desplegable.
   const meses = useMemo(
