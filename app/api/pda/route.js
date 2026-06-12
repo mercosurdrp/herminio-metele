@@ -10,6 +10,7 @@ import { put, list, del } from "@vercel/blob";
 const PREFIJOS = {
   checklist: "pda/planes-",
   estandar: "pda-estandar/planes-",
+  combustible: "pda-combustible/planes-",
 };
 const ESTADOS = new Set(["no_iniciado", "en_curso", "cumplido"]);
 

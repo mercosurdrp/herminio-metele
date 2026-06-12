@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getChecklists } from "../../../lib/cloudfleet";
+import { getCombustible } from "../../../lib/combustible";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -22,7 +23,14 @@ export async function GET() {
     const desde = d.toISOString().slice(0, 10);
 
     const datos = await getChecklists(desde, hasta);
-    return NextResponse.json({ ok: true, desde, hasta, total: datos.length });
+    // Refresca también el snapshot de combustible (lectura incremental:
+    // después de la carga inicial son 1-2 páginas por día).
+    let combustible = null;
+    try {
+      const c = await getCombustible({ ttlMs: 0 });
+      combustible = c.entradas.length;
+    } catch {}
+    return NextResponse.json({ ok: true, desde, hasta, total: datos.length, combustible });
   } catch (e) {
     return NextResponse.json(
       { ok: false, error: String(e?.message || e) },
