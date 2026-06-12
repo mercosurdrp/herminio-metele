@@ -270,7 +270,7 @@ export default function Flota() {
         </button>
       </Nav>
 
-      <h1 className="page-title">ADHERENCIA DE CHECK LIST</h1>
+      <h1 className="page-title">Adherencia</h1>
 
       {error && <div className="err">⚠️ {error}</div>}
 
