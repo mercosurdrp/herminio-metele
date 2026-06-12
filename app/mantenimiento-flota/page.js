@@ -49,6 +49,13 @@ const fmtPlata = new Intl.NumberFormat("es-AR", {
   maximumFractionDigits: 0,
 });
 
+// Montos cortos para arriba de las columnas ($1,2M / $850K).
+function fmtCorto(n) {
+  if (n >= 1e6) return `$${(n / 1e6).toLocaleString("es-AR", { maximumFractionDigits: 1 })}M`;
+  if (n >= 1e3) return `$${Math.round(n / 1e3)}K`;
+  return `$${Math.round(n)}`;
+}
+
 function fmtFecha(iso) {
   if (!iso) return "—";
   return `${iso.slice(8, 10)}/${iso.slice(5, 7)}/${iso.slice(0, 4)}`;
@@ -84,6 +91,7 @@ export default function MantenimientoFlota() {
   const [mes, setMes] = useState("");
   const [tipo, setTipo] = useState("");
   const [abierta, setAbierta] = useState(null); // nº de orden desplegada
+  const [tipCol, setTipCol] = useState(null); // tooltip del gráfico de columnas
 
   useEffect(() => {
     let activo = true;
@@ -138,6 +146,34 @@ export default function MantenimientoFlota() {
     () => (tipo ? base.filter((o) => o.tipos.includes(tipo)) : base),
     [base, tipo]
   );
+
+  // Serie del gráfico de columnas: costo por tipo agrupado por mes (o por día
+  // cuando hay un mes elegido). Respeta los filtros de sucursal/mes/tipo.
+  const serieCol = useMemo(() => {
+    const porDia = Boolean(mes);
+    const m = new Map();
+    for (const o of base) {
+      if (!o.fecha) continue;
+      const clave = porDia ? o.fecha : o.fecha.slice(0, 7);
+      if (!m.has(clave)) m.set(clave, { clave, costos: {}, ordenes: {} });
+      const g = m.get(clave);
+      for (const [t, c] of Object.entries(o.costoPorTipo || {})) {
+        if (tipo && t !== tipo) continue;
+        g.costos[t] = (g.costos[t] || 0) + c;
+      }
+      for (const t of o.tipos) {
+        if (tipo && t !== tipo) continue;
+        g.ordenes[t] = (g.ordenes[t] || 0) + 1;
+      }
+    }
+    const arr = [...m.values()].sort((a, b) => a.clave.localeCompare(b.clave));
+    const max = arr.reduce((mx, g) => Math.max(mx, ...Object.values(g.costos), 0), 0) || 1;
+    return { arr, max, porDia };
+  }, [base, mes, tipo]);
+
+  const tiposVisibles = tipo ? TIPOS.filter((t) => t.key === tipo) : TIPOS;
+  const etiquetaCol = (clave) =>
+    serieCol.porDia ? `${clave.slice(8, 10)}/${clave.slice(5, 7)}` : etiquetaMes(clave);
 
   return (
     <main className="wrap">
@@ -213,6 +249,96 @@ export default function MantenimientoFlota() {
               <div className="mant-card-valor">{fmtPlata.format(resumen.total)}</div>
               <div className="mant-card-sub">{base.length} órdenes{mes ? ` · ${etiquetaMes(mes)}` : ""}</div>
             </div>
+          </div>
+
+          {/* Gráfico de columnas: costo por tipo, por mes (o por día si hay mes
+              elegido). La leyenda filtra por tipo, igual que las tarjetas. */}
+          <div className="chart-card" style={{ marginTop: 0, marginBottom: "1.5rem" }}>
+            <div className="chart-head">
+              <h2>
+                Costos por tipo de mantenimiento
+                {mes ? ` · ${etiquetaMes(mes)} (por día)` : " (por mes)"}
+                {sucursal ? ` · ${sucursal}` : ""}
+              </h2>
+            </div>
+            <div className="muted" style={{ fontSize: "0.85rem", marginBottom: "0.4rem" }}>
+              Tocá un tipo en la leyenda para filtrar; elegí un mes arriba para abrirlo por día.
+            </div>
+            <div className="legend" style={{ marginBottom: "0.3rem", flexWrap: "wrap" }}>
+              {TIPOS.map((t) => (
+                <button
+                  key={t.key}
+                  onClick={() => { setTipo(tipo === t.key ? "" : t.key); setAbierta(null); }}
+                  style={{
+                    background: "none", border: "none", cursor: "pointer", padding: 0,
+                    font: "inherit", color: "inherit",
+                    opacity: tipo && tipo !== t.key ? 0.35 : 1,
+                    fontWeight: tipo === t.key ? 700 : 400,
+                  }}
+                >
+                  <span className="dot" style={{ background: t.color }} /> {t.key}
+                </button>
+              ))}
+            </div>
+            {serieCol.arr.length === 0 ? (
+              <div className="center muted">Sin datos para graficar.</div>
+            ) : (
+              <div className="chart" onMouseLeave={() => setTipCol(null)}>
+                {serieCol.arr.map((g) => {
+                  const mostrarTip = (e) => {
+                    const r = e.currentTarget.getBoundingClientRect();
+                    setTipCol({ x: r.left + r.width / 2, y: r.top, g });
+                  };
+                  return (
+                    <div
+                      className="col-group adh-col"
+                      key={g.clave}
+                      onMouseEnter={mostrarTip}
+                      onClick={mostrarTip}
+                    >
+                      <div className="bars">
+                        {tiposVisibles.map((t) => {
+                          const c = g.costos[t.key] || 0;
+                          if (!c) return null;
+                          return (
+                            <div
+                              key={t.key}
+                              className="bar"
+                              style={{ height: `${(c / serieCol.max) * 100}%`, background: t.color }}
+                            >
+                              {tiposVisibles.length === 1 && (
+                                <span className="bar-val">{fmtCorto(c)}</span>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div className="col-label">{etiquetaCol(g.clave)}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            {tipCol && (
+              <div className="adh-tooltip" style={{ left: tipCol.x, top: tipCol.y }}>
+                <div className="tt-title">
+                  {etiquetaCol(tipCol.g.clave)} ·{" "}
+                  {fmtPlata.format(Object.values(tipCol.g.costos).reduce((s, c) => s + c, 0))}
+                </div>
+                {tiposVisibles.map((t) => {
+                  const c = tipCol.g.costos[t.key];
+                  if (!c) return null;
+                  return (
+                    <div className="tt-row" key={t.key}>
+                      <span style={{ display: "inline-block", width: 10, height: 10, borderRadius: 3, background: t.color, alignSelf: "center" }} />
+                      <span className="tt-patente">{t.key}</span>
+                      <span>{fmtPlata.format(c)}</span>
+                      <span className="tt-fecha">{tipCol.g.ordenes[t.key] || 0} órd.</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* Lista de órdenes desplegable */}
