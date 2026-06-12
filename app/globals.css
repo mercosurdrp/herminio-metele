@@ -22,6 +22,21 @@ body {
   min-height: 100vh;
 }
 
+/* Fondo del dashboard: degradado suave con resplandores difusos en los colores
+   de la marca (bordó, azul, teal). Pseudo-elemento fijo en vez de
+   background-attachment: fixed, que iOS Safari no soporta. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(1100px 650px at 10% -8%, rgba(157, 23, 77, 0.10), transparent 60%),
+    radial-gradient(1000px 620px at 96% -4%, rgba(37, 99, 235, 0.13), transparent 58%),
+    radial-gradient(950px 700px at 50% 112%, rgba(13, 148, 136, 0.10), transparent 62%),
+    linear-gradient(168deg, #f0f4fa 0%, #e2e9f4 48%, #d4deee 100%);
+}
+
 /* Landing */
 .landing {
   min-height: 100vh;
