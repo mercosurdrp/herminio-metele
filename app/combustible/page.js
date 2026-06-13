@@ -79,6 +79,27 @@ const METRICAS = [
   { key: "costo", label: "Costo", color: "#9d174d", fmt: (v) => `$${fmtCorto(v)}` },
 ];
 
+// No hay emoji para esto: máquina tipo Zampi (cargadora con uña) dibujada en SVG.
+const IconoAutoelevador = ({ color }) => (
+  <svg viewBox="0 0 72 64" width="40" height="40" fill={color} aria-label="Máquina con uña">
+    {/* uña: respaldo vertical + horquilla horizontal */}
+    <rect x="14" y="32" width="5" height="23" rx="1.5" />
+    <rect x="1" y="50" width="18" height="5" rx="1.5" />
+    {/* brazo que baja del cuerpo al portauñas */}
+    <path d="M17 36 L40 26 L43 33 L20 43 Z" />
+    {/* cuerpo */}
+    <rect x="28" y="30" width="40" height="18" rx="4" />
+    {/* cabina con ventana */}
+    <path d="M40 12h14a4 4 0 0 1 4 4v15H36V16a4 4 0 0 1 4-4z" />
+    <rect x="41" y="17" width="12" height="9" rx="1.5" fill="#fff" />
+    {/* ruedas grandes de cargadora */}
+    <circle cx="38" cy="52" r="9" />
+    <circle cx="38" cy="52" r="4" fill="#fff" />
+    <circle cx="61" cy="52" r="9" />
+    <circle cx="61" cy="52" r="4" fill="#fff" />
+  </svg>
+);
+
 // Los dos recuadros (estilo Estándar): camiones y autoelevadores por separado,
 // porque cargan combustibles distintos.
 const GRUPOS = [
@@ -91,7 +112,7 @@ const GRUPOS = [
   },
   {
     key: "autoelevadores",
-    emoji: "🏗️",
+    emoji: <IconoAutoelevador color="#0d9488" />,
     titulo: "Autoelevadores Toyota",
     combustible: "Nafta",
     color: "#0d9488",
