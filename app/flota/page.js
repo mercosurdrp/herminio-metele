@@ -315,7 +315,7 @@ export default function Flota() {
           </div>
         </div>
         <Link href="/repuestos" className="card card-link card-repuestos">
-          <div className="label">Repuestos</div>
+          <div className="label">Gestión de repuestos</div>
           <div className="value">📦</div>
           <div className="sub">Stock del taller · abrir →</div>
         </Link>
