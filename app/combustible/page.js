@@ -351,6 +351,8 @@ export default function Combustible() {
     <main className="wrap">
       <Nav />
 
+      <div className="marco-prueba">
+
       <h1 className="page-title">Combustible</h1>
       <div className="muted" style={{ marginBottom: "1rem" }}>
         <small>
@@ -724,6 +726,7 @@ export default function Combustible() {
           />
         </>
       )}
+      </div>
     </main>
   );
 }

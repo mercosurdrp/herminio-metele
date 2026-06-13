@@ -111,6 +111,8 @@ export default function Estandar() {
     <main className="wrap">
       <Nav />
 
+      <div className="marco-prueba">
+
       <h1 className="page-title">Estándar</h1>
       <div className="muted" style={{ marginBottom: "1rem" }}>
         <small>
@@ -271,6 +273,7 @@ export default function Estandar() {
         ambito="estandar"
         descripcion="Para cerrar las brechas del estándar de flota (ítems NO OK). Independiente del filtro de sucursal: siempre muestra todos los planes."
       />
+      </div>
     </main>
   );
 }

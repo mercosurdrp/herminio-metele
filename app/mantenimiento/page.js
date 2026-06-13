@@ -311,6 +311,8 @@ export default function Mantenimiento() {
         </button>
       </Nav>
 
+      <div className="marco-prueba">
+
       {error && <div className="err">⚠️ {error}</div>}
 
       <h1 className="page-title">Análisis de falla</h1>
@@ -548,6 +550,7 @@ export default function Mantenimiento() {
         {horizonte} días. Se excluyen los vehículos de otro negocio. Rango máximo:
         365 días.
       </p>
+      </div>
     </main>
   );
 }

@@ -271,6 +271,8 @@ export default function Flota() {
         </button>
       </Nav>
 
+      <div className="marco-prueba">
+
       <h1 className="page-title">Adherencia</h1>
 
       {error && <div className="err">⚠️ {error}</div>}
@@ -615,6 +617,7 @@ export default function Flota() {
             ))}
           </div>
         )}
+      </div>
       </div>
     </main>
   );
