@@ -112,7 +112,7 @@ const GRUPOS = [
   },
   {
     key: "autoelevadores",
-    emoji: <IconoAutoelevador color="#0d9488" />,
+    emoji: <IconoAutoelevador color="#f97316" />,
     titulo: "Autoelevadores Toyota",
     combustible: "Nafta",
     color: "#0d9488",
