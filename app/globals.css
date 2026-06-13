@@ -258,6 +258,19 @@ th.sortable:hover { color: var(--text); }
 }
 @media (max-width: 560px) { .marco-prueba { padding: 0.9rem; border-radius: 16px; } }
 
+/* PRUEBA: marco que agrupa los 2 cuadros de la cabecera (título FLOTA + barra
+   de pestañas) en un solo contorno, al tono del marco de las secciones. */
+.marco-cabecera {
+  background: rgba(255, 255, 255, 0.035);
+  border: 3px solid rgba(196, 208, 226, 0.45);
+  border-radius: 20px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.marco-cabecera .topbar { margin-bottom: 0; }
+@media (max-width: 560px) { .marco-cabecera { padding: 0.8rem; border-radius: 16px; } }
+
 /* Indicador de stock actual del repuesto elegido (bajo el desplegable de carga) */
 .stock-actual {
   display: inline-block; margin-top: 0.35rem; font-size: 0.8rem; color: var(--muted);

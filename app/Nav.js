@@ -17,7 +17,7 @@ const TABS = [
 export default function Nav({ children }) {
   const path = usePathname();
   return (
-    <>
+    <div className="marco-cabecera">
     <div className="work-title">
       <img className="wt-logo" src="/logo-mercosur-distri.svg" alt="Mercosur Distribuciones" />
       <span className="wt-text">FLOTA</span>
@@ -40,6 +40,6 @@ export default function Nav({ children }) {
       </div>
       {children && <div className="topbar-actions">{children}</div>}
     </div>
-    </>
+    </div>
   );
 }
