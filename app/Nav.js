@@ -8,6 +8,7 @@ const TABS = [
   { href: "/estandar", label: "📐 Estándar" },
   { href: "/mantenimiento-flota", label: "🛠️ Mantenimiento" },
   { href: "/combustible", label: "⛽ Combustible" },
+  { href: "/repuestos", label: "📦 Repuestos" },
   { href: "/mantenimiento", label: "🔧 Análisis de falla mecánica" },
 ];
 
