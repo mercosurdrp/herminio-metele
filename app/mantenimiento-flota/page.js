@@ -29,6 +29,10 @@ const PATENTES_AUDITORIA = new Set([
   "AF399KX",
   "AF552QZ",
   "AF399KZ",
+  // Autoelevadores de la flota (sus OT de mantenimiento, incl. preventivos).
+  "TOYOTA4",
+  "TOYOTA5",
+  "TOYOTA6",
 ]);
 
 const TIPOS = [
