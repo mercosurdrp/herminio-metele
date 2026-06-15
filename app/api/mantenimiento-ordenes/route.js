@@ -46,8 +46,10 @@ export async function GET(req) {
     return Response.json({ ok: true, ordenes: [] });
   }
 
+  // `?refresh=1` (botón Sincronizar) saltea el caché y trae lo nuevo de Cloudfleet.
+  const force = new URL(req.url).searchParams.get("refresh") === "1";
   const cache = await leerCache();
-  if (cache && Date.now() - cache.ts < TTL_MS) {
+  if (!force && cache && Date.now() - cache.ts < TTL_MS) {
     return Response.json({ ok: true, ...cache.datos, cacheado: true });
   }
 

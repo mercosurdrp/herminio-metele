@@ -97,10 +97,10 @@ export default function MantenimientoFlota() {
   const [abierta, setAbierta] = useState(null); // nº de orden desplegada
   const [tipCol, setTipCol] = useState(null); // tooltip del gráfico de columnas
 
-  const cargar = useCallback(() => {
+  const cargar = useCallback((forzar = false) => {
     setCargando(true);
     setError(null);
-    return fetch("/api/mantenimiento-ordenes", { cache: "no-store" })
+    return fetch(`/api/mantenimiento-ordenes${forzar ? "?refresh=1" : ""}`, { cache: "no-store" })
       .then((r) => r.json())
       .then((j) => {
         if (!j.ok) throw new Error(j.error || "Error al leer las órdenes");
@@ -185,7 +185,7 @@ export default function MantenimientoFlota() {
   return (
     <main className="wrap">
       <Nav>
-        <button className="btn sync" onClick={cargar} disabled={cargando}>
+        <button className="btn sync" onClick={() => cargar(true)} disabled={cargando}>
           {cargando ? "Sincronizando…" : "🔄 Sincronizar"}
         </button>
       </Nav>
