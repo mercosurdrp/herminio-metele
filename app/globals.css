@@ -47,6 +47,10 @@ body::before {
 }
 .list-head h2 { color: #e6ecf5; }
 .list-head .muted { color: #9fb0c7; }
+/* Botones del header oscuro (p.ej. "Ver todo el detalle"): letra blanca para
+   que se lean sobre el fondo oscuro, igual que el resto del encabezado. */
+.list-head .btn-ghost { color: #fff; border-color: rgba(196, 208, 226, 0.55); }
+.list-head .btn-ghost:hover:not(:disabled) { border-color: #c4d0e2; }
 .wrap > .quick-ranges .chip,
 .list-head .quick-ranges .chip { color: #cbd5e1; border-color: rgba(196, 208, 226, 0.45); }
 .wrap > .quick-ranges .chip:hover,

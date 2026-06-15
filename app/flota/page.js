@@ -1,7 +1,6 @@
 "use client";
 
 import "../globals.css";
-import Link from "next/link";
 import Nav from "../Nav";
 import Pda from "./Pda";
 import { useEffect, useState, useMemo, useCallback } from "react";
@@ -328,11 +327,6 @@ export default function Flota() {
             {adherencia.completos}/{adherencia.total} camiones-día con liberación + retorno
           </div>
         </div>
-        <Link href="/repuestos" className="card card-link card-repuestos">
-          <div className="label">Gestión de repuestos</div>
-          <div className="value">📦</div>
-          <div className="sub">Stock del taller · abrir →</div>
-        </Link>
       </div>
 
       <div className="quick-ranges">
