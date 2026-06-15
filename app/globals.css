@@ -405,6 +405,10 @@ tbody tr:hover { background: #eef4ff; }
   transform-origin: top right;
   font-size: 0.68rem;
 }
+/* Barras más finitas y juntas → columnas compactas, más aire para los meses. */
+.chart-ang .bar { width: 11px; }
+.chart-ang .bars { gap: 3px; }
+.chart-ang .col-group { min-width: 34px; }
 /* Barras del gráfico de adherencia (liberación + retorno por grupo, en %) */
 .bar.adh2 { width: 18px; }
 .bar.adh2 .bar-val { font-weight: 700; font-size: 0.68rem; }
