@@ -3,7 +3,7 @@
 import "../globals.css";
 import Nav from "../Nav";
 import Pda from "../flota/Pda";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 // Combustible — dashboard de cargas de Cloudfleet (fuel-entries), año 2026:
 // dos recuadros separados estilo Estándar (Camiones · Gas Oil y
@@ -139,32 +139,38 @@ export default function Combustible() {
     []
   );
 
-  useEffect(() => {
-    let activo = true;
+  // `forzar` = botón Sincronizar: saltea el TTL y trae lo nuevo de Cloudfleet.
+  const cargar = useCallback(async (forzar = false) => {
+    pedidos.current = 0;
+    setCargando(true);
+    setError(null);
+    setProgreso(forzar ? "Sincronizando con Cloud Fleet…" : null);
     const pedir = async (seguir) => {
       try {
-        const r = await fetch(`/api/combustible${seguir ? "?seguir=1" : ""}`, { cache: "no-store" });
+        const qs = seguir || forzar ? "?seguir=1" : "";
+        const r = await fetch(`/api/combustible${qs}`, { cache: "no-store" });
         const j = await r.json();
-        if (!activo) return;
         if (!j.ok) throw new Error(j.error || "Error al leer las cargas");
         setData(j);
         if (j.parcial && pedidos.current < 6) {
           pedidos.current += 1;
           setProgreso(`Armando histórico de combustible… ${j.entradas.length.toLocaleString("es-AR")} cargas leídas`);
-          pedir(true);
+          await pedir(true);
         } else {
           setProgreso(null);
           setCargando(false);
         }
       } catch (e) {
-        if (!activo) return;
         setError(String(e.message || e));
         setCargando(false);
       }
     };
-    pedir(false);
-    return () => { activo = false; };
+    await pedir(false);
   }, []);
+
+  useEffect(() => {
+    cargar(false);
+  }, [cargar]);
 
   // Solo combustible real (sin urea/aceite) de camiones de la flota o autoelevadores.
   const entradas = useMemo(
@@ -353,8 +359,13 @@ export default function Combustible() {
 
       <div className="marco-prueba">
 
-      <h1 className="page-title">Combustible</h1>
-      <div className="muted" style={{ marginBottom: "1rem" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.6rem", flexWrap: "wrap" }}>
+        <h1 className="page-title" style={{ margin: 0 }}>Combustible</h1>
+        <button className="btn sync" onClick={() => cargar(true)} disabled={cargando}>
+          {cargando ? "Sincronizando…" : "🔄 Sincronizar"}
+        </button>
+      </div>
+      <div className="muted" style={{ marginBottom: "1rem", marginTop: "0.6rem" }}>
         <small>
           Cargas de combustible de Cloudfleet, año 2026 (urea y aceite quedan afuera).
           Camiones de la flota vigente y autoelevadores por separado.
