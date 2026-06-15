@@ -10,31 +10,37 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 const SUCURSALES = ["Eldorado", "Iguazú"];
 
-// Flota actualizada al 31-05-2026 (FLOTA QUILMES ACTUALIZADA). Lista curada por
-// Herminio: cada salida de repuesto se imputa a una de estas unidades para poder
-// medir el gasto por camión. Si cambia la flota, editar acá.
+// Flota actualizada (FLOTA QUILMES ACTUALIZADA). Lista curada por Herminio: cada
+// salida de repuesto se imputa a una de estas unidades para medir el gasto por
+// unidad. Si cambia la flota, editar acá.
+// `value` = lo que se guarda/identifica; `label` = lo que se ve en el desplegable.
+// Camiones: "PATENTE (ID)". Autoelevadores: se controlan por TOYOTA4/5/6 (la
+// patente —ENS28/ENS24/ENS25— no se usa por ahora).
 const FLOTA = [
-  { patente: "OJA408", id: 1714 },
-  { patente: "FUB570", id: 1106 },
-  { patente: "AF399KW", id: 3922 },
-  { patente: "HJR136", id: 1408 },
-  { patente: "OTY696", id: 1915 },
-  { patente: "FTI792", id: 1306 },
-  { patente: "OTB032", id: 2015 },
-  { patente: "AB386KV", id: 2117 },
-  { patente: "AB386KU", id: 2217 },
-  { patente: "AE445WS", id: 2320 },
-  { patente: "AE445WT", id: 2420 },
-  { patente: "AE591EV", id: 2521 },
-  { patente: "AE523XP", id: 2721 },
-  { patente: "AF399KX", id: 3722 },
-  { patente: "AF552QZ", id: 4123 },
-  { patente: "AF399KZ", id: 3822 },
+  { value: "OJA408", label: "OJA408 (1714)" },
+  { value: "FUB570", label: "FUB570 (1106)" },
+  { value: "AF399KW", label: "AF399KW (3922)" },
+  { value: "HJR136", label: "HJR136 (1408)" },
+  { value: "OTY696", label: "OTY696 (1915)" },
+  { value: "FTI792", label: "FTI792 (1306)" },
+  { value: "OTB032", label: "OTB032 (2015)" },
+  { value: "AB386KV", label: "AB386KV (2117)" },
+  { value: "AB386KU", label: "AB386KU (2217)" },
+  { value: "AE445WS", label: "AE445WS (2320)" },
+  { value: "AE445WT", label: "AE445WT (2420)" },
+  { value: "AE591EV", label: "AE591EV (2521)" },
+  { value: "AE523XP", label: "AE523XP (2721)" },
+  { value: "AF399KX", label: "AF399KX (3722)" },
+  { value: "AF552QZ", label: "AF552QZ (4123)" },
+  { value: "AF399KZ", label: "AF399KZ (3822)" },
+  { value: "TOYOTA4", label: "TOYOTA4 (autoelevador)" },
+  { value: "TOYOTA5", label: "TOYOTA5 (autoelevador)" },
+  { value: "TOYOTA6", label: "TOYOTA6 (autoelevador)" },
 ];
-const FLOTA_PATENTES = FLOTA.map((u) => u.patente);
-function etiquetaUnidad(patente) {
-  const u = FLOTA.find((x) => x.patente === patente);
-  return u ? `${u.patente} (${u.id})` : patente;
+const FLOTA_VALUES = FLOTA.map((u) => u.value);
+function etiquetaUnidad(value) {
+  const u = FLOTA.find((x) => x.value === value);
+  return u ? u.label : value;
 }
 
 function hoyArg() {
@@ -588,7 +594,7 @@ export default function Repuestos() {
               <select value={nuevo.vehiculo} onChange={(e) => setNuevo({ ...nuevo, vehiculo: e.target.value })}>
                 <option value="">— Elegir unidad —</option>
                 {FLOTA.map((u) => (
-                  <option key={u.patente} value={u.patente}>{u.patente} ({u.id})</option>
+                  <option key={u.value} value={u.value}>{u.label}</option>
                 ))}
               </select>
             </div>
@@ -793,7 +799,7 @@ export default function Repuestos() {
           )}
           <select className="suc-select" value={fVehiculo} onChange={(e) => setFVehiculo(e.target.value)}>
             <option value="">Todas las unidades</option>
-            {FLOTA_PATENTES.map((p) => (
+            {FLOTA_VALUES.map((p) => (
               <option key={p} value={p}>{etiquetaUnidad(p)}</option>
             ))}
             <option value="__sin__">Sin unidad</option>
@@ -872,7 +878,7 @@ export default function Repuestos() {
                         <select className="suc-select" value={edit.vehiculo}
                           onChange={(e) => setEdit({ ...edit, vehiculo: e.target.value })}>
                           <option value="">— Asignar —</option>
-                          {FLOTA.map((u) => (<option key={u.patente} value={u.patente}>{u.patente} ({u.id})</option>))}
+                          {FLOTA.map((u) => (<option key={u.value} value={u.value}>{u.label}</option>))}
                         </select>
                       ) : (<span className="muted">—</span>)}
                     </td>
@@ -911,7 +917,7 @@ export default function Repuestos() {
                         >
                           <option value="">— Asignar —</option>
                           {FLOTA.map((u) => (
-                            <option key={u.patente} value={u.patente}>{u.patente} ({u.id})</option>
+                            <option key={u.value} value={u.value}>{u.label}</option>
                           ))}
                         </select>
                       ) : (
