@@ -801,7 +801,7 @@ export default function Repuestos() {
         </div>
       </div>
       <div className="tablewrap">
-        <table>
+        <table className="tabla-movs">
           <thead>
             <tr>
               <th>Fecha</th>
