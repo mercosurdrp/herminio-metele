@@ -232,6 +232,18 @@ th.sortable:hover { color: var(--text); }
 .chip:hover { color: var(--text); border-color: var(--muted); }
 .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
+/* Chips de filtro SOLO en la tarjeta de Gestión de Repuestos: inactivos más
+   visibles y el elegido con fondo azul lleno, fuerte y persistente. */
+.repuestos-page .chip {
+  background: rgba(148, 163, 184, 0.12); border-color: rgba(148, 163, 184, 0.45); color: #cbd5e1;
+}
+.repuestos-page .chip:hover { color: #fff; border-color: #94a3b8; background: rgba(148, 163, 184, 0.2); }
+.repuestos-page .chip.active {
+  background: #2563eb; border-color: #2563eb; color: #fff; font-weight: 700;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.5);
+}
+.repuestos-page .chip.active:hover { background: #1d4ed8; border-color: #1d4ed8; }
+
 /* Encabezado del listado (con toggle colapsar) */
 .list-head {
   display: flex; align-items: center; justify-content: space-between;
