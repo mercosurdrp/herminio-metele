@@ -391,16 +391,18 @@ tbody tr:hover { background: #eef4ff; }
 .bar-val { position: absolute; top: -1.15rem; font-size: 0.72rem; color: var(--text); }
 .col-label { font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
 /* Etiquetas inclinadas (solo en el gráfico de gastos por tipo): se sacan del
-   flujo para que no se empujen ni encimen cuando hay muchas columnas. */
-.chart-ang { padding-bottom: 2.6rem; }
+   flujo para que no se empujen ni encimen cuando hay muchas columnas. El
+   extremo derecho de la fecha queda bajo el eje de la columna y el texto cae en
+   diagonal hacia la izquierda, sin cruzar la barra. */
+.chart-ang { padding-bottom: 3rem; }
 .chart-ang .col-group { position: relative; }
 .chart-ang .col-label {
   position: absolute;
   top: 100%;
-  left: 50%;
-  margin: 0;
-  transform: translate(-50%, 0.45rem) rotate(-40deg);
-  transform-origin: center top;
+  right: 50%;
+  margin: 0.35rem 0 0;
+  transform: rotate(-45deg);
+  transform-origin: top right;
   font-size: 0.68rem;
 }
 /* Barras del gráfico de adherencia (liberación + retorno por grupo, en %) */
