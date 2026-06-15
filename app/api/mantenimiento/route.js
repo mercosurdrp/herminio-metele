@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { getMantenimiento } from "../../../lib/mantenimiento";
+import { buildMantenimiento, SNAP_MANTENIMIENTO } from "../../../lib/mantenimiento";
+import { claveRango } from "../../../lib/cloudfleet";
+import { servirConSnapshot, refrescarSnapshot } from "../../../lib/snapshot";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -26,9 +28,15 @@ export async function GET(req) {
     let desde = searchParams.get("desde") || restarDias(hasta, 364);
     // La API de Cloudfleet no admite rangos de más de 365 días.
     if (restarDias(hasta, 364) > desde) desde = restarDias(hasta, 364);
+    const fresco = searchParams.get("fresco") === "1";
 
-    const data = await getMantenimiento(desde, hasta);
-    return NextResponse.json({ ok: true, actualizado: new Date().toISOString(), ...data });
+    const clave = claveRango(desde, hasta);
+    const construir = () => buildMantenimiento(desde, hasta);
+    const payload = fresco
+      ? await refrescarSnapshot({ espacio: SNAP_MANTENIMIENTO, clave, construir })
+      : await servirConSnapshot({ espacio: SNAP_MANTENIMIENTO, clave, construir });
+
+    return NextResponse.json(payload);
   } catch (e) {
     return NextResponse.json(
       { ok: false, error: String(e?.message || e) },

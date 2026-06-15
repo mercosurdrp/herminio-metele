@@ -139,6 +139,7 @@ export default function Mantenimiento() {
   const [graficoSel, setGraficoSel] = useState("flota"); // "flota" o patente
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [refrescando, setRefrescando] = useState(false);
   const [error, setError] = useState(null);
 
   const rangos = [
@@ -156,10 +157,22 @@ export default function Mantenimiento() {
     setLoading(true);
     setError(null);
     try {
+      // 1) Al instante: última copia guardada (rápido).
       const r = await fetch(`/api/mantenimiento?desde=${desde}&hasta=${hasta}`);
       const j = await r.json();
       if (!j.ok) throw new Error(j.error || "Error al traer datos");
       setData(j);
+      // 2) Si salió de la copia guardada, refrescamos solo con lo fresco.
+      if (j.cacheado) {
+        setRefrescando(true);
+        fetch(`/api/mantenimiento?desde=${desde}&hasta=${hasta}&fresco=1`)
+          .then((r2) => r2.json())
+          .then((j2) => {
+            if (j2.ok) setData(j2);
+          })
+          .catch(() => {})
+          .finally(() => setRefrescando(false));
+      }
     } catch (e) {
       setError(String(e.message || e));
     } finally {
@@ -461,6 +474,7 @@ export default function Mantenimiento() {
           <small>
             Período {data.desde} a {data.hasta} ({data.dias} días) · actualizado{" "}
             {new Date(data.actualizado).toLocaleString("es-AR", { timeZone: "America/Argentina/Buenos_Aires" })}
+            {refrescando ? " · actualizando con Cloud Fleet…" : ""}
           </small>
         )}
       </div>

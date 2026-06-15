@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { getChecklists } from "../../../lib/cloudfleet";
+import { buildChecklists, SNAP_CHECKLIST, claveRango } from "../../../lib/cloudfleet";
+import { servirConSnapshot, refrescarSnapshot } from "../../../lib/snapshot";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -29,17 +30,16 @@ export async function GET(req) {
     const { searchParams } = new URL(req.url);
     const hasta = searchParams.get("hasta") || hoyArg();
     const desde = searchParams.get("desde") || restarDias(hasta, 30);
+    const fresco = searchParams.get("fresco") === "1";
 
-    const datos = await getChecklists(desde, hasta);
+    const clave = claveRango(desde, hasta);
+    const construir = () => buildChecklists(desde, hasta);
+    // fresco=1 → en vivo de Cloudfleet (actualizado); sino → copia guardada (rápido).
+    const payload = fresco
+      ? await refrescarSnapshot({ espacio: SNAP_CHECKLIST, clave, construir })
+      : await servirConSnapshot({ espacio: SNAP_CHECKLIST, clave, construir });
 
-    return NextResponse.json({
-      ok: true,
-      desde,
-      hasta,
-      total: datos.length,
-      actualizado: new Date().toISOString(),
-      datos,
-    });
+    return NextResponse.json(payload);
   } catch (e) {
     return NextResponse.json(
       { ok: false, error: String(e?.message || e) },
