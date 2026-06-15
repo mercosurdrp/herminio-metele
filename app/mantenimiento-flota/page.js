@@ -97,6 +97,8 @@ export default function MantenimientoFlota() {
   const [sucursal, setSucursal] = useState("");
   const [mes, setMes] = useState("");
   const [tipo, setTipo] = useState("");
+  const [unidad, setUnidad] = useState(""); // patente para ver una sola unidad
+  const [anio, setAnio] = useState(""); // año para ver gastos de un año entero
   const [abierta, setAbierta] = useState(null); // nº de orden desplegada
   const [tipCol, setTipCol] = useState(null); // tooltip del gráfico de columnas
 
@@ -128,6 +130,18 @@ export default function MantenimientoFlota() {
     [ordenes]
   );
 
+  // Unidades (patentes) que tienen órdenes, para el desplegable "Unidad".
+  const unidades = useMemo(
+    () => [...new Set(ordenes.map((o) => o.patente).filter(Boolean))].sort(),
+    [ordenes]
+  );
+
+  // Años disponibles (del más nuevo al más viejo) para el desplegable "Año".
+  const anios = useMemo(
+    () => [...new Set(ordenes.map((o) => (o.fecha || "").slice(0, 4)).filter(Boolean))].sort().reverse(),
+    [ordenes]
+  );
+
   // Órdenes según sucursal + mes (el tipo se aplica después, así las tarjetas
   // de costo por tipo siempre comparan los 4 tipos dentro del período elegido).
   const base = useMemo(
@@ -135,9 +149,11 @@ export default function MantenimientoFlota() {
       ordenes.filter(
         (o) =>
           (!sucursal || normSucursal(o.sucursal) === sucursal) &&
-          (!mes || (o.fecha || "").startsWith(mes))
+          (!mes || (o.fecha || "").startsWith(mes)) &&
+          (!anio || (o.fecha || "").startsWith(anio)) &&
+          (!unidad || o.patente === unidad)
       ),
-    [ordenes, sucursal, mes]
+    [ordenes, sucursal, mes, anio, unidad]
   );
 
   const resumen = useMemo(() => {
@@ -207,6 +223,15 @@ export default function MantenimientoFlota() {
 
       <div className="filters" style={{ marginBottom: "1rem" }}>
         <div className="field">
+          <label>Unidad</label>
+          <select value={unidad} onChange={(e) => { setUnidad(e.target.value); setAbierta(null); }}>
+            <option value="">Toda la flota</option>
+            {unidades.map((u) => (
+              <option key={u} value={u}>{u}</option>
+            ))}
+          </select>
+        </div>
+        <div className="field">
           <label>Sucursal</label>
           <select value={sucursal} onChange={(e) => { setSucursal(e.target.value); setAbierta(null); }}>
             <option value="">Todas</option>
@@ -215,10 +240,19 @@ export default function MantenimientoFlota() {
           </select>
         </div>
         <div className="field">
+          <label>Año</label>
+          <select value={anio} onChange={(e) => { setAnio(e.target.value); setMes(""); setAbierta(null); }}>
+            <option value="">Todos</option>
+            {anios.map((a) => (
+              <option key={a} value={a}>{a}</option>
+            ))}
+          </select>
+        </div>
+        <div className="field">
           <label>Mes</label>
           <select value={mes} onChange={(e) => { setMes(e.target.value); setAbierta(null); }}>
             <option value="">Todos</option>
-            {meses.map((m) => (
+            {(anio ? meses.filter((m) => m.startsWith(anio)) : meses).map((m) => (
               <option key={m} value={m}>{etiquetaMes(m)}</option>
             ))}
           </select>
