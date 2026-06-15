@@ -12,31 +12,21 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 // /root/HERMINIO/FLOTA ACTUALIZADA/FLOTA QUILMES ACTUALIZADA AL 31-05-2026.xlsx.
 // Solo estas patentes se muestran acá; el resto de las órdenes de Cloudfleet
 // sigue disponible para la gestión general (no se filtra en la API).
-const PATENTES_AUDITORIA = new Set([
-  "OJA408",
-  "FUB570",
-  "AF399KW",
-  "HJR136",
-  "OTY696",
-  "FTI792",
-  "OTB032",
-  "AB386KV",
-  "AB386KU",
-  "AE445WS",
-  "AE445WT",
-  "AE591EV",
-  "AE523XP",
-  "AF399KX",
-  "AF552QZ",
-  "AF399KZ",
-  // Autoelevadores de la flota (sus OT de mantenimiento, incl. preventivos).
-  "TOYOTA4",
-  "TOYOTA5",
-  "TOYOTA6",
-  // Acoplados (patentes ID 4517 y 4422 del padrón actualizado al 31-05-2026).
-  "AB729UX",
-  "AF516JC",
+const CAMIONES = new Set([
+  "OJA408", "FUB570", "AF399KW", "HJR136", "OTY696", "FTI792", "OTB032",
+  "AB386KV", "AB386KU", "AE445WS", "AE445WT", "AE591EV", "AE523XP",
+  "AF399KX", "AF552QZ", "AF399KZ",
 ]);
+// Acoplados (ID 4517 y 4422): van DENTRO del grupo de camiones (son parte de ellos).
+const ACOPLADOS = new Set(["AB729UX", "AF516JC"]);
+const AUTOELEVADORES = new Set(["TOYOTA4", "TOYOTA5", "TOYOTA6"]);
+const PATENTES_AUDITORIA = new Set([...CAMIONES, ...ACOPLADOS, ...AUTOELEVADORES]);
+
+// Recuadros clickables de cabecera: Camiones (con acoplados) y Autoelevadores.
+const GRUPOS = [
+  { key: "camiones", emoji: "🚛", titulo: "Camiones", color: "#1d4ed8", patentes: new Set([...CAMIONES, ...ACOPLADOS]) },
+  { key: "autoelevadores", emoji: "🏗️", titulo: "Autoelevadores", color: "#0d9488", patentes: AUTOELEVADORES },
+];
 
 const TIPOS = [
   { key: "Preventivo", color: "#16a34a" },
@@ -99,6 +89,7 @@ export default function MantenimientoFlota() {
   const [tipo, setTipo] = useState("");
   const [unidad, setUnidad] = useState(""); // patente para ver una sola unidad
   const [anio, setAnio] = useState(""); // año para ver gastos de un año entero
+  const [grupo, setGrupo] = useState("camiones"); // recuadro: camiones / autoelevadores
   const [abierta, setAbierta] = useState(null); // nº de orden desplegada
   const [tipCol, setTipCol] = useState(null); // tooltip del gráfico de columnas
 
@@ -130,10 +121,16 @@ export default function MantenimientoFlota() {
     [ordenes]
   );
 
-  // Unidades (patentes) que tienen órdenes, para el desplegable "Unidad".
+  // Patentes del grupo (recuadro) elegido.
+  const grupoPatentes = useMemo(
+    () => (GRUPOS.find((g) => g.key === grupo) || GRUPOS[0]).patentes,
+    [grupo]
+  );
+
+  // Unidades (patentes) del grupo elegido que tienen órdenes, para el desplegable.
   const unidades = useMemo(
-    () => [...new Set(ordenes.map((o) => o.patente).filter(Boolean))].sort(),
-    [ordenes]
+    () => [...new Set(ordenes.filter((o) => grupoPatentes.has(o.patente)).map((o) => o.patente).filter(Boolean))].sort(),
+    [ordenes, grupoPatentes]
   );
 
   // Años disponibles (del más nuevo al más viejo) para el desplegable "Año".
@@ -142,18 +139,34 @@ export default function MantenimientoFlota() {
     [ordenes]
   );
 
-  // Órdenes según sucursal + mes (el tipo se aplica después, así las tarjetas
-  // de costo por tipo siempre comparan los 4 tipos dentro del período elegido).
-  const base = useMemo(
+  // Órdenes del período (sucursal + año + mes), SIN filtrar por grupo: sirve para
+  // los totales de cada recuadro (Camiones / Autoelevadores).
+  const periodoBase = useMemo(
     () =>
       ordenes.filter(
         (o) =>
           (!sucursal || normSucursal(o.sucursal) === sucursal) &&
           (!mes || (o.fecha || "").startsWith(mes)) &&
-          (!anio || (o.fecha || "").startsWith(anio)) &&
-          (!unidad || o.patente === unidad)
+          (!anio || (o.fecha || "").startsWith(anio))
       ),
-    [ordenes, sucursal, mes, anio, unidad]
+    [ordenes, sucursal, mes, anio]
+  );
+
+  // Totales por recuadro (cantidad de OT y costo) dentro del período.
+  const totalesGrupo = useMemo(() => {
+    const out = {};
+    for (const g of GRUPOS) {
+      const os = periodoBase.filter((o) => g.patentes.has(o.patente));
+      out[g.key] = { ordenes: os.length, costo: os.reduce((s, o) => s + (o.costoTotal || 0), 0) };
+    }
+    return out;
+  }, [periodoBase]);
+
+  // Vista: período + grupo elegido + (opcional) una sola unidad. El tipo se
+  // aplica después, así las tarjetas de costo comparan los 4 tipos del período.
+  const base = useMemo(
+    () => periodoBase.filter((o) => grupoPatentes.has(o.patente) && (!unidad || o.patente === unidad)),
+    [periodoBase, grupoPatentes, unidad]
   );
 
   const resumen = useMemo(() => {
@@ -221,11 +234,38 @@ export default function MantenimientoFlota() {
         </small>
       </div>
 
+      {data && (
+        <div className="est-resumen">
+          {GRUPOS.map((g) => {
+            const t = totalesGrupo[g.key] || { ordenes: 0, costo: 0 };
+            const activa = grupo === g.key;
+            return (
+              <button
+                key={g.key}
+                className={`est-tarjeta${activa ? " active" : ""}`}
+                style={activa ? { borderColor: g.color } : undefined}
+                onClick={() => { setGrupo(g.key); setUnidad(""); setAbierta(null); }}
+              >
+                <div className="est-dona" style={{ background: `${g.color}22` }}>
+                  <div className="est-dona-centro" style={{ fontSize: "2.1rem" }}>{g.emoji}</div>
+                </div>
+                <div>
+                  <div className="est-tarjeta-titulo" style={{ color: g.color }}>{g.titulo}</div>
+                  <div className="est-tarjeta-sub">
+                    {t.ordenes} órdenes · {fmtPlata.format(t.costo)}
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       <div className="filters" style={{ marginBottom: "1rem" }}>
         <div className="field">
           <label>Unidad</label>
           <select value={unidad} onChange={(e) => { setUnidad(e.target.value); setAbierta(null); }}>
-            <option value="">Toda la flota</option>
+            <option value="">Todas</option>
             {unidades.map((u) => (
               <option key={u} value={u}>{u}</option>
             ))}
