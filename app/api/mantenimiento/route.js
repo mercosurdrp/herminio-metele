@@ -6,7 +6,8 @@ import { servirConSnapshot, refrescarSnapshot } from "../../../lib/snapshot";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const fetchCache = "force-no-store";
-export const maxDuration = 60;
+// Margen para los reintentos ante el rate limit de Cloudfleet.
+export const maxDuration = 300;
 
 function hoyArg() {
   const arg = new Date(Date.now() - 3 * 60 * 60 * 1000);
