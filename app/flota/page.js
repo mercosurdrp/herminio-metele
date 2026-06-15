@@ -83,8 +83,12 @@ export default function Flota() {
   const [vistaAdh, setVistaAdh] = useState("dia");
   // Tooltip del gráfico de adherencia: {x, y, d} de la columna bajo el cursor.
   const [tipAdh, setTipAdh] = useState(null);
+  // Tooltip del gráfico "Checks por día": {x, y, d} de la columna bajo el cursor.
+  const [tipDia, setTipDia] = useState(null);
   // Detalle de camiones-día con check incompleto (oculto por defecto).
   const [verIncompletos, setVerIncompletos] = useState(false);
+  // Detalle de los checks rechazados/críticos (para armar el plan de acción).
+  const [verObs, setVerObs] = useState(false);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [refrescando, setRefrescando] = useState(false);
@@ -193,6 +197,15 @@ export default function Flota() {
     return { total: filas.length, lib, ret, aprob, conObs, pct };
   }, [filas]);
 
+  // Checks rechazados/críticos con su patente y fecha, para el plan de acción.
+  const conObsList = useMemo(
+    () =>
+      filas
+        .filter((x) => (x.estado || "").toUpperCase() !== "APROBADO")
+        .sort((a, b) => (b.fechaHora || "").localeCompare(a.fechaHora || "")),
+    [filas]
+  );
+
   const sucursales = useMemo(() => {
     const s = new Set((data?.datos || []).map((x) => x.sucursal).filter(Boolean));
     return [...s].sort();
@@ -229,13 +242,25 @@ export default function Flota() {
       const m = new Map();
       for (const p of lista) {
         const clave = claveDe(p.fecha);
-        if (!m.has(clave)) m.set(clave, { clave, total: 0, completos: 0, libs: 0, rets: 0, faltantes: [] });
+        if (!m.has(clave)) m.set(clave, { clave, total: 0, completos: 0, libs: 0, rets: 0, faltantes: [], rechazados: [] });
         const g = m.get(clave);
         g.total += 1;
         if (p.lib) g.libs += 1;
         if (p.ret) g.rets += 1;
         if (p.lib && p.ret) g.completos += 1;
         else g.faltantes.push({ patente: p.patente, fecha: p.fecha, falta: p.lib ? "RETORNO" : "LIBERACION" });
+      }
+      // Rechazados/críticos por período (patente + fecha + tipo), para el tooltip.
+      for (const x of base) {
+        if (!x.fecha || (x.estado || "").toUpperCase() === "APROBADO") continue;
+        const g = m.get(claveDe(x.fecha));
+        if (!g) continue;
+        g.rechazados.push({
+          patente: x.patente || "—",
+          fecha: x.fecha,
+          tipo: x.tipo,
+          estado: x.estado,
+        });
       }
       return [...m.values()]
         .sort((a, b) => a.clave.localeCompare(b.clave))
@@ -245,6 +270,9 @@ export default function Flota() {
           pctLib: Math.round((g.libs / g.total) * 1000) / 10,
           pctRet: Math.round((g.rets / g.total) * 1000) / 10,
           faltantes: g.faltantes.sort(
+            (a, b) => a.fecha.localeCompare(b.fecha) || a.patente.localeCompare(b.patente)
+          ),
+          rechazados: g.rechazados.sort(
             (a, b) => a.fecha.localeCompare(b.fecha) || a.patente.localeCompare(b.patente)
           ),
         }));
@@ -261,15 +289,20 @@ export default function Flota() {
 
   const serieAdh = vistaAdh === "mes" ? adherencia.serieMes : adherencia.serieDia;
 
-  // Serie para el gráfico de columnas: por día, cuántas liberaciones y retornos.
+  // Serie para el gráfico de columnas: por día, cuántas liberaciones, retornos y
+  // rechazados/críticos (con la patente de cada rechazo, para el detalle).
   const serieDiaria = useMemo(() => {
     const m = new Map();
     for (const x of filas) {
       if (!x.fecha) continue;
-      if (!m.has(x.fecha)) m.set(x.fecha, { fecha: x.fecha, lib: 0, ret: 0 });
+      if (!m.has(x.fecha)) m.set(x.fecha, { fecha: x.fecha, lib: 0, ret: 0, rech: 0, rechazados: [] });
       const o = m.get(x.fecha);
       if (x.tipo === "LIBERACION") o.lib += 1;
       else if (x.tipo === "RETORNO") o.ret += 1;
+      if ((x.estado || "").toUpperCase() !== "APROBADO") {
+        o.rech += 1;
+        o.rechazados.push({ patente: x.patente || "—", tipo: x.tipo, estado: x.estado });
+      }
     }
     const arr = [...m.values()].sort((a, b) => a.fecha.localeCompare(b.fecha));
     const max = arr.reduce((mx, d) => Math.max(mx, d.lib, d.ret), 0) || 1;
@@ -311,12 +344,19 @@ export default function Flota() {
           <div className="value" style={{ color: "var(--ok)" }}>{resumen.aprob}</div>
           <div className="sub">{resumen.pct}% de cumplimiento</div>
         </div>
-        <div className="card">
+        <div
+          className={`card${resumen.conObs ? " card-link" : ""}`}
+          onClick={() => resumen.conObs && setVerObs((v) => !v)}
+          title={resumen.conObs ? "Ver el detalle (patente y fecha) para el plan de acción" : undefined}
+        >
           <div className="label">Con observaciones</div>
           <div className="value" style={{ color: resumen.conObs ? "var(--bad)" : "var(--muted)" }}>
             {resumen.conObs}
           </div>
-          <div className="sub">rechazado / crítico</div>
+          <div className="sub">
+            rechazado / crítico
+            {resumen.conObs ? (verObs ? " · ocultar ▲" : " · ver detalle ▼") : ""}
+          </div>
         </div>
         <div className="card">
           <div className="label">Adherencia</div>
@@ -328,6 +368,47 @@ export default function Flota() {
           </div>
         </div>
       </div>
+
+      {verObs && resumen.conObs > 0 && (
+        <div className="tablewrap" style={{ marginBottom: "0.9rem", maxHeight: 360 }}>
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Patente</th>
+                <th>Chofer</th>
+                <th>Sucursal</th>
+                <th>Estado</th>
+                <th>Falla</th>
+                <th>Obs.</th>
+              </tr>
+            </thead>
+            <tbody>
+              {conObsList.map((x) => (
+                <tr key={`obs-${x.numero}`}>
+                  <td>
+                    {x.fecha
+                      ? `${x.fecha.slice(8, 10)}/${x.fecha.slice(5, 7)}/${x.fecha.slice(0, 4)}`
+                      : "—"}
+                  </td>
+                  <td>{badgeTipo(x.tipo)}</td>
+                  <td>{x.patente || "—"}</td>
+                  <td>{x.chofer || "—"}</td>
+                  <td>{x.sucursal || "—"}</td>
+                  <td>{badgeEstado(x.estado)}</td>
+                  <td>
+                    {x.variablesRech + x.variablesCrit > 0
+                      ? `${x.variablesRech} rech · ${x.variablesCrit} crít`
+                      : "—"}
+                  </td>
+                  <td>{x.comentario || "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
 
       <div className="quick-ranges">
         {rangos.map((r) => (
@@ -465,13 +546,33 @@ export default function Flota() {
               {vistaAdh === "mes"
                 ? etiquetaMes(tipAdh.d.clave)
                 : `${tipAdh.d.clave.slice(8, 10)}/${tipAdh.d.clave.slice(5, 7)}/${tipAdh.d.clave.slice(0, 4)}`}
-              {" "}· Lib {tipAdh.d.pctLib}% · Ret {tipAdh.d.pctRet}% ({tipAdh.d.completos}/{tipAdh.d.total} completos)
             </div>
-            {tipAdh.d.faltantes.length === 0 ? (
-              <div className="tt-ok">✅ Todos los camiones hicieron ambos checks</div>
-            ) : (
+            <div className="tt-conteo">
+              🟦 {tipAdh.d.libs} liberación · 🟩 {tipAdh.d.rets} retorno · ⛔{" "}
+              {tipAdh.d.rechazados.length} rechazado{tipAdh.d.rechazados.length === 1 ? "" : "s"}
+            </div>
+            {/* Detalle de los rechazados/críticos: patente para el plan de acción. */}
+            {tipAdh.d.rechazados.length > 0 &&
+              tipAdh.d.rechazados.slice(0, 14).map((r, i) => (
+                <div className="tt-row" key={`r-${r.fecha}|${r.patente}|${i}`}>
+                  <span className="tt-patente">🚛 {r.patente}</span>
+                  {vistaAdh === "mes" && (
+                    <span className="tt-fecha">{r.fecha.slice(8, 10)}/{r.fecha.slice(5, 7)}</span>
+                  )}
+                  <span className="tt-falta-ret">
+                    {(r.estado || "").toUpperCase() === "CRITICO" ? "crítico" : "rechazado"}
+                    {r.tipo ? ` · ${r.tipo === "LIBERACION" ? "Liberación" : "Retorno"}` : ""}
+                  </span>
+                </div>
+              ))}
+            {tipAdh.d.rechazados.length > 14 && (
+              <div className="tt-mas">… y {tipAdh.d.rechazados.length - 14} rechazados más</div>
+            )}
+            {/* Adherencia: camiones que no completaron liberación + retorno. */}
+            {tipAdh.d.faltantes.length > 0 && (
               <>
-                {tipAdh.d.faltantes.slice(0, 14).map((f, i) => (
+                <div className="tt-sub">Adherencia incompleta:</div>
+                {tipAdh.d.faltantes.slice(0, 10).map((f, i) => (
                   <div className="tt-row" key={`${f.fecha}|${f.patente}|${i}`}>
                     <span className="tt-patente">🚛 {f.patente}</span>
                     {vistaAdh === "mes" && (
@@ -482,10 +583,13 @@ export default function Flota() {
                     </span>
                   </div>
                 ))}
-                {tipAdh.d.faltantes.length > 14 && (
-                  <div className="tt-mas">… y {tipAdh.d.faltantes.length - 14} más</div>
+                {tipAdh.d.faltantes.length > 10 && (
+                  <div className="tt-mas">… y {tipAdh.d.faltantes.length - 10} más</div>
                 )}
               </>
+            )}
+            {tipAdh.d.faltantes.length === 0 && tipAdh.d.rechazados.length === 0 && (
+              <div className="tt-ok">✅ Ambos checks completos y sin rechazos</div>
             )}
           </div>
         )}
@@ -600,30 +704,64 @@ export default function Flota() {
         {serieDiaria.arr.length === 0 ? (
           <div className="center muted">Sin datos para graficar.</div>
         ) : (
-          <div className="chart">
-            {serieDiaria.arr.map((d) => (
-              <div className="col-group" key={d.fecha}>
-                <div className="bars">
-                  <div
-                    className="bar lib"
-                    style={{ height: `${(d.lib / serieDiaria.max) * 100}%` }}
-                    title={`${d.fecha} · Liberación: ${d.lib}`}
-                  >
-                    {d.lib > 0 && <span className="bar-val">{d.lib}</span>}
+          <div className="chart" onMouseLeave={() => setTipDia(null)}>
+            {serieDiaria.arr.map((d) => {
+              const mostrarTip = (e) => {
+                const r = e.currentTarget.getBoundingClientRect();
+                setTipDia({ x: r.left + r.width / 2, y: r.top, d });
+              };
+              return (
+                <div
+                  className="col-group"
+                  key={d.fecha}
+                  onMouseEnter={mostrarTip}
+                  onClick={mostrarTip}
+                >
+                  {d.rech > 0 && <div className="rech-flag" title={`${d.rech} rechazado(s)`}>⛔ {d.rech}</div>}
+                  <div className="bars">
+                    <div
+                      className="bar lib"
+                      style={{ height: `${(d.lib / serieDiaria.max) * 100}%` }}
+                    >
+                      {d.lib > 0 && <span className="bar-val">{d.lib}</span>}
+                    </div>
+                    <div
+                      className="bar ret"
+                      style={{ height: `${(d.ret / serieDiaria.max) * 100}%` }}
+                    >
+                      {d.ret > 0 && <span className="bar-val">{d.ret}</span>}
+                    </div>
                   </div>
-                  <div
-                    className="bar ret"
-                    style={{ height: `${(d.ret / serieDiaria.max) * 100}%` }}
-                    title={`${d.fecha} · Retorno: ${d.ret}`}
-                  >
-                    {d.ret > 0 && <span className="bar-val">{d.ret}</span>}
+                  <div className="col-label">
+                    {d.fecha.slice(8, 10)}/{d.fecha.slice(5, 7)}
                   </div>
                 </div>
-                <div className="col-label">
-                  {d.fecha.slice(8, 10)}/{d.fecha.slice(5, 7)}
+              );
+            })}
+          </div>
+        )}
+        {tipDia && (
+          <div className="adh-tooltip" style={{ left: tipDia.x, top: tipDia.y }}>
+            <div className="tt-title">
+              {tipDia.d.fecha.slice(8, 10)}/{tipDia.d.fecha.slice(5, 7)}/{tipDia.d.fecha.slice(0, 4)}
+            </div>
+            <div className="tt-conteo">
+              🟦 {tipDia.d.lib} liberación · 🟩 {tipDia.d.ret} retorno · ⛔{" "}
+              {tipDia.d.rech} rechazado{tipDia.d.rech === 1 ? "" : "s"}
+            </div>
+            {tipDia.d.rech > 0 ? (
+              tipDia.d.rechazados.slice(0, 14).map((r, i) => (
+                <div className="tt-row" key={`rd-${r.patente}|${i}`}>
+                  <span className="tt-patente">🚛 {r.patente}</span>
+                  <span className="tt-falta-ret">
+                    {(r.estado || "").toUpperCase() === "CRITICO" ? "crítico" : "rechazado"}
+                    {r.tipo ? ` · ${r.tipo === "LIBERACION" ? "Liberación" : "Retorno"}` : ""}
+                  </span>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <div className="tt-ok">✅ Sin rechazos este día</div>
+            )}
           </div>
         )}
       </div>

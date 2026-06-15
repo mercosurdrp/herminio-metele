@@ -416,6 +416,10 @@ tbody tr:hover { background: #eef4ff; }
 .adh-tooltip .tt-falta-lib { color: #fda4af; font-weight: 600; }
 .adh-tooltip .tt-falta-ret { color: #93c5fd; font-weight: 600; }
 .adh-tooltip .tt-mas { color: #94a3b8; margin-top: 0.2rem; }
+.adh-tooltip .tt-conteo { font-weight: 700; margin-bottom: 0.35rem; }
+.adh-tooltip .tt-sub { color: #94a3b8; font-size: 0.74rem; margin: 0.4rem 0 0.15rem; text-transform: uppercase; letter-spacing: 0.03em; }
+/* Marca de rechazo arriba de la columna del día. */
+.rech-flag { font-size: 0.72rem; font-weight: 800; color: #fff; background: #b91c1c; border-radius: 999px; padding: 0.05rem 0.4rem; line-height: 1.4; white-space: nowrap; }
 
 /* Planes de acción (PDA) */
 .pda-card { margin-top: 0; margin-bottom: 1.5rem; border-top: 4px solid #0d9488; }
