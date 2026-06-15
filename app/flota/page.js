@@ -129,9 +129,13 @@ export default function Flota() {
       const j = await r.json();
       if (!j.ok) throw new Error(j.error || "Error al traer datos");
       setData(j);
-      // 2) Si salió de la copia guardada, traemos en paralelo la versión fresca
-      // de Cloudfleet y refrescamos la vista sola cuando llega (actualizado).
-      if (j.cacheado) {
+      // 2) Si la copia tiene más de 15 min, traemos en paralelo la versión
+      // fresca de Cloudfleet y refrescamos la vista sola cuando llega. Si la
+      // copia es reciente, no pedimos de nuevo (menos carga sobre el límite).
+      const edadMin = j.actualizado
+        ? (Date.now() - new Date(j.actualizado).getTime()) / 60000
+        : Infinity;
+      if (j.cacheado && (j.aproximado || edadMin > 15)) {
         setRefrescando(true);
         fetch(`/api/flota?desde=${desde}&hasta=${hasta}&fresco=1`)
           .then((r2) => r2.json())

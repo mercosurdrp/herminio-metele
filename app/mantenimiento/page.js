@@ -162,8 +162,12 @@ export default function Mantenimiento() {
       const j = await r.json();
       if (!j.ok) throw new Error(j.error || "Error al traer datos");
       setData(j);
-      // 2) Si salió de la copia guardada, refrescamos solo con lo fresco.
-      if (j.cacheado) {
+      // 2) Solo refrescamos con lo fresco si la copia tiene más de 15 min
+      // (menos pedidos sobre el límite de Cloudfleet).
+      const edadMin = j.actualizado
+        ? (Date.now() - new Date(j.actualizado).getTime()) / 60000
+        : Infinity;
+      if (j.cacheado && (j.aproximado || edadMin > 15)) {
         setRefrescando(true);
         fetch(`/api/mantenimiento?desde=${desde}&hasta=${hasta}&fresco=1`)
           .then((r2) => r2.json())

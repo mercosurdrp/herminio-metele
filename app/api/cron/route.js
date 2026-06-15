@@ -22,37 +22,40 @@ export async function GET() {
   if (process.env.NEXT_PHASE === "phase-production-build") {
     return NextResponse.json({ ok: true, skipped: "build" });
   }
-  try {
-    const arg = new Date(Date.now() - 3 * 60 * 60 * 1000);
-    const hoy = arg.toISOString().slice(0, 10);
+  const arg = new Date(Date.now() - 3 * 60 * 60 * 1000);
+  const hoy = arg.toISOString().slice(0, 10);
+  const out = { ok: true };
 
-    // Checklist: vista por defecto = últimos 7 días (igual que la página).
+  // Cada tarjeta en su propio try/catch: si una falla por el límite de
+  // Cloudfleet, las otras igual dejan su copia fresca para el día.
+
+  // Checklist: vista por defecto = últimos 7 días (igual que la página).
+  try {
     const chkDesde = restarDias(hoy, 7);
     const checklist = await buildChecklists(chkDesde, hoy);
     await guardarSnap(SNAP_CHECKLIST, claveRango(chkDesde, hoy), checklist);
+    out.checklist = checklist.total;
+  } catch (e) {
+    out.checklistError = String(e?.message || e);
+  }
 
-    // Mantenimiento: vista por defecto = últimos 364 días (igual que la página).
+  // Mantenimiento: vista por defecto = últimos 364 días (igual que la página).
+  try {
     const mntDesde = restarDias(hoy, 364);
     const mantenimiento = await buildMantenimiento(mntDesde, hoy);
     await guardarSnap(SNAP_MANTENIMIENTO, claveRango(mntDesde, hoy), mantenimiento);
-
-    // Combustible: refresco incremental de su propio snapshot (1-2 páginas/día).
-    let combustible = null;
-    try {
-      const c = await getCombustible({ ttlMs: 0 });
-      combustible = c.entradas.length;
-    } catch {}
-
-    return NextResponse.json({
-      ok: true,
-      checklist: checklist.total,
-      mantenimiento: mantenimiento.vehiculos?.length ?? 0,
-      combustible,
-    });
+    out.mantenimiento = mantenimiento.vehiculos?.length ?? 0;
   } catch (e) {
-    return NextResponse.json(
-      { ok: false, error: String(e?.message || e) },
-      { status: 500 }
-    );
+    out.mantenimientoError = String(e?.message || e);
   }
+
+  // Combustible: refresco incremental de su propio snapshot (1-2 páginas/día).
+  try {
+    const c = await getCombustible({ ttlMs: 0 });
+    out.combustible = c.entradas.length;
+  } catch (e) {
+    out.combustibleError = String(e?.message || e);
+  }
+
+  return NextResponse.json(out);
 }
