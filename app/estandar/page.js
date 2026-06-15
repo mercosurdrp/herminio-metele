@@ -23,8 +23,8 @@ function hoyArg() {
 }
 
 const TIPOS = [
-  { key: "camiones", label: "Camiones", emoji: "🚛" },
-  { key: "autoelevadores", label: "Autoelevadores", emoji: "🏗️" },
+  { key: "camiones", label: "Camiones", emoji: "🚛", foto: "/camion.jpg" },
+  { key: "autoelevadores", label: "Autoelevadores", emoji: "🏗️", foto: "/autoelevador.jpg" },
 ];
 
 // Iguazú aparece con y sin tilde según la ficha; unificar para filtrar.
@@ -152,7 +152,9 @@ export default function Estandar() {
             >
               <Dona pct={r.pct} />
               <div className="est-tarjeta-info">
-                <div className="est-tarjeta-titulo">{t.emoji} {t.label}</div>
+                <div className="est-tarjeta-titulo">
+                  <img className="est-titulo-foto" src={t.foto} alt={t.label} /> {t.label}
+                </div>
                 <div className="est-tarjeta-sub">{r.unidades.length} unidades{sucursal ? ` en ${sucursal}` : ""}</div>
                 <div className="est-tarjeta-sub">{r.cumple} de {r.total} ítems cumplidos</div>
                 <div className="est-tarjeta-sub">
