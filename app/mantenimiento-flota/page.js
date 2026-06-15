@@ -333,7 +333,7 @@ export default function MantenimientoFlota() {
             {serieCol.arr.length === 0 ? (
               <div className="center muted">Sin datos para graficar.</div>
             ) : (
-              <div className="chart" onMouseLeave={() => setTipCol(null)}>
+              <div className="chart chart-ang" onMouseLeave={() => setTipCol(null)}>
                 {serieCol.arr.map((g) => {
                   const mostrarTip = (e) => {
                     const r = e.currentTarget.getBoundingClientRect();

@@ -390,6 +390,19 @@ tbody tr:hover { background: #eef4ff; }
 .bar { width: 16px; border-radius: 4px 4px 0 0; min-height: 2px; position: relative; display: flex; justify-content: center; }
 .bar-val { position: absolute; top: -1.15rem; font-size: 0.72rem; color: var(--text); }
 .col-label { font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
+/* Etiquetas inclinadas (solo en el gráfico de gastos por tipo): se sacan del
+   flujo para que no se empujen ni encimen cuando hay muchas columnas. */
+.chart-ang { padding-bottom: 2.6rem; }
+.chart-ang .col-group { position: relative; }
+.chart-ang .col-label {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin: 0;
+  transform: translate(-50%, 0.45rem) rotate(-40deg);
+  transform-origin: center top;
+  font-size: 0.68rem;
+}
 /* Barras del gráfico de adherencia (liberación + retorno por grupo, en %) */
 .bar.adh2 { width: 18px; }
 .bar.adh2 .bar-val { font-weight: 700; font-size: 0.68rem; }
