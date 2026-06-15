@@ -105,14 +105,14 @@ const IconoAutoelevador = ({ color }) => (
 const GRUPOS = [
   {
     key: "camiones",
-    emoji: "🚛",
+    foto: "/camion.jpg",
     titulo: "Camiones",
     combustible: "Gas Oil",
     color: "#1d4ed8",
   },
   {
     key: "autoelevadores",
-    emoji: <IconoAutoelevador color="#f97316" />,
+    foto: "/autoelevador.jpg",
     titulo: "Autoelevadores Toyota",
     combustible: "Nafta",
     color: "#0d9488",
@@ -427,7 +427,7 @@ export default function Combustible() {
                   onClick={() => setGrupo(g.key)}
                 >
                   <div className="est-dona" style={{ background: `${g.color}22` }}>
-                    <div className="est-dona-centro" style={{ fontSize: "2.1rem" }}>{g.emoji}</div>
+                    <img className="est-dona-foto" src={g.foto} alt={g.titulo} />
                   </div>
                   <div>
                     <div className="est-tarjeta-titulo" style={{ color: g.color }}>

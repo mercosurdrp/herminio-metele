@@ -24,8 +24,8 @@ const PATENTES_AUDITORIA = new Set([...CAMIONES, ...ACOPLADOS, ...AUTOELEVADORES
 
 // Recuadros clickables de cabecera: Camiones (con acoplados) y Autoelevadores.
 const GRUPOS = [
-  { key: "camiones", emoji: "🚛", titulo: "Camiones", color: "#1d4ed8", patentes: new Set([...CAMIONES, ...ACOPLADOS]) },
-  { key: "autoelevadores", emoji: "🏗️", titulo: "Autoelevadores", color: "#0d9488", patentes: AUTOELEVADORES },
+  { key: "camiones", foto: "/camion.jpg", titulo: "Camiones", color: "#1d4ed8", patentes: new Set([...CAMIONES, ...ACOPLADOS]) },
+  { key: "autoelevadores", foto: "/autoelevador.jpg", titulo: "Autoelevadores", color: "#0d9488", patentes: AUTOELEVADORES },
 ];
 
 const TIPOS = [
@@ -247,7 +247,7 @@ export default function MantenimientoFlota() {
                 onClick={() => { setGrupo(g.key); setUnidad(""); setAbierta(null); }}
               >
                 <div className="est-dona" style={{ background: `${g.color}22` }}>
-                  <div className="est-dona-centro" style={{ fontSize: "2.1rem" }}>{g.emoji}</div>
+                  <img className="est-dona-foto" src={g.foto} alt={g.titulo} />
                 </div>
                 <div>
                   <div className="est-tarjeta-titulo" style={{ color: g.color }}>{g.titulo}</div>
