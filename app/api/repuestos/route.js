@@ -78,8 +78,10 @@ export async function POST(req) {
         precio: aPrecio(mov?.precio), // precio unitario ($); costo = cantidad × precio
         sucursal: limpiarTexto(mov?.sucursal, 40),
         fecha: limpiarTexto(mov?.fecha, 10),
-        // Origen (proveedor/remito en ingresos) o destino (vehículo/orden en salidas).
+        // Origen (proveedor/remito en ingresos) o destino libre (en salidas).
         ref: limpiarTexto(mov?.ref, 120),
+        // Unidad de la flota (patente) a la que se imputa la salida del repuesto.
+        vehiculo: limpiarTexto(mov?.vehiculo, 20),
         comentario: limpiarTexto(mov?.comentario, 300),
         creado: new Date().toISOString(),
       };
@@ -101,6 +103,7 @@ export async function POST(req) {
       if (mov.sucursal !== undefined) m.sucursal = limpiarTexto(mov.sucursal, 40);
       if (mov.fecha !== undefined) m.fecha = limpiarTexto(mov.fecha, 10) || m.fecha;
       if (mov.ref !== undefined) m.ref = limpiarTexto(mov.ref, 120);
+      if (mov.vehiculo !== undefined) m.vehiculo = limpiarTexto(mov.vehiculo, 20);
       if (mov.comentario !== undefined) m.comentario = limpiarTexto(mov.comentario, 300);
     } else if (accion === "borrar") {
       movs = movs.filter((m) => m.id !== mov?.id);

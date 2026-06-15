@@ -10,6 +10,33 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 const SUCURSALES = ["Eldorado", "Iguazú"];
 
+// Flota actualizada al 31-05-2026 (FLOTA QUILMES ACTUALIZADA). Lista curada por
+// Herminio: cada salida de repuesto se imputa a una de estas unidades para poder
+// medir el gasto por camión. Si cambia la flota, editar acá.
+const FLOTA = [
+  { patente: "OJA408", id: 1714 },
+  { patente: "FUB570", id: 1106 },
+  { patente: "AF399KW", id: 3922 },
+  { patente: "HJR136", id: 1408 },
+  { patente: "OTY696", id: 1915 },
+  { patente: "FTI792", id: 1306 },
+  { patente: "OTB032", id: 2015 },
+  { patente: "AB386KV", id: 2117 },
+  { patente: "AB386KU", id: 2217 },
+  { patente: "AE445WS", id: 2320 },
+  { patente: "AE445WT", id: 2420 },
+  { patente: "AE591EV", id: 2521 },
+  { patente: "AE523XP", id: 2721 },
+  { patente: "AF399KX", id: 3722 },
+  { patente: "AF552QZ", id: 4123 },
+  { patente: "AF399KZ", id: 3822 },
+];
+const FLOTA_PATENTES = FLOTA.map((u) => u.patente);
+function etiquetaUnidad(patente) {
+  const u = FLOTA.find((x) => x.patente === patente);
+  return u ? `${u.patente} (${u.id})` : patente;
+}
+
 function hoyArg() {
   const arg = new Date(Date.now() - 3 * 60 * 60 * 1000);
   return arg.toISOString().slice(0, 10);
@@ -68,13 +95,14 @@ export default function Repuestos() {
   // Formulario de alta de movimiento.
   const vacio = {
     tipo: "ingreso", repuesto: "", cantidad: "", precio: "",
-    sucursal: "", fecha: hoy, ref: "", comentario: "",
+    sucursal: "", fecha: hoy, ref: "", vehiculo: "", comentario: "",
   };
   const [nuevo, setNuevo] = useState(vacio);
 
   // Filtros del historial.
   const [fTipo, setFTipo] = useState("");
   const [fRepuesto, setFRepuesto] = useState("");
+  const [fVehiculo, setFVehiculo] = useState("");
 
   // Panel "Administrar repuestos" (catálogo editable).
   const [verCatalogo, setVerCatalogo] = useState(false);
@@ -156,7 +184,7 @@ export default function Repuestos() {
       return;
     }
     const ok = await mutar("crear", { ...nuevo, repuesto: nuevo.repuesto.trim() });
-    if (ok) setNuevo({ ...vacio, tipo: nuevo.tipo, fecha: nuevo.fecha, sucursal: nuevo.sucursal });
+    if (ok) setNuevo({ ...vacio, tipo: nuevo.tipo, fecha: nuevo.fecha, sucursal: nuevo.sucursal, vehiculo: nuevo.vehiculo });
   };
 
   const borrar = async (m) => {
@@ -322,8 +350,24 @@ export default function Repuestos() {
     );
     if (fTipo) f = f.filter((x) => x.tipo === fTipo);
     if (fRepuesto) f = f.filter((x) => claveRepuesto(x.repuesto) === claveRepuesto(fRepuesto));
+    if (fVehiculo === "__sin__") f = f.filter((x) => x.tipo === "salida" && !(x.vehiculo || ""));
+    else if (fVehiculo) f = f.filter((x) => (x.vehiculo || "") === fVehiculo);
     return f;
-  }, [movs, enRango, fTipo, fRepuesto]);
+  }, [movs, enRango, fTipo, fRepuesto, fVehiculo]);
+
+  // Gasto de salidas imputado a cada unidad de la flota, dentro del período.
+  const gastoPorUnidad = useMemo(() => {
+    const m = new Map();
+    for (const x of movs.filter(enRango)) {
+      if (x.tipo !== "salida") continue;
+      const k = x.vehiculo || "";
+      const g = m.get(k) || { vehiculo: k, salidas: 0, costo: 0 };
+      g.salidas += Number(x.cantidad) || 0;
+      if (x.precio != null) g.costo += (Number(x.cantidad) || 0) * x.precio;
+      m.set(k, g);
+    }
+    return [...m.values()].sort((a, b) => b.costo - a.costo || b.salidas - a.salidas);
+  }, [movs, enRango]);
 
   const esIngreso = nuevo.tipo === "ingreso";
 
@@ -501,15 +545,27 @@ export default function Repuestos() {
               onChange={(e) => setNuevo({ ...nuevo, fecha: e.target.value })}
             />
           </div>
-          <div className="field" style={{ flex: 1, minWidth: "150px" }}>
-            <label>{esIngreso ? "Proveedor / remito" : "Vehículo / destino"}</label>
-            <input
-              type="text"
-              placeholder={esIngreso ? "De dónde vino" : "En qué se usó"}
-              value={nuevo.ref}
-              onChange={(e) => setNuevo({ ...nuevo, ref: e.target.value })}
-            />
-          </div>
+          {esIngreso ? (
+            <div className="field" style={{ flex: 1, minWidth: "150px" }}>
+              <label>Proveedor / remito</label>
+              <input
+                type="text"
+                placeholder="De dónde vino"
+                value={nuevo.ref}
+                onChange={(e) => setNuevo({ ...nuevo, ref: e.target.value })}
+              />
+            </div>
+          ) : (
+            <div className="field" style={{ flex: 1, minWidth: "170px" }}>
+              <label>Unidad (camión)</label>
+              <select value={nuevo.vehiculo} onChange={(e) => setNuevo({ ...nuevo, vehiculo: e.target.value })}>
+                <option value="">— Elegir unidad —</option>
+                {FLOTA.map((u) => (
+                  <option key={u.patente} value={u.patente}>{u.patente} ({u.id})</option>
+                ))}
+              </select>
+            </div>
+          )}
           <div className="field" style={{ flex: 2, minWidth: "160px" }}>
             <label>Comentario</label>
             <input
@@ -565,6 +621,42 @@ export default function Repuestos() {
                   <td className="muted">{s.ultSalida ? fmtFecha(s.ultSalida) : "—"}</td>
                   <td className="num muted">{s.precioProm != null ? fmtPesos(s.precioProm) : "—"}</td>
                   <td className="num" style={{ fontWeight: 700 }}>{s.precioProm != null ? fmtPesos(s.valor) : "—"}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Gasto de repuestos por unidad de la flota */}
+      <div className="list-head" style={{ marginTop: "1.5rem" }}>
+        <h2>Gasto por unidad <span className="muted">· salidas del período</span></h2>
+        <span className="muted" style={{ fontSize: "0.85rem" }}>
+          {fmtFecha(desde)} – {fmtFecha(hasta)}
+        </span>
+      </div>
+      <div className="tablewrap" style={{ marginBottom: "1.5rem" }}>
+        <table>
+          <thead>
+            <tr>
+              <th>Unidad (camión)</th>
+              <th className="num">Repuestos consumidos</th>
+              <th className="num">Gasto</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cargando ? (
+              <tr><td colSpan={3} className="center muted">Cargando…</td></tr>
+            ) : gastoPorUnidad.length === 0 ? (
+              <tr><td colSpan={3} className="center muted">No hay salidas en el período.</td></tr>
+            ) : (
+              gastoPorUnidad.map((g) => (
+                <tr key={g.vehiculo || "__sin__"}>
+                  <td style={{ fontWeight: 700 }}>
+                    {g.vehiculo ? etiquetaUnidad(g.vehiculo) : <span className="muted">Sin asignar</span>}
+                  </td>
+                  <td className="num">{fmtNum(g.salidas)}</td>
+                  <td className="num" style={{ fontWeight: 700, color: "var(--accent)" }}>{fmtPesos(g.costo)}</td>
                 </tr>
               ))
             )}
@@ -672,6 +764,13 @@ export default function Repuestos() {
               ))}
             </select>
           )}
+          <select className="suc-select" value={fVehiculo} onChange={(e) => setFVehiculo(e.target.value)}>
+            <option value="">Todas las unidades</option>
+            {FLOTA_PATENTES.map((p) => (
+              <option key={p} value={p}>{etiquetaUnidad(p)}</option>
+            ))}
+            <option value="__sin__">Sin unidad</option>
+          </select>
         </div>
       </div>
       <div className="tablewrap">
@@ -685,16 +784,17 @@ export default function Repuestos() {
               <th className="num">Precio unit.</th>
               <th className="num">Costo</th>
               <th>Sucursal</th>
-              <th>Proveedor / destino</th>
+              <th>Proveedor</th>
               <th>Comentario</th>
+              <th>Unidad (camión)</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             {cargando ? (
-              <tr><td colSpan={10} className="center muted">Cargando…</td></tr>
+              <tr><td colSpan={11} className="center muted">Cargando…</td></tr>
             ) : historial.length === 0 ? (
-              <tr><td colSpan={10} className="center muted">Sin movimientos para el filtro elegido.</td></tr>
+              <tr><td colSpan={11} className="center muted">Sin movimientos para el filtro elegido.</td></tr>
             ) : (
               historial.map((m) => (
                 <tr key={m.id}>
@@ -713,6 +813,23 @@ export default function Repuestos() {
                   <td>{m.sucursal || "—"}</td>
                   <td className="muted">{m.ref || "—"}</td>
                   <td style={{ whiteSpace: "normal", maxWidth: "220px" }} className="muted">{m.comentario || "—"}</td>
+                  <td>
+                    {m.tipo === "salida" ? (
+                      <select
+                        className="suc-select"
+                        value={m.vehiculo || ""}
+                        disabled={guardando}
+                        onChange={(e) => mutar("editar", { id: m.id, vehiculo: e.target.value })}
+                      >
+                        <option value="">— Asignar —</option>
+                        {FLOTA.map((u) => (
+                          <option key={u.patente} value={u.patente}>{u.patente} ({u.id})</option>
+                        ))}
+                      </select>
+                    ) : (
+                      <span className="muted">—</span>
+                    )}
+                  </td>
                   <td>
                     <button
                       className="btn btn-ghost pda-borrar"
