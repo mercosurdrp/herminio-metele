@@ -8,6 +8,7 @@
 // que fallar. Mismo patrón versionado del PDA: nunca sobrescribir el mismo
 // pathname (el CDN de Blob sirve copia vieja), siempre archivo nuevo + del().
 import { put, list, del } from "@vercel/blob";
+import { after } from "next/server";
 import { getOrdenes } from "../../../lib/ordenes";
 
 export const maxDuration = 300;
@@ -49,10 +50,23 @@ export async function GET(req) {
   // `?refresh=1` (botón Sincronizar) saltea el caché y trae lo nuevo de Cloudfleet.
   const force = new URL(req.url).searchParams.get("refresh") === "1";
   const cache = await leerCache();
-  if (!force && cache && Date.now() - cache.ts < TTL_MS) {
+
+  // Apertura normal: servir la copia AL INSTANTE (aunque esté vencida) y, si
+  // está vencida, refrescarla por detrás. Así nunca queda "Sincronizando" en
+  // blanco esperando a Cloudfleet (que tarda y tiene límite de velocidad).
+  if (cache && !force) {
+    if (Date.now() - cache.ts >= TTL_MS) {
+      after(async () => {
+        try {
+          const ordenes = await getOrdenes();
+          await guardarCache({ ordenes, actualizado: new Date().toISOString() });
+        } catch {}
+      });
+    }
     return Response.json({ ok: true, ...cache.datos, cacheado: true });
   }
 
+  // force=1 (Sincronizar) o sin copia todavía: traer en vivo, con fallback.
   try {
     const ordenes = await getOrdenes();
     const datos = { ordenes, actualizado: new Date().toISOString() };

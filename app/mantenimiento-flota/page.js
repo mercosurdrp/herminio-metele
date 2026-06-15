@@ -268,15 +268,20 @@ export default function MantenimientoFlota() {
         </div>
       </div>
 
-      {error && <div className="err">⚠️ {error}</div>}
-      {cargando && (
+      {error && !data && <div className="err">⚠️ {error}</div>}
+      {cargando && !data && (
         <div className="center muted" style={{ padding: "2rem" }}>
           Cargando órdenes de mantenimiento desde Cloudfleet… La primera carga del día
           puede tardar unos minutos (la API tiene límite de velocidad); después queda en caché.
         </div>
       )}
+      {cargando && data && (
+        <div className="muted" style={{ marginBottom: "0.6rem" }}>
+          <small>Actualizando con Cloud Fleet… (podés seguir mirando los datos)</small>
+        </div>
+      )}
 
-      {!cargando && !error && (
+      {data && (
         <>
           {/* Costos por tipo de mantenimiento (clic = filtrar por ese tipo) */}
           <div className="mant-cards">
