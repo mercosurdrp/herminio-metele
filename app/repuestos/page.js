@@ -379,7 +379,7 @@ export default function Repuestos() {
         </button>
       </Nav>
 
-      <div className="marco-prueba repuestos-page">
+      <div className="marco-prueba">
       <h1 className="page-title">Repuestos</h1>
       <p className="page-sub">
         Taller interno · consumibles y repuestos de emergencia (focos, micas, fusibles…)

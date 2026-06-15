@@ -48,11 +48,14 @@ body::before {
 .list-head h2 { color: #e6ecf5; }
 .list-head .muted { color: #9fb0c7; }
 .wrap > .quick-ranges .chip,
-.list-head .quick-ranges .chip { color: #c4d0e2; border-color: rgba(196, 208, 226, 0.45); }
+.list-head .quick-ranges .chip { color: #cbd5e1; border-color: rgba(196, 208, 226, 0.45); }
 .wrap > .quick-ranges .chip:hover,
 .list-head .quick-ranges .chip:hover { color: #ffffff; border-color: #c4d0e2; }
 .wrap > .quick-ranges .chip.active,
-.list-head .quick-ranges .chip.active { color: #fff; background: var(--accent); border-color: var(--accent); }
+.list-head .quick-ranges .chip.active {
+  color: #fff; background: #2563eb; border-color: #2563eb; font-weight: 700;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.5);
+}
 
 /* Landing */
 .landing {
@@ -224,25 +227,19 @@ th.sortable:hover { color: var(--text); }
 
 /* Selección rápida de fecha */
 .quick-ranges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+/* Chips de filtro: inactivos visibles y el elegido con fondo azul lleno,
+   fuerte y persistente. Aplica en todas las tarjetas. */
 .chip {
-  background: transparent; border: 1px solid var(--border); color: var(--muted);
+  background: rgba(148, 163, 184, 0.12); border: 1px solid rgba(148, 163, 184, 0.45); color: #cbd5e1;
   padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
   cursor: pointer; transition: all 0.15s;
 }
-.chip:hover { color: var(--text); border-color: var(--muted); }
-.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-
-/* Chips de filtro SOLO en la tarjeta de Gestión de Repuestos: inactivos más
-   visibles y el elegido con fondo azul lleno, fuerte y persistente. */
-.repuestos-page .chip {
-  background: rgba(148, 163, 184, 0.12); border-color: rgba(148, 163, 184, 0.45); color: #cbd5e1;
-}
-.repuestos-page .chip:hover { color: #fff; border-color: #94a3b8; background: rgba(148, 163, 184, 0.2); }
-.repuestos-page .chip.active {
+.chip:hover { color: #fff; border-color: #94a3b8; background: rgba(148, 163, 184, 0.2); }
+.chip.active {
   background: #2563eb; border-color: #2563eb; color: #fff; font-weight: 700;
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.5);
 }
-.repuestos-page .chip.active:hover { background: #1d4ed8; border-color: #1d4ed8; }
+.chip.active:hover { background: #1d4ed8; border-color: #1d4ed8; }
 
 /* Encabezado del listado (con toggle colapsar) */
 .list-head {
@@ -437,8 +434,8 @@ tbody tr.pda-vencido:hover { background: rgba(220,38,38,0.16); }
   font-family: inherit; line-height: 1.45; white-space: pre-wrap; resize: vertical; min-width: 240px;
 }
 .pda-borrar { padding: 0.3rem 0.55rem; font-size: 0.9rem; }
-.chip.chip-bad { border-color: var(--bad); color: var(--bad); }
-.chip.chip-bad.active { background: var(--bad); border-color: var(--bad); color: #fff; }
+.chip.chip-bad { border-color: var(--bad); color: var(--bad); background: rgba(220, 38, 38, 0.1); }
+.chip.chip-bad.active { background: var(--bad); border-color: var(--bad); color: #fff; box-shadow: 0 2px 8px rgba(220, 38, 38, 0.45); }
 
 /* ===== Estándar de flota ===== */
 .est-resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
