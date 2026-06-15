@@ -2,7 +2,7 @@
 
 import "../globals.css";
 import Nav from "../Nav";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 // Mantenimiento de flota — dashboard de órdenes de trabajo de Cloudfleet:
 // costos por tipo (Preventivo / Correctivo / Proactivo / Mejora), filtros por
@@ -93,19 +93,22 @@ export default function MantenimientoFlota() {
   const [abierta, setAbierta] = useState(null); // nº de orden desplegada
   const [tipCol, setTipCol] = useState(null); // tooltip del gráfico de columnas
 
-  useEffect(() => {
-    let activo = true;
-    fetch("/api/mantenimiento-ordenes", { cache: "no-store" })
+  const cargar = useCallback(() => {
+    setCargando(true);
+    setError(null);
+    return fetch("/api/mantenimiento-ordenes", { cache: "no-store" })
       .then((r) => r.json())
       .then((j) => {
-        if (!activo) return;
         if (!j.ok) throw new Error(j.error || "Error al leer las órdenes");
         setData(j);
       })
-      .catch((e) => activo && setError(String(e.message || e)))
-      .finally(() => activo && setCargando(false));
-    return () => { activo = false; };
+      .catch((e) => setError(String(e.message || e)))
+      .finally(() => setCargando(false));
   }, []);
+
+  useEffect(() => {
+    cargar();
+  }, [cargar]);
 
   const ordenes = useMemo(
     () => (data?.ordenes || []).filter((o) => PATENTES_AUDITORIA.has(o.patente)),
@@ -177,7 +180,11 @@ export default function MantenimientoFlota() {
 
   return (
     <main className="wrap">
-      <Nav />
+      <Nav>
+        <button className="btn sync" onClick={cargar} disabled={cargando}>
+          {cargando ? "Sincronizando…" : "🔄 Sincronizar"}
+        </button>
+      </Nav>
 
       <div className="marco-prueba">
 
