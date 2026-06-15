@@ -33,6 +33,9 @@ const PATENTES_AUDITORIA = new Set([
   "TOYOTA4",
   "TOYOTA5",
   "TOYOTA6",
+  // Acoplados (patentes ID 4517 y 4422 del padrón actualizado al 31-05-2026).
+  "AB729UX",
+  "AF516JC",
 ]);
 
 const TIPOS = [

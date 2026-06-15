@@ -36,6 +36,8 @@ const FLOTA = [
   { value: "TOYOTA4", label: "TOYOTA4 (autoelevador)" },
   { value: "TOYOTA5", label: "TOYOTA5 (autoelevador)" },
   { value: "TOYOTA6", label: "TOYOTA6 (autoelevador)" },
+  { value: "AB729UX", label: "AB729UX (4517 · acoplado)" },
+  { value: "AF516JC", label: "AF516JC (4422 · acoplado)" },
 ];
 const FLOTA_VALUES = FLOTA.map((u) => u.value);
 function etiquetaUnidad(value) {
