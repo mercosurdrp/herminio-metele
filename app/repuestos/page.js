@@ -104,6 +104,10 @@ export default function Repuestos() {
   const [fRepuesto, setFRepuesto] = useState("");
   const [fVehiculo, setFVehiculo] = useState("");
 
+  // Edición inline de movimientos del historial.
+  const [editId, setEditId] = useState(null);
+  const [edit, setEdit] = useState(null);
+
   // Panel "Administrar repuestos" (catálogo editable).
   const [verCatalogo, setVerCatalogo] = useState(false);
   const repVacio = { nombre: "", grupo: "", ubicacion: "" };
@@ -190,6 +194,29 @@ export default function Repuestos() {
   const borrar = async (m) => {
     if (!window.confirm(`¿Borrar este movimiento de "${m.repuesto}"?`)) return;
     await mutar("borrar", { id: m.id });
+  };
+
+  // Edición inline de un movimiento del historial (corregir una carga errónea).
+  const empezarEdicion = (m) => {
+    setEditId(m.id);
+    setEdit({
+      tipo: m.tipo, repuesto: m.repuesto || "",
+      cantidad: m.cantidad ?? "", precio: m.precio ?? "",
+      sucursal: m.sucursal || "", fecha: m.fecha || hoy,
+      ref: m.ref || "", vehiculo: m.vehiculo || "", comentario: m.comentario || "",
+    });
+  };
+  const cancelarEdicion = () => { setEditId(null); setEdit(null); };
+  const guardarEdicion = async () => {
+    if (!edit.repuesto.trim() || !Number(edit.cantidad) || !edit.fecha) {
+      setError("Para guardar: repuesto, cantidad (mayor a 0) y fecha.");
+      return;
+    }
+    const payload = { id: editId, ...edit, repuesto: edit.repuesto.trim() };
+    // Si pasa a ingreso, la unidad deja de aplicar.
+    if (edit.tipo === "ingreso") payload.vehiculo = "";
+    const ok = await mutar("editar", payload);
+    if (ok) cancelarEdicion();
   };
 
   const agregarRepuesto = async () => {
@@ -796,52 +823,122 @@ export default function Repuestos() {
             ) : historial.length === 0 ? (
               <tr><td colSpan={11} className="center muted">Sin movimientos para el filtro elegido.</td></tr>
             ) : (
-              historial.map((m) => (
-                <tr key={m.id}>
-                  <td>{fmtFecha(m.fecha)}</td>
-                  <td>
-                    {m.tipo === "ingreso"
-                      ? <span className="badge ok">⬇️ Ingreso</span>
-                      : <span className="badge lib">⬆️ Salida</span>}
-                  </td>
-                  <td style={{ fontWeight: 700 }}>{m.repuesto}</td>
-                  <td className="num">{fmtNum(m.cantidad)}</td>
-                  <td className="num muted">{m.precio != null ? fmtPesos(m.precio) : "—"}</td>
-                  <td className="num" style={{ fontWeight: 700 }}>
-                    {m.precio != null ? fmtPesos((Number(m.cantidad) || 0) * m.precio) : "—"}
-                  </td>
-                  <td>{m.sucursal || "—"}</td>
-                  <td className="muted">{m.ref || "—"}</td>
-                  <td style={{ whiteSpace: "normal", maxWidth: "220px" }} className="muted">{m.comentario || "—"}</td>
-                  <td>
-                    {m.tipo === "salida" ? (
-                      <select
-                        className="suc-select"
-                        value={m.vehiculo || ""}
-                        disabled={guardando}
-                        onChange={(e) => mutar("editar", { id: m.id, vehiculo: e.target.value })}
-                      >
-                        <option value="">— Asignar —</option>
-                        {FLOTA.map((u) => (
-                          <option key={u.patente} value={u.patente}>{u.patente} ({u.id})</option>
-                        ))}
+              historial.map((m) =>
+                editId === m.id ? (
+                  // Fila en modo edición.
+                  <tr key={m.id}>
+                    <td>
+                      <input type="date" value={edit.fecha} max={hoy}
+                        onChange={(e) => setEdit({ ...edit, fecha: e.target.value })} />
+                    </td>
+                    <td>
+                      <select value={edit.tipo} onChange={(e) => setEdit({ ...edit, tipo: e.target.value })}>
+                        <option value="ingreso">⬇️ Ingreso</option>
+                        <option value="salida">⬆️ Salida</option>
                       </select>
-                    ) : (
-                      <span className="muted">—</span>
-                    )}
-                  </td>
-                  <td>
-                    <button
-                      className="btn btn-ghost pda-borrar"
-                      title="Borrar movimiento"
-                      disabled={guardando}
-                      onClick={() => borrar(m)}
-                    >
-                      🗑
-                    </button>
-                  </td>
-                </tr>
-              ))
+                    </td>
+                    <td>
+                      <input type="text" list="lista-repuestos" value={edit.repuesto}
+                        onChange={(e) => setEdit({ ...edit, repuesto: e.target.value })} />
+                    </td>
+                    <td className="num">
+                      <input type="number" min="0" step="any" style={{ maxWidth: "80px" }} value={edit.cantidad}
+                        onChange={(e) => setEdit({ ...edit, cantidad: e.target.value })} />
+                    </td>
+                    <td className="num">
+                      <input type="number" min="0" step="any" style={{ maxWidth: "100px" }} value={edit.precio}
+                        onChange={(e) => setEdit({ ...edit, precio: e.target.value })} />
+                    </td>
+                    <td className="num" style={{ fontWeight: 700 }}>
+                      {edit.precio !== "" && edit.precio != null
+                        ? fmtPesos((Number(edit.cantidad) || 0) * Number(edit.precio)) : "—"}
+                    </td>
+                    <td>
+                      <select value={edit.sucursal} onChange={(e) => setEdit({ ...edit, sucursal: e.target.value })}>
+                        <option value="">—</option>
+                        {SUCURSALES.map((s) => (<option key={s} value={s}>{s}</option>))}
+                      </select>
+                    </td>
+                    <td>
+                      <input type="text" value={edit.ref}
+                        onChange={(e) => setEdit({ ...edit, ref: e.target.value })} />
+                    </td>
+                    <td>
+                      <input type="text" value={edit.comentario}
+                        onChange={(e) => setEdit({ ...edit, comentario: e.target.value })} />
+                    </td>
+                    <td>
+                      {edit.tipo === "salida" ? (
+                        <select className="suc-select" value={edit.vehiculo}
+                          onChange={(e) => setEdit({ ...edit, vehiculo: e.target.value })}>
+                          <option value="">— Asignar —</option>
+                          {FLOTA.map((u) => (<option key={u.patente} value={u.patente}>{u.patente} ({u.id})</option>))}
+                        </select>
+                      ) : (<span className="muted">—</span>)}
+                    </td>
+                    <td style={{ whiteSpace: "nowrap" }}>
+                      <button className="btn" style={{ padding: "0.35rem 0.6rem" }} disabled={guardando}
+                        onClick={guardarEdicion} title="Guardar cambios">💾</button>{" "}
+                      <button className="btn btn-ghost" style={{ padding: "0.35rem 0.6rem" }} disabled={guardando}
+                        onClick={cancelarEdicion} title="Cancelar">✖</button>
+                    </td>
+                  </tr>
+                ) : (
+                  // Fila en modo vista.
+                  <tr key={m.id}>
+                    <td>{fmtFecha(m.fecha)}</td>
+                    <td>
+                      {m.tipo === "ingreso"
+                        ? <span className="badge ok">⬇️ Ingreso</span>
+                        : <span className="badge lib">⬆️ Salida</span>}
+                    </td>
+                    <td style={{ fontWeight: 700 }}>{m.repuesto}</td>
+                    <td className="num">{fmtNum(m.cantidad)}</td>
+                    <td className="num muted">{m.precio != null ? fmtPesos(m.precio) : "—"}</td>
+                    <td className="num" style={{ fontWeight: 700 }}>
+                      {m.precio != null ? fmtPesos((Number(m.cantidad) || 0) * m.precio) : "—"}
+                    </td>
+                    <td>{m.sucursal || "—"}</td>
+                    <td className="muted">{m.ref || "—"}</td>
+                    <td style={{ whiteSpace: "normal", maxWidth: "220px" }} className="muted">{m.comentario || "—"}</td>
+                    <td>
+                      {m.tipo === "salida" ? (
+                        <select
+                          className="suc-select"
+                          value={m.vehiculo || ""}
+                          disabled={guardando}
+                          onChange={(e) => mutar("editar", { id: m.id, vehiculo: e.target.value })}
+                        >
+                          <option value="">— Asignar —</option>
+                          {FLOTA.map((u) => (
+                            <option key={u.patente} value={u.patente}>{u.patente} ({u.id})</option>
+                          ))}
+                        </select>
+                      ) : (
+                        <span className="muted">—</span>
+                      )}
+                    </td>
+                    <td style={{ whiteSpace: "nowrap" }}>
+                      <button
+                        className="btn btn-ghost"
+                        title="Editar movimiento"
+                        disabled={guardando}
+                        onClick={() => empezarEdicion(m)}
+                      >
+                        ✏️
+                      </button>{" "}
+                      <button
+                        className="btn btn-ghost pda-borrar"
+                        title="Borrar movimiento"
+                        disabled={guardando}
+                        onClick={() => borrar(m)}
+                      >
+                        🗑
+                      </button>
+                    </td>
+                  </tr>
+                )
+              )
             )}
           </tbody>
         </table>
