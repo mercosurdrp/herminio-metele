@@ -394,7 +394,9 @@ tbody tr:hover { background: #eef4ff; }
    flujo para que no se empujen ni encimen cuando hay muchas columnas. El
    extremo derecho de la fecha queda bajo el eje de la columna y el texto cae en
    diagonal hacia la izquierda, sin cruzar la barra. */
-.chart-ang { padding-bottom: 3rem; }
+/* padding-left: espacio para que la etiqueta inclinada de la 1ª columna (enero)
+   no se corte contra el borde izquierdo. */
+.chart-ang { padding-bottom: 3rem; padding-left: 3rem; }
 .chart-ang .col-group { position: relative; }
 .chart-ang .col-label {
   position: absolute;
