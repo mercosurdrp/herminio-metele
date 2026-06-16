@@ -11,6 +11,11 @@ const PREFIJOS = {
   checklist: "pda/planes-",
   estandar: "pda-estandar/planes-",
   combustible: "pda-combustible/planes-",
+  // Ámbitos de las secciones del pilar Flota en dpo-distribuciones (Misiones),
+  // que consumen este mismo /api/pda vía proxy para unificar los planes.
+  mantenimiento: "pda-mantenimiento/planes-",
+  repuestos: "pda-repuestos/planes-",
+  fallas: "pda-fallas/planes-",
 };
 const ESTADOS = new Set(["no_iniciado", "en_curso", "cumplido"]);
 
