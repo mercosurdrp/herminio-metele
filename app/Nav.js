@@ -10,6 +10,7 @@ const TABS = [
   { href: "/combustible", label: "⛽ Combustible" },
   { href: "/repuestos", label: "📦 Gestión de repuestos" },
   { href: "/mantenimiento", label: "🔧 Análisis de falla mecánica" },
+  { href: "/techos", label: "🏠 Revisión de techos" },
 ];
 
 // Barra superior compartida: marca + pestañas. `children` = acciones de la
