@@ -358,7 +358,7 @@ export default function Techos() {
                       </td>
                       <td className="muted">{r.comentario || "—"}</td>
                       <td className="num" style={{ whiteSpace: "nowrap" }}>
-                        <button className="chip" onClick={() => abrirEdicion(r)}>Editar</button>{" "}
+                        <button className="chip chip-edit" onClick={() => abrirEdicion(r)}>✏️ Editar</button>{" "}
                         <button className="chip chip-bad" onClick={() => borrar(r)} disabled={guardando}>Borrar</button>
                       </td>
                     </tr>
