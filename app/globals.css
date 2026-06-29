@@ -244,6 +244,8 @@ th.sortable:hover { color: var(--text); }
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.5);
 }
 .chip.active:hover { background: #1d4ed8; border-color: #1d4ed8; }
+.chip.chip-bad { color: #fca5a5; border-color: rgba(248, 113, 113, 0.45); background: rgba(248, 113, 113, 0.12); }
+.chip.chip-bad:hover { color: #fff; border-color: #ef4444; background: rgba(239, 68, 68, 0.25); }
 
 /* Encabezado del listado (con toggle colapsar) */
 .list-head {
