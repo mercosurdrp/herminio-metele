@@ -36,9 +36,9 @@ function etiquetaUnidad(value) {
 }
 
 const ESTADOS = [
-  { value: "pendiente", label: "Pendiente", badge: "bad" },
-  { value: "en_curso", label: "En curso", badge: "warn" },
-  { value: "corregido", label: "Corregido", badge: "ok" },
+  { value: "pendiente", label: "Pendiente", badge: "bad", color: "#dc2626" },
+  { value: "en_curso", label: "En curso", badge: "warn", color: "#d97706" },
+  { value: "corregido", label: "Corregido", badge: "ok", color: "#16a34a" },
 ];
 function estadoInfo(value) {
   return ESTADOS.find((e) => e.value === value) || ESTADOS[0];
@@ -347,11 +347,11 @@ export default function Techos() {
                       <td className="muted">{fmtFecha(r.fechaProgramada)}</td>
                       <td>
                         <select
-                          className={`badge ${estadoInfo(r.estado).badge}`}
+                          className="badge"
                           value={r.estado}
                           onChange={(e) => cambiarEstado(r, e.target.value)}
                           disabled={guardando}
-                          style={{ border: "none", cursor: "pointer", fontWeight: 700 }}
+                          style={{ border: "none", cursor: "pointer", fontWeight: 700, color: "#fff", background: estadoInfo(r.estado).color }}
                         >
                           {ESTADOS.map((e) => <option key={e.value} value={e.value}>{e.label}</option>)}
                         </select>
