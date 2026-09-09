@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
-import { buildChecklists, SNAP_CHECKLIST, claveRango } from "../../../lib/cloudfleet";
+import {
+  buildChecklists,
+  SNAP_CHECKLIST,
+  claveRango,
+  claveRangoAE,
+} from "../../../lib/cloudfleet";
 import { servirConSnapshot, refrescarSnapshot } from "../../../lib/snapshot";
 
 export const dynamic = "force-dynamic";
@@ -32,9 +37,12 @@ export async function GET(req) {
     const hasta = searchParams.get("hasta") || hoyArg();
     const desde = searchParams.get("desde") || restarDias(hasta, 30);
     const fresco = searchParams.get("fresco") === "1";
+    // ae=1 → suma los PREOPERACIONAL AE de los autoelevadores TOYOTA4/5/6.
+    // Sin el parámetro la respuesta es la de siempre (solo camiones).
+    const incluirAE = searchParams.get("ae") === "1";
 
-    const clave = claveRango(desde, hasta);
-    const construir = () => buildChecklists(desde, hasta);
+    const clave = incluirAE ? claveRangoAE(desde, hasta) : claveRango(desde, hasta);
+    const construir = () => buildChecklists(desde, hasta, { incluirAE });
     // fresco=1 → en vivo de Cloudfleet (actualizado); sino → copia guardada (rápido).
     const payload = fresco
       ? await refrescarSnapshot({ espacio: SNAP_CHECKLIST, clave, construir })

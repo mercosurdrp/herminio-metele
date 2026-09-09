@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
-import { buildChecklists, SNAP_CHECKLIST, claveRango } from "../../../lib/cloudfleet";
+import {
+  buildChecklists,
+  SNAP_CHECKLIST,
+  claveRango,
+  claveRangoAE,
+} from "../../../lib/cloudfleet";
 import { buildMantenimiento, SNAP_MANTENIMIENTO } from "../../../lib/mantenimiento";
 import { getCombustible } from "../../../lib/combustible";
 import { guardarSnap } from "../../../lib/snapshot";
@@ -37,6 +42,17 @@ export async function GET() {
     out.checklist = checklist.total;
   } catch (e) {
     out.checklistError = String(e?.message || e);
+  }
+
+  // Misma vista pero CON autoelevadores (la que abre el tablero de dpo): tiene
+  // su propia copia guardada, así también abre al instante.
+  try {
+    const chkDesde = restarDias(hoy, 7);
+    const conAE = await buildChecklists(chkDesde, hoy, { incluirAE: true });
+    await guardarSnap(SNAP_CHECKLIST, claveRangoAE(chkDesde, hoy), conAE);
+    out.checklistAE = conAE.total;
+  } catch (e) {
+    out.checklistAEError = String(e?.message || e);
   }
 
   // Mantenimiento: vista por defecto = últimos 364 días (igual que la página).
