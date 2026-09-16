@@ -3,7 +3,7 @@
 // La orden de compra tal como se imprime: mismo formato que el modelo en papel
 // (ORDEN_DE_COMPRA_MODELO.xlsx). Se usa en la vista previa y es lo único que
 // queda visible al imprimir (ver @media print en globals.css).
-import { CONDICIONES, EMISOR, etiquetaUnidad, fmtFecha, fmtMoneda, totales } from "./datos";
+import { CONDICIONES, EMISOR, fmtFecha, fmtMoneda, totales } from "./datos";
 
 const FILAS_MINIMAS = 8; // renglones en blanco para que la hoja no quede corta
 
@@ -28,11 +28,11 @@ export default function HojaOC({ orden }) {
         <img className="oc-banda-logo" src="/logo-mercosur-distri.svg" alt="Mercosur Distribuciones" />
         <div className="oc-banda-tit">
           <strong>ORDEN DE COMPRA</strong>
-          <span>Pilar Flota · Misiones</span>
+          <span>Documento interno · Misiones</span>
         </div>
       </div>
       <div className="oc-emisor">
-        {EMISOR.razon} · CUIT: {EMISOR.cuit} · {EMISOR.sector} · {EMISOR.domicilio} · Tel.: {EMISOR.tel} ·
+        {EMISOR.razon} · CUIT: {EMISOR.cuit} · {EMISOR.domicilio} · Tel.: {EMISOR.tel} ·
         e-mail: {EMISOR.email}
       </div>
 
@@ -42,11 +42,11 @@ export default function HojaOC({ orden }) {
         <Campo label="FECHA DE EMISIÓN" valor={fmtFecha(orden.fecha)} />
         <Campo label="SUCURSAL" valor={orden.sucursal} />
         <Campo label="SOLICITANTE" valor={orden.solicitante} />
-        <Campo label="SECTOR" valor={orden.sector} />
+        <Campo label="SECTOR SOLICITANTE" valor={orden.sector} />
         <Campo label="PRIORIDAD" valor={orden.prioridad} />
         <Campo label="RUBRO" valor={orden.rubro} />
-        <Campo label="UNIDAD / PATENTE" valor={etiquetaUnidad(orden.unidad)} />
-        <Campo label="N° DE OT / MOTIVO" valor={orden.ot} />
+        <Campo label="DESTINO / CENTRO DE COSTO" valor={orden.destino} />
+        <Campo label="MOTIVO / REFERENCIA" valor={orden.motivo} />
       </div>
 
       <div className="oc-sec">PROVEEDOR</div>
@@ -136,7 +136,7 @@ export default function HojaOC({ orden }) {
       <div className="oc-firmas">
         <div>
           <div className="oc-firma-caja" />
-          <div className="oc-firma-lab">SOLICITA — Supervisión de Flota</div>
+          <div className="oc-firma-lab">SOLICITA — Sector solicitante</div>
         </div>
         <div>
           <div className="oc-firma-caja" />

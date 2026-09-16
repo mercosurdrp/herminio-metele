@@ -1,4 +1,4 @@
-// Órdenes de compra del pilar Flota (Misiones): alta, edición y seguimiento de
+// Órdenes de compra corporativas: alta, edición y seguimiento de
 // estado. Persisten como un JSON en Vercel Blob (no hay base de datos), igual
 // que los planes de acción (/api/pda) y las revisiones de techo (/api/techos).
 //
@@ -6,13 +6,13 @@
 // rato. Cada guardado escribe `ordenes-compra/ocs-<ts>.json` (URL nueva = sin
 // caché) y borra las versiones anteriores; se lee el de timestamp más alto.
 //
-// 🔢 La numeración es AUTOMÁTICA y correlativa por año: OC-FLO-AAAA-0000. El
+// 🔢 La numeración es AUTOMÁTICA y correlativa por año: OC-AAAA-0000. El
 // número lo asigna el servidor al crear (nunca el cliente) mirando el máximo
 // del año; así no hay saltos ni repetidos aunque se cargue desde dos equipos.
 import { put, list, del } from "@vercel/blob";
 
 const PREFIJO = "ordenes-compra/ocs-";
-const PREFIJO_NUMERO = "OC-FLO";
+const PREFIJO_NUMERO = "OC";
 
 export const ESTADOS = [
   "emitida",
@@ -108,11 +108,11 @@ function normalizar(o) {
     fecha: texto(o?.fecha, 10) || hoyArg(),
     sucursal: texto(o?.sucursal, 40),
     solicitante: texto(o?.solicitante, 80),
-    sector: texto(o?.sector, 40) || "Flota",
+    sector: texto(o?.sector, 40),
     prioridad: texto(o?.prioridad, 30) || "Normal",
     rubro: texto(o?.rubro, 60),
-    unidad: texto(o?.unidad, 40),
-    ot: texto(o?.ot, 200),
+    destino: texto(o?.destino, 80), // a qué sector / centro de costo se imputa
+    motivo: texto(o?.motivo, 200),
     // Proveedor
     prov: texto(o?.prov, 120),
     cuit: texto(o?.cuit, 20),

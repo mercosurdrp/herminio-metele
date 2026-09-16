@@ -1,8 +1,8 @@
 "use client";
 
-// Órdenes de compra del pilar Flota: se emiten acá, con numeración automática
-// y correlativa (OC-FLO-AAAA-0000 — el número lo asigna el servidor), se
-// imprimen con el formato de siempre y se les sigue el estado hasta la factura.
+// Órdenes de compra (uso corporativo): se emiten acá, con numeración automática
+// y correlativa (OC-AAAA-0000 — el número lo asigna el servidor), se imprimen
+// con el formato de siempre y se les sigue el estado hasta la factura.
 // Datos en Vercel Blob vía /api/ordenes-compra (sin base de datos).
 import "../globals.css";
 import Nav from "../Nav";
@@ -11,16 +11,15 @@ import HojaOC from "./HojaOC";
 import {
   ESTADOS,
   ESTADOS_ABIERTOS,
-  FLOTA,
   IVAS,
   MONEDAS,
   PAGOS,
   PRIORIDADES,
   RUBROS,
+  SECTORES,
   SUCURSALES,
   UMEDIDAS,
   estadoInfo,
-  etiquetaUnidad,
   fmtFecha,
   fmtMoneda,
   hoyArg,
@@ -34,11 +33,11 @@ function ordenVacia() {
     fecha: hoyArg(),
     sucursal: "Eldorado",
     solicitante: "",
-    sector: "Flota",
+    sector: "Administración",
     prioridad: "Normal",
-    rubro: "Repuestos",
-    unidad: "",
-    ot: "",
+    rubro: "Insumos de oficina y librería",
+    destino: "",
+    motivo: "",
     prov: "",
     cuit: "",
     ivaProv: "",
@@ -77,7 +76,7 @@ export default function OrdenesCompra() {
 
   // Filtros del listado.
   const [fEstado, setFEstado] = useState("");
-  const [fUnidad, setFUnidad] = useState("");
+  const [fSector, setFSector] = useState("");
   const [fRubro, setFRubro] = useState("");
   const [fTexto, setFTexto] = useState("");
 
@@ -180,17 +179,17 @@ export default function OrdenesCompra() {
     const txt = fTexto.trim().toLowerCase();
     return ordenes
       .filter((o) => (fEstado ? o.estado === fEstado : true))
-      .filter((o) => (fUnidad ? o.unidad === fUnidad : true))
+      .filter((o) => (fSector ? o.sector === fSector : true))
       .filter((o) => (fRubro ? o.rubro === fRubro : true))
       .filter((o) =>
         txt
-          ? `${o.numero} ${o.prov} ${o.ot} ${(o.items || []).map((i) => i.descripcion).join(" ")}`
+          ? `${o.numero} ${o.prov} ${o.motivo} ${o.destino} ${(o.items || []).map((i) => i.descripcion).join(" ")}`
               .toLowerCase()
               .includes(txt)
           : true
       )
       .sort((a, b) => String(b.numero).localeCompare(String(a.numero)));
-  }, [ordenes, fEstado, fUnidad, fRubro, fTexto]);
+  }, [ordenes, fEstado, fSector, fRubro, fTexto]);
 
   const resumen = useMemo(() => {
     const anio = hoyArg().slice(0, 4);
@@ -215,7 +214,7 @@ export default function OrdenesCompra() {
       <div className="marco-prueba">
         <h1 className="page-title">Órdenes de compra</h1>
         <p className="page-sub">
-          Pedidos de repuestos, servicios e insumos de la flota. La numeración es automática y correlativa:
+          Pedidos de materiales, insumos y servicios de la empresa. La numeración es automática y correlativa:
           la próxima orden es <strong>{proximo || "—"}</strong>.
         </p>
 
@@ -280,6 +279,12 @@ export default function OrdenesCompra() {
                 <input type="text" value={form.solicitante} placeholder="Quién pide"
                   onChange={(e) => setForm({ ...form, solicitante: e.target.value })} />
               </div>
+              <div className="field" style={{ minWidth: "170px" }}>
+                <label>Sector solicitante</label>
+                <select value={form.sector} onChange={(e) => setForm({ ...form, sector: e.target.value })}>
+                  {SECTORES.map((x) => <option key={x} value={x}>{x}</option>)}
+                </select>
+              </div>
               <div className="field" style={{ maxWidth: "150px" }}>
                 <label>Prioridad</label>
                 <select value={form.prioridad} onChange={(e) => setForm({ ...form, prioridad: e.target.value })}>
@@ -292,17 +297,15 @@ export default function OrdenesCompra() {
                   {RUBROS.map((r) => <option key={r} value={r}>{r}</option>)}
                 </select>
               </div>
-              <div className="field" style={{ minWidth: "180px" }}>
-                <label>Unidad / patente</label>
-                <select value={form.unidad} onChange={(e) => setForm({ ...form, unidad: e.target.value })}>
-                  <option value="">Elegir…</option>
-                  {FLOTA.map((u) => <option key={u.value} value={u.value}>{u.label}</option>)}
-                </select>
+              <div className="field" style={{ minWidth: "200px" }}>
+                <label>Destino / centro de costo</label>
+                <input type="text" value={form.destino} placeholder="Ej: Administración — Eldorado"
+                  onChange={(e) => setForm({ ...form, destino: e.target.value })} />
               </div>
               <div className="field" style={{ flex: 2, minWidth: "220px" }}>
-                <label>N° de OT / motivo</label>
-                <input type="text" value={form.ot} placeholder="Ej: OT 1284 - pérdida de aire"
-                  onChange={(e) => setForm({ ...form, ot: e.target.value })} />
+                <label>Motivo / referencia</label>
+                <input type="text" value={form.motivo} placeholder="Ej: reposición de insumos de septiembre"
+                  onChange={(e) => setForm({ ...form, motivo: e.target.value })} />
               </div>
             </div>
 
@@ -461,10 +464,10 @@ export default function OrdenesCompra() {
             </select>
           </div>
           <div className="field">
-            <label>Unidad</label>
-            <select value={fUnidad} onChange={(e) => setFUnidad(e.target.value)}>
-              <option value="">Todas</option>
-              {FLOTA.map((u) => <option key={u.value} value={u.value}>{u.label}</option>)}
+            <label>Sector</label>
+            <select value={fSector} onChange={(e) => setFSector(e.target.value)}>
+              <option value="">Todos</option>
+              {SECTORES.map((x) => <option key={x} value={x}>{x}</option>)}
             </select>
           </div>
           <div className="field">
@@ -493,7 +496,7 @@ export default function OrdenesCompra() {
                 <th>Fecha</th>
                 <th>Proveedor</th>
                 <th>Rubro</th>
-                <th>Unidad</th>
+                <th>Sector / destino</th>
                 <th>Total</th>
                 <th>Estado</th>
                 <th>Remito</th>
@@ -514,7 +517,7 @@ export default function OrdenesCompra() {
                   <td>{fmtFecha(o.fecha)}</td>
                   <td>{o.prov}</td>
                   <td>{o.rubro}</td>
-                  <td>{etiquetaUnidad(o.unidad)}</td>
+                  <td>{o.sector}{o.destino ? ` · ${o.destino}` : ""}</td>
                   <td className="d">{fmtMoneda(o.totales?.total, o.moneda)}</td>
                   <td>
                     <select
