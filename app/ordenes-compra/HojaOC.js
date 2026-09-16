@@ -140,7 +140,7 @@ export default function HojaOC({ orden }) {
         </div>
         <div>
           <div className="oc-firma-caja" />
-          <div className="oc-firma-lab">AUTORIZA — Jefatura / Administración</div>
+          <div className="oc-firma-lab">AUTORIZA — Compras</div>
         </div>
         <div>
           <div className="oc-firma-caja" />
