@@ -356,7 +356,7 @@ export default function OrdenesCompra() {
             <div className="pda-form">
               <div className="field" style={{ flex: 2, minWidth: "220px" }}>
                 <label>Lugar de entrega</label>
-                <input type="text" value={form.lugar} placeholder="Taller Eldorado…"
+                <input type="text" value={form.lugar} placeholder="Ej: Oficinas Eldorado — Av. Circunvalación s/n"
                   onChange={(e) => setForm({ ...form, lugar: e.target.value })} />
               </div>
               <div className="field" style={{ maxWidth: "150px" }}>
