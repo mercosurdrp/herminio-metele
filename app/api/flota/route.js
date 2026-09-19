@@ -26,6 +26,20 @@ function restarDias(fechaISO, dias) {
   return d.toISOString().slice(0, 10);
 }
 
+// 🚨 La copia guardada puede ser de OTRO período: cuando no hay snapshot exacto,
+// `servirConSnapshot` devuelve el último disponible marcado `aproximado` para no
+// dejar la pantalla en blanco. Sin este recorte, el tablero pedía agosto y
+// dibujaba los días de septiembre que venían en esa copia. Recortamos siempre al
+// rango pedido y dejamos ese rango en la respuesta: nunca se muestra un día que
+// no se pidió (mientras llega la versión fresca se ve incompleto, no ajeno).
+function recortarAlRango(payload, desde, hasta) {
+  if (!payload || !Array.isArray(payload.datos)) return payload;
+  const datos = payload.datos.filter(
+    (x) => x.fecha && x.fecha >= desde && x.fecha <= hasta
+  );
+  return { ...payload, desde, hasta, total: datos.length, datos };
+}
+
 export async function GET(req) {
   // Durante el build, Next ejecuta el handler con `req` undefined (fase "Collecting
   // page data"). Cortamos temprano para no crashear ni pegarle a Cloudfleet en build.
@@ -48,7 +62,7 @@ export async function GET(req) {
       ? await refrescarSnapshot({ espacio: SNAP_CHECKLIST, clave, construir })
       : await servirConSnapshot({ espacio: SNAP_CHECKLIST, clave, construir });
 
-    return NextResponse.json(payload);
+    return NextResponse.json(recortarAlRango(payload, desde, hasta));
   } catch (e) {
     return NextResponse.json(
       { ok: false, error: String(e?.message || e) },
