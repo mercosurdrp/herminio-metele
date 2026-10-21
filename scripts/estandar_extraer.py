@@ -22,6 +22,11 @@ ITEMS_RENOMBRAR = {  # mismo ítem escrito distinto según la unidad
     "BLOQUE DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD":
         "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
 }
+# (patente, ítem) que no entran al informe aunque figuren en la planilla (pedido de Herminio)
+NO_INFORMAR = {
+    ("FTI792", "BASTONES SONOROS EN CINTURON DE SEGURIDAD"),  # 20/10/2026
+    ("OJA408", "BASTONES SONOROS EN CINTURON DE SEGURIDAD"),  # 20/10/2026
+}
 # columnas (0-based): avance, observación, alcance
 HOJAS = {"camiones": ("ST-CAMIONES", 8, 9, 10), "autoelevadores": ("ST-AE", 5, 6, 7)}
 
@@ -46,10 +51,13 @@ def leer(ws, ca, co, cal):
         p = RENOMBRAR.get(p, p)
         if p in EXCLUIDAS:
             continue
+        item = ITEMS_RENOMBRAR.get(str(r[1]).strip(), str(r[1]).strip())
+        if (p, item) in NO_INFORMAR:
+            continue
         alc = str(r[cal]).strip().upper() if r[cal] else "MANDATORIO"
         filas.append({
             "patente": p,
-            "item": ITEMS_RENOMBRAR.get(str(r[1]).strip(), str(r[1]).strip()),
+            "item": item,
             "avance": av,
             "obs": str(r[co]).strip() if r[co] else "",
             "alcance": alc,

@@ -2,8 +2,8 @@
  "actualizado": "2026-10-20",
  "camiones": {
   "cumple": 505.0,
-  "total": 679,
-  "pct": 74.4,
+  "total": 678,
+  "pct": 74.5,
   "alcances": {
    "MANDATORIO": {
     "cumple": 417.0,
@@ -14,10 +14,10 @@
    },
    "EXCELENCIA": {
     "cumple": 88,
-    "total": 254,
-    "pct": 34.6,
+    "total": 253,
+    "pct": 34.8,
     "itemsTotal": 19,
-    "itemsOk": 7
+    "itemsOk": 8
    }
   },
   "unidades": [
@@ -650,8 +650,8 @@
    {
     "patente": "FTI792",
     "cumple": 30.5,
-    "total": 43,
-    "pct": 70.9,
+    "total": 42,
+    "pct": 72.6,
     "alcances": {
      "MANDATORIO": {
       "cumple": 26.5,
@@ -660,8 +660,8 @@
      },
      "EXCELENCIA": {
       "cumple": 4,
-      "total": 16,
-      "pct": 25.0
+      "total": 15,
+      "pct": 26.7
      }
     },
     "pendientes": [
@@ -673,12 +673,6 @@
      },
      {
       "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
-      "obs": "",
-      "alcance": "EXCELENCIA",
-      "parcial": false
-     },
-     {
-      "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
       "obs": "",
       "alcance": "EXCELENCIA",
       "parcial": false
@@ -1907,23 +1901,6 @@
     "obs": ""
    },
    {
-    "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
-    "cumple": 3,
-    "total": 4,
-    "pct": 75.0,
-    "aplican": [
-     "OTB032",
-     "OTY696",
-     "FUB570",
-     "FTI792"
-    ],
-    "noOk": [
-     "FTI792"
-    ],
-    "parciales": [],
-    "obs": ""
-   },
-   {
     "item": "EDAD DE LA FLOTA",
     "cumple": 14.0,
     "total": 16,
@@ -1961,7 +1938,7 @@
     "obs": "ESTA DENTRO DEL PROGRAMA DE REEMPLAZO"
    }
   ],
-  "itemsOk": 33,
+  "itemsOk": 34,
   "itemsTotal": 47,
   "itemsAlcance": [
    {
@@ -2484,24 +2461,6 @@
     "alcance": "EXCELENCIA"
    },
    {
-    "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
-    "cumple": 3,
-    "total": 4,
-    "pct": 75.0,
-    "aplican": [
-     "OTB032",
-     "OTY696",
-     "FUB570",
-     "FTI792"
-    ],
-    "noOk": [
-     "FTI792"
-    ],
-    "parciales": [],
-    "obs": "",
-    "alcance": "EXCELENCIA"
-   },
-   {
     "item": "EDAD DE LA FLOTA",
     "cumple": 14.0,
     "total": 16,
@@ -2622,6 +2581,21 @@
     "parciales": [],
     "obs": "",
     "alcance": "MANDATORIO"
+   },
+   {
+    "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
    },
    {
     "item": "BOTIQUIN",
