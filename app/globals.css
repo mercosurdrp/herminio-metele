@@ -521,6 +521,32 @@ tbody tr.pda-vencido:hover { background: rgba(220,38,38,0.16); }
 .est-pend-item { font-weight: 700; }
 .est-pend-obs { color: var(--muted); }
 .est-pend-ok { color: var(--ok); font-size: 0.88rem; }
+/* Alcance del estándar (Mandatorio / Excelencia), siempre por separado */
+.est-donas { display: flex; gap: 0.7rem; flex-shrink: 0; }
+.est-dona-col { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+.est-dona-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); }
+.est-alc { flex: 1; display: flex; align-items: center; gap: 0.5rem; min-width: 0; }
+.est-alc-na { font-size: 0.8rem; }
+.est-alc-lbl { display: none; font-size: 0.72rem; font-weight: 800; color: var(--muted); min-width: 42px; }
+.est-fila-head { cursor: default; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding-bottom: 0; }
+.est-fila-head:hover { background: none; }
+.est-filtros { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.est-filtro {
+  font: inherit; font-size: 0.8rem; font-weight: 700; cursor: pointer; border-radius: 999px;
+  padding: 0.25rem 0.8rem; background: var(--panel); color: var(--text, #0f172a); border: 1px solid #94a3b8;
+}
+.est-filtro.active { background: #2563eb; border-color: #2563eb; color: #fff; }
+.est-alc-tag { display: inline-block; border-radius: 6px; padding: 0.08rem 0.45rem; font-size: 0.72rem; font-weight: 800; white-space: nowrap; }
+.est-alc-tag.mand { background: #dbeafe; color: #1e40af; }
+.est-alc-tag.exc { background: #ede9fe; color: #5b21b6; }
+@media (max-width: 640px) {
+  .est-tarjeta { flex-direction: column; align-items: flex-start; }
+  .est-fila { flex-wrap: wrap; }
+  .est-alc { flex-basis: 100%; }
+  .est-fila-head .est-alc { display: none; }
+  .est-alc-lbl { display: inline; }
+}
+
 .est-chip-patente {
   display: inline-block; background: var(--panel2); border: 1px solid var(--border);
   border-radius: 999px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 700;

@@ -1,235 +1,1409 @@
 {
- "actualizado": "2026-06-11",
+ "actualizado": "2026-10-20",
  "camiones": {
-  "pct": 95.8,
-  "cumple": 529,
-  "total": 552,
+  "cumple": 505.0,
+  "total": 679,
+  "pct": 74.4,
+  "alcances": {
+   "MANDATORIO": {
+    "cumple": 417.0,
+    "total": 425,
+    "pct": 98.1,
+    "itemsTotal": 31,
+    "itemsOk": 29
+   },
+   "EXCELENCIA": {
+    "cumple": 88,
+    "total": 254,
+    "pct": 34.6,
+    "itemsTotal": 19,
+    "itemsOk": 7
+   }
+  },
   "unidades": [
    {
-    "patente": "FTI792",
-    "total": 34,
-    "cumple": 31,
-    "pendientes": [
-     {
-      "item": "SISTEMA DE ABS",
-      "obs": ""
-     },
-     {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
-     },
-     {
-      "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
-      "obs": ""
-     }
-    ],
-    "pct": 91.2
-   },
-   {
     "patente": "OJA408",
-    "total": 34,
-    "cumple": 31,
+    "cumple": 29.5,
+    "total": 42,
+    "pct": 70.2,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 25.5,
+      "total": 27,
+      "pct": 94.4
+     },
+     "EXCELENCIA": {
+      "cumple": 4,
+      "total": 15,
+      "pct": 26.7
+     }
+    },
     "pendientes": [
      {
-      "item": "SISTEMA DE ABS",
-      "obs": ""
-     },
-     {
       "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO",
+      "alcance": "MANDATORIO",
+      "parcial": false
      },
      {
-      "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
-      "obs": ""
-     }
-    ],
-    "pct": 91.2
-   },
-   {
-    "patente": "FUB570",
-    "total": 33,
-    "cumple": 31,
-    "pendientes": [
+      "item": "EDAD DE LA FLOTA",
+      "obs": "",
+      "alcance": "MANDATORIO",
+      "parcial": true
+     },
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
      {
       "item": "SISTEMA DE ABS",
-      "obs": ""
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
      },
      {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
-     }
-    ],
-    "pct": 93.9
-   },
-   {
-    "patente": "OTB032",
-    "total": 33,
-    "cumple": 31,
-    "pendientes": [
-     {
-      "item": "SISTEMA DE ABS",
-      "obs": ""
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
      },
      {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
      }
-    ],
-    "pct": 93.9
+    ]
    },
    {
     "patente": "HJR136",
-    "total": 35,
-    "cumple": 33,
+    "cumple": 29.5,
+    "total": 42,
+    "pct": 70.2,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 25.5,
+      "total": 27,
+      "pct": 94.4
+     },
+     "EXCELENCIA": {
+      "cumple": 4,
+      "total": 15,
+      "pct": 26.7
+     }
+    },
     "pendientes": [
      {
-      "item": "SISTEMA DE ABS",
-      "obs": ""
+      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO",
+      "alcance": "MANDATORIO",
+      "parcial": false
      },
      {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
-     }
-    ],
-    "pct": 94.3
-   },
-   {
-    "patente": "OTY696",
-    "total": 35,
-    "cumple": 33,
-    "pendientes": [
-     {
-      "item": "SISTEMA DE ABS",
-      "obs": ""
+      "item": "EDAD DE LA FLOTA",
+      "obs": "",
+      "alcance": "MANDATORIO",
+      "parcial": true
      },
      {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ABS",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
      }
-    ],
-    "pct": 94.3
+    ]
    },
    {
     "patente": "AB386KU",
-    "total": 35,
-    "cumple": 34,
+    "cumple": 31,
+    "total": 42,
+    "pct": 73.8,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 26,
+      "total": 27,
+      "pct": 96.3
+     },
+     "EXCELENCIA": {
+      "cumple": 5,
+      "total": 15,
+      "pct": 33.3
+     }
+    },
     "pendientes": [
      {
       "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO",
+      "alcance": "MANDATORIO",
+      "parcial": false
+     },
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
      }
-    ],
-    "pct": 97.1
+    ]
    },
    {
     "patente": "AB386KV",
-    "total": 35,
-    "cumple": 34,
+    "cumple": 31,
+    "total": 42,
+    "pct": 73.8,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 26,
+      "total": 27,
+      "pct": 96.3
+     },
+     "EXCELENCIA": {
+      "cumple": 5,
+      "total": 15,
+      "pct": 33.3
+     }
+    },
     "pendientes": [
      {
       "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
-     }
-    ],
-    "pct": 97.1
-   },
-   {
-    "patente": "AE445WS",
-    "total": 35,
-    "cumple": 34,
-    "pendientes": [
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO",
+      "alcance": "MANDATORIO",
+      "parcial": false
+     },
      {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
-     }
-    ],
-    "pct": 97.1
-   },
-   {
-    "patente": "AE445WT",
-    "total": 34,
-    "cumple": 33,
-    "pendientes": [
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
      {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
-     }
-    ],
-    "pct": 97.1
-   },
-   {
-    "patente": "AE523XP",
-    "total": 34,
-    "cumple": 33,
-    "pendientes": [
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
      {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
      }
-    ],
-    "pct": 97.1
+    ]
    },
    {
     "patente": "AE591EV",
-    "total": 35,
-    "cumple": 34,
+    "cumple": 31,
+    "total": 42,
+    "pct": 73.8,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 26,
+      "total": 27,
+      "pct": 96.3
+     },
+     "EXCELENCIA": {
+      "cumple": 5,
+      "total": 15,
+      "pct": 33.3
+     }
+    },
     "pendientes": [
      {
       "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO",
+      "alcance": "MANDATORIO",
+      "parcial": false
+     },
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
      }
-    ],
-    "pct": 97.1
+    ]
    },
    {
     "patente": "AF399KW",
-    "total": 35,
-    "cumple": 34,
+    "cumple": 31,
+    "total": 42,
+    "pct": 73.8,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 26,
+      "total": 27,
+      "pct": 96.3
+     },
+     "EXCELENCIA": {
+      "cumple": 5,
+      "total": 15,
+      "pct": 33.3
+     }
+    },
     "pendientes": [
      {
       "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO",
+      "alcance": "MANDATORIO",
+      "parcial": false
+     },
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
      }
-    ],
-    "pct": 97.1
+    ]
    },
    {
-    "patente": "AF399KX",
-    "total": 35,
-    "cumple": 34,
+    "patente": "FUB570",
+    "cumple": 31.5,
+    "total": 42,
+    "pct": 75.0,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 24.5,
+      "total": 25,
+      "pct": 98.0
+     },
+     "EXCELENCIA": {
+      "cumple": 7,
+      "total": 17,
+      "pct": 41.2
+     }
+    },
     "pendientes": [
      {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+      "item": "EDAD DE LA FLOTA",
+      "obs": "ESTA DENTRO DEL PROGRAMA DE REEMPLAZO",
+      "alcance": "MANDATORIO",
+      "parcial": true
+     },
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ABS",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
      }
-    ],
-    "pct": 97.1
+    ]
+   },
+   {
+    "patente": "FTI792",
+    "cumple": 30.5,
+    "total": 43,
+    "pct": 70.9,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 26.5,
+      "total": 27,
+      "pct": 98.1
+     },
+     "EXCELENCIA": {
+      "cumple": 4,
+      "total": 16,
+      "pct": 25.0
+     }
+    },
+    "pendientes": [
+     {
+      "item": "EDAD DE LA FLOTA",
+      "obs": "ESTA DENTRO DEL PROGRAMA DE REEMPLAZO",
+      "alcance": "MANDATORIO",
+      "parcial": true
+     },
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ABS",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     }
+    ]
+   },
+   {
+    "patente": "OTB032",
+    "cumple": 32,
+    "total": 43,
+    "pct": 74.4,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 27,
+      "total": 27,
+      "pct": 100.0
+     },
+     "EXCELENCIA": {
+      "cumple": 5,
+      "total": 16,
+      "pct": 31.2
+     }
+    },
+    "pendientes": [
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ABS",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     }
+    ]
+   },
+   {
+    "patente": "OTY696",
+    "cumple": 32,
+    "total": 43,
+    "pct": 74.4,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 26,
+      "total": 26,
+      "pct": 100.0
+     },
+     "EXCELENCIA": {
+      "cumple": 6,
+      "total": 17,
+      "pct": 35.3
+     }
+    },
+    "pendientes": [
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ABS",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     }
+    ]
+   },
+   {
+    "patente": "AE445WT",
+    "cumple": 32,
+    "total": 42,
+    "pct": 76.2,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 26,
+      "total": 26,
+      "pct": 100.0
+     },
+     "EXCELENCIA": {
+      "cumple": 6,
+      "total": 16,
+      "pct": 37.5
+     }
+    },
+    "pendientes": [
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     }
+    ]
+   },
+   {
+    "patente": "AE523XP",
+    "cumple": 32,
+    "total": 42,
+    "pct": 76.2,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 25,
+      "total": 25,
+      "pct": 100.0
+     },
+     "EXCELENCIA": {
+      "cumple": 7,
+      "total": 17,
+      "pct": 41.2
+     }
+    },
+    "pendientes": [
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     }
+    ]
    },
    {
     "patente": "AF399KZ",
-    "total": 35,
-    "cumple": 34,
+    "cumple": 32,
+    "total": 42,
+    "pct": 76.2,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 26,
+      "total": 26,
+      "pct": 100.0
+     },
+     "EXCELENCIA": {
+      "cumple": 6,
+      "total": 16,
+      "pct": 37.5
+     }
+    },
     "pendientes": [
      {
-      "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
-      "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
      }
-    ],
-    "pct": 97.1
+    ]
    },
    {
     "patente": "AF552QZ",
-    "total": 35,
+    "cumple": 32,
+    "total": 42,
+    "pct": 76.2,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 27,
+      "total": 27,
+      "pct": 100.0
+     },
+     "EXCELENCIA": {
+      "cumple": 5,
+      "total": 15,
+      "pct": 33.3
+     }
+    },
+    "pendientes": [
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     }
+    ]
+   },
+   {
+    "patente": "AE445WS",
+    "cumple": 33,
+    "total": 43,
+    "pct": 76.7,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 26,
+      "total": 26,
+      "pct": 100.0
+     },
+     "EXCELENCIA": {
+      "cumple": 7,
+      "total": 17,
+      "pct": 41.2
+     }
+    },
+    "pendientes": [
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     }
+    ]
+   },
+   {
+    "patente": "AF399KX",
     "cumple": 35,
-    "pendientes": [],
-    "pct": 100.0
+    "total": 45,
+    "pct": 77.8,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 28,
+      "total": 28,
+      "pct": 100.0
+     },
+     "EXCELENCIA": {
+      "cumple": 7,
+      "total": 17,
+      "pct": 41.2
+     }
+    },
+    "pendientes": [
+     {
+      "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "BOTON DE PANICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "CONTROL DE VELOCIDAD CRUCERO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "DETECCION DE PUNTO CIEGO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PLATAFORMA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "PROTECCION LATERAL",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "SISTEMA DE INFLADO DE NEUMATICO",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     },
+     {
+      "item": "VIDEO VIGILANCIA",
+      "obs": "",
+      "alcance": "EXCELENCIA",
+      "parcial": false
+     }
+    ]
    }
   ],
   "items": [
    {
-    "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+    "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+    "cumple": 0,
     "total": 16,
-    "cumple": 1,
+    "pct": 0.0,
     "aplican": [
      "OTB032",
      "OTY696",
@@ -258,6 +1432,7 @@
      "AE523XP",
      "FTI792",
      "AF399KZ",
+     "AF552QZ",
      "AB386KU",
      "AB386KV",
      "AE591EV",
@@ -265,13 +1440,443 @@
      "OJA408",
      "HJR136"
     ],
-    "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO",
-    "pct": 6.2
+    "parciales": [],
+    "obs": ""
+   },
+   {
+    "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": ""
+   },
+   {
+    "item": "BOTON DE PANICO",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": ""
+   },
+   {
+    "item": "CONTROL DE VELOCIDAD CRUCERO",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": ""
+   },
+   {
+    "item": "DETECCION DE PUNTO CIEGO",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": ""
+   },
+   {
+    "item": "PLATAFORMA",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": ""
+   },
+   {
+    "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": ""
+   },
+   {
+    "item": "SISTEMA DE INFLADO DE NEUMATICO",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": ""
+   },
+   {
+    "item": "VIDEO VIGILANCIA",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": ""
+   },
+   {
+    "item": "PROTECCION LATERAL",
+    "cumple": 1,
+    "total": 16,
+    "pct": 6.2,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": ""
+   },
+   {
+    "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+    "cumple": 10,
+    "total": 16,
+    "pct": 62.5,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO"
    },
    {
     "item": "SISTEMA DE ABS",
-    "total": 16,
     "cumple": 10,
+    "total": 16,
+    "pct": 62.5,
     "aplican": [
      "OTB032",
      "OTY696",
@@ -298,14 +1903,575 @@
      "OJA408",
      "HJR136"
     ],
-    "obs": "",
-    "pct": 62.5
+    "parciales": [],
+    "obs": ""
    },
    {
     "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
-    "total": 6,
-    "cumple": 4,
+    "cumple": 3,
+    "total": 4,
+    "pct": 75.0,
     "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "FTI792"
+    ],
+    "noOk": [
+     "FTI792"
+    ],
+    "parciales": [],
+    "obs": ""
+   },
+   {
+    "item": "EDAD DE LA FLOTA",
+    "cumple": 14.0,
+    "total": 16,
+    "pct": 87.5,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "FUB570",
+     "FTI792",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [
+     "FUB570",
+     "FTI792",
+     "OJA408",
+     "HJR136"
+    ],
+    "obs": "ESTA DENTRO DEL PROGRAMA DE REEMPLAZO"
+   }
+  ],
+  "itemsOk": 33,
+  "itemsTotal": 47,
+  "itemsAlcance": [
+   {
+    "item": "ADVERTENCIA DE CAMBIO DE CARRIL",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "BLOQUEO DE ENCENDIDO DEL MOTOR POR USO DEL CINTURON DE SEGURIDAD",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "BOTON DE PANICO",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "CONTROL DE VELOCIDAD CRUCERO",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "DETECCION DE PUNTO CIEGO",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "PLATAFORMA",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "SISTEMA DE ESTABILIDAD ELECTRONICO",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "SISTEMA DE INFLADO DE NEUMATICO",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "VIDEO VIGILANCIA",
+    "cumple": 0,
+    "total": 16,
+    "pct": 0.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "PROTECCION LATERAL",
+    "cumple": 1,
+    "total": 16,
+    "pct": 6.2,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "OTB032",
+     "OTY696",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "ARCO PARA PREVENIR ENGANCHES DE CABLES ELECTRICOS",
+    "cumple": 10,
+    "total": 16,
+    "pct": 62.5,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [],
+    "obs": "SE GESTIONARA LA COLOCACION DEL PROTECTOR ANTES DE FIN DE AÑO",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "SISTEMA DE ABS",
+    "cumple": 10,
+    "total": 16,
+    "pct": 62.5,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
      "OTB032",
      "OTY696",
      "FUB570",
@@ -313,64 +2479,1051 @@
      "OJA408",
      "HJR136"
     ],
-    "noOk": [
-     "FTI792",
-     "OJA408"
-    ],
+    "parciales": [],
     "obs": "",
-    "pct": 66.7
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "BASTONES SONOROS EN CINTURON DE SEGURIDAD",
+    "cumple": 3,
+    "total": 4,
+    "pct": 75.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "FTI792"
+    ],
+    "noOk": [
+     "FTI792"
+    ],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "EDAD DE LA FLOTA",
+    "cumple": 14.0,
+    "total": 16,
+    "pct": 87.5,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [
+     "FUB570",
+     "FTI792",
+     "OJA408",
+     "HJR136"
+    ],
+    "parciales": [
+     "FUB570",
+     "FTI792",
+     "OJA408",
+     "HJR136"
+    ],
+    "obs": "ESTA DENTRO DEL PROGRAMA DE REEMPLAZO",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "AGARRADERA DE COLOR AMARILLO",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "AGARRADERA DE CORTINAS",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "BANDAS REFRACTARIAS",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "BOTIQUIN",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "CABALLETES",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "CAJA DE SEGURIDAD",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "CALCO TRES PUNTO DE APOYO",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "CAMARAS Y SENSORES",
+    "cumple": 8,
+    "total": 8,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "AF399KZ"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "CAMARAS Y SENSORES",
+    "cumple": 8,
+    "total": 8,
+    "pct": 100.0,
+    "aplican": [
+     "FTI792",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "CINTA ANTIDESLIZANTES ESTRIBOS",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "CINTURON DE SEGURIDAD",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "CINTURON DE SEGURIDAD REFLECTIVO",
+    "cumple": 1,
+    "total": 1,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "CINTURON DE SEGURIDAD REFLECTIVO",
+    "cumple": 15,
+    "total": 15,
+    "pct": 100.0,
+    "aplican": [
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "CONOS DE SEÑALIZACION",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "DEFLECTORES DE AIRE LARGA DISTANCIA",
+    "cumple": 2,
+    "total": 2,
+    "pct": 100.0,
+    "aplican": [
+     "AF399KX",
+     "AE445WS"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "DIRECCION HIDRAULICA",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "DOCUMENTACION COMPLETA",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "ESCALON ADICIONAL DE ESTRIBOS",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "ESTRIBOS LAERALES",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "ESTRIBOS SUPERIOR EN CARROCERIA",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "EXTINTORES",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "FAROS TRASEROS LED",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "FUNDA DE TAPIZADO",
+    "cumple": 15,
+    "total": 15,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "ID DE LA UNIDAD",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "LONAS/CORTINAS",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "LUCE SPOT",
+    "cumple": 1,
+    "total": 1,
+    "pct": 100.0,
+    "aplican": [
+     "AF399KX"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "LUCES LED EN BODEGA",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "LUCES LINEALES (ROJAS)",
+    "cumple": 1,
+    "total": 1,
+    "pct": 100.0,
+    "aplican": [
+     "AF399KX"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "MONTAJE DE CONOS EN CARROCERIA",
+    "cumple": 15,
+    "total": 15,
+    "pct": 100.0,
+    "aplican": [
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "MONTAJE DE CONOS EN CARROCERIA DE 75 CM",
+    "cumple": 1,
+    "total": 1,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "PRIMER PUNTO DE APOYO COLOR AMARILLO",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "TACOS DE SUJECION NEUMATICOS",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "TANQUE DE AGUA 25 LTS.",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "TELEMETRIA",
+    "cumple": 15,
+    "total": 15,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "TELEMETRIA",
+    "cumple": 1,
+    "total": 1,
+    "pct": 100.0,
+    "aplican": [
+     "AE523XP"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "EXCELENCIA"
+   },
+   {
+    "item": "VIDIRIO Y ESPEJOS RETROVISORES",
+    "cumple": 16,
+    "total": 16,
+    "pct": 100.0,
+    "aplican": [
+     "OTB032",
+     "OTY696",
+     "FUB570",
+     "AF399KX",
+     "AE445WS",
+     "AE445WT",
+     "AE523XP",
+     "FTI792",
+     "AF399KZ",
+     "AF552QZ",
+     "AB386KU",
+     "AB386KV",
+     "AE591EV",
+     "AF399KW",
+     "OJA408",
+     "HJR136"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
    }
-  ],
-  "itemsOk": 36,
-  "itemsTotal": 39
+  ]
  },
  "autoelevadores": {
-  "pct": 95.2,
   "cumple": 60,
   "total": 63,
+  "pct": 95.2,
+  "alcances": {
+   "MANDATORIO": {
+    "cumple": 60,
+    "total": 63,
+    "pct": 95.2,
+    "itemsTotal": 21,
+    "itemsOk": 20
+   }
+  },
   "unidades": [
    {
     "patente": "TOYOTA4",
-    "total": 21,
     "cumple": 20,
+    "total": 21,
+    "pct": 95.2,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 20,
+      "total": 21,
+      "pct": 95.2
+     }
+    },
     "pendientes": [
      {
       "item": "GARRAFAS DESMONTABLES (MANOMETRO)",
-      "obs": ""
+      "obs": "",
+      "alcance": "MANDATORIO",
+      "parcial": false
      }
-    ],
-    "pct": 95.2
+    ]
    },
    {
     "patente": "TOYOTA5",
-    "total": 21,
     "cumple": 20,
+    "total": 21,
+    "pct": 95.2,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 20,
+      "total": 21,
+      "pct": 95.2
+     }
+    },
     "pendientes": [
      {
       "item": "GARRAFAS DESMONTABLES (MANOMETRO)",
-      "obs": ""
+      "obs": "",
+      "alcance": "MANDATORIO",
+      "parcial": false
      }
-    ],
-    "pct": 95.2
+    ]
    },
    {
     "patente": "TOYOTA6",
-    "total": 21,
     "cumple": 20,
+    "total": 21,
+    "pct": 95.2,
+    "alcances": {
+     "MANDATORIO": {
+      "cumple": 20,
+      "total": 21,
+      "pct": 95.2
+     }
+    },
     "pendientes": [
      {
       "item": "GARRAFAS DESMONTABLES (MANOMETRO)",
-      "obs": ""
+      "obs": "",
+      "alcance": "MANDATORIO",
+      "parcial": false
      }
-    ],
-    "pct": 95.2
+    ]
    }
   ],
   "items": [
    {
     "item": "GARRAFAS DESMONTABLES (MANOMETRO)",
-    "total": 3,
     "cumple": 0,
+    "total": 3,
+    "pct": 0.0,
     "aplican": [
      "TOYOTA4",
      "TOYOTA5",
@@ -381,11 +3534,332 @@
      "TOYOTA5",
      "TOYOTA6"
     ],
-    "obs": "",
-    "pct": 0.0
+    "parciales": [],
+    "obs": ""
    }
   ],
   "itemsOk": 20,
-  "itemsTotal": 21
+  "itemsTotal": 21,
+  "itemsAlcance": [
+   {
+    "item": "GARRAFAS DESMONTABLES (MANOMETRO)",
+    "cumple": 0,
+    "total": 3,
+    "pct": 0.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "ALARMA DE RETROCESO",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "ASIENTO (DISPOSITIVO HM)",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "BALIZA",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "BALIZA DE LUZ BLUE SPOT",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "BANDAS REFLECTIVA Y PINTURA FLUORESCENTE",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "BOCINA",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "CUBIERTAS MACIZAS",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "DOCUMENTACION OBLIGATORIA",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "ESCALON ANTIDEZLIZANES",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "ESPEJO RETROVISOR",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "EXTINTOR",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "FRENOS",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "LUCES DELANTERAS",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "LUCES LATERALES",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "MARCA EN TORRE DE ALTURA",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "NRO. DE ID",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "PARABRISAS CERRADO",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "PUNTO DE APOYO",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "UÑAS",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   },
+   {
+    "item": "VELOCIDAD MAXIMA 16 KM/H",
+    "cumple": 3,
+    "total": 3,
+    "pct": 100.0,
+    "aplican": [
+     "TOYOTA4",
+     "TOYOTA5",
+     "TOYOTA6"
+    ],
+    "noOk": [],
+    "parciales": [],
+    "obs": "",
+    "alcance": "MANDATORIO"
+   }
+  ]
  }
 }
