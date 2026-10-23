@@ -19,6 +19,7 @@ const PREFIJOS = {
   tiempos: "pda-tiempos/planes-",
   estratificacion: "pda-estratificacion/planes-",
   "estratificacion-ae": "pda-estratificacion-ae/planes-",
+  neumaticos: "pda-neumaticos/planes-",
 };
 const ESTADOS = new Set(["no_iniciado", "en_curso", "cumplido"]);
 
