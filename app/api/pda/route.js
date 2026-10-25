@@ -20,6 +20,8 @@ const PREFIJOS = {
   estratificacion: "pda-estratificacion/planes-",
   "estratificacion-ae": "pda-estratificacion-ae/planes-",
   neumaticos: "pda-neumaticos/planes-",
+  // Checklist de autoelevadores: planes aparte de los de camiones (Herminio 24/10/2026).
+  "checklist-ae": "pda-checklist-ae/planes-",
 };
 const ESTADOS = new Set(["no_iniciado", "en_curso", "cumplido"]);
 
