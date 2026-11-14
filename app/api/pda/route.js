@@ -27,6 +27,7 @@ const PREFIJOS = {
   "tiempos-app": "pda-tiempos-app/planes-",
   "estratificacion-app": "pda-estratificacion-app/planes-",
   "estratificacion-ae-app": "pda-estratificacion-ae-app/planes-",
+  "ranking-app": "pda-ranking-app/planes-",
 };
 const ESTADOS = new Set(["no_iniciado", "en_curso", "cumplido"]);
 
