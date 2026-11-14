@@ -22,6 +22,11 @@ const PREFIJOS = {
   neumaticos: "pda-neumaticos/planes-",
   // Checklist de autoelevadores: planes aparte de los de camiones (Herminio 24/10/2026).
   "checklist-ae": "pda-checklist-ae/planes-",
+  // Indicadores de los check list generados DESDE LA APP (dpo-distribuciones,
+  // sin Cloudfleet): planes aparte de los de Cloudfleet (Herminio 14/11/2026).
+  "tiempos-app": "pda-tiempos-app/planes-",
+  "estratificacion-app": "pda-estratificacion-app/planes-",
+  "estratificacion-ae-app": "pda-estratificacion-ae-app/planes-",
 };
 const ESTADOS = new Set(["no_iniciado", "en_curso", "cumplido"]);
 
